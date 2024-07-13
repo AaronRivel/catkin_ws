@@ -1,0 +1,11 @@
+<launch>
+<node name="RC_control" pkg="robot_cuadrupedo" type="RC_lecture"/>
+<node name="Leg1_control" pkg="robot_cuadrupedo" type="leg1_control" />
+<!--<node name="Leg2_control" pkg="robot_cuadrupedo" type="leg2_control" />
+<node name="Leg3_control" pkg="robot_cuadrupedo" type="leg3_control" />
+<node name="Leg4_control" pkg="robot_cuadrupedo" type="leg4_control" />-->
+
+<node name="Gate_secuence" pkg="robot_cuadrupedo" type="gate_secuence.py"/>
+<node name="Animation" pkg="robot_cuadrupedo" type="animation.py" output = "screen"/>
+
+</launch>

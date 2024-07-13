@@ -1,0 +1,8 @@
+prefix=/home/aaron/catkin_ws/install
+
+Name: robot_cuadrupedo_msgs
+Description: Description of robot_cuadrupedo_msgs
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: roscpp rospy std_msgs

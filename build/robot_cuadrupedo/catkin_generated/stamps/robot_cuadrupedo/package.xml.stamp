@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>robot_cuadrupedo</name>
+  <version>0.0.0</version>
+  <description>A package to manage a cuadruped robot by dynamixel motors</description>
+
+  
+  <maintainer email="aaronrivel01@gmail.com">Aaron Eliseo Rivera Veliz</maintainer> 
+
+  <license>BSD</license>
+
+
+ <author email="aaronrivel01@gmail.com">Aaron Eliseo rivera Veliz</author>
+
+
+  
+  <build_depend>message_generation</build_depend> 
+  
+  <exec_depend>message_runtime</exec_depend> 
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  <build_depend>dynamixel_sdk</build_depend>
+  <build_depend>dynamixel_workbench_toolbox</build_depend>
+  <build_depend>robot_cuadrupedo_msgs</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>rospy</build_depend>
+  <build_depend>std_msgs</build_depend>
+  <build_export_depend>dynamixel_sdk</build_export_depend>
+  <build_export_depend>dynamixel_workbench_toolbox</build_export_depend>
+
+  <build_export_depend>robot_cuadrupedo_msgs</build_export_depend>
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>rospy</build_export_depend>
+  <build_export_depend>std_msgs</build_export_depend>
+  <exec_depend>dynamixel_sdk</exec_depend>
+  <exec_depend>dynamixel_workbench_toolbox</exec_depend>
+
+  <exec_depend>robot_cuadrupedo_msgs</exec_depend>
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>rospy</exec_depend>
+  <exec_depend>std_msgs</exec_depend>
+
+
+  <export>
+
+  </export>
+</package>

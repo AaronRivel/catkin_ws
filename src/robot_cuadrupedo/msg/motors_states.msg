@@ -1,0 +1,7 @@
+robot_cuadrupedo_msgs/legs_control leg1
+
+robot_cuadrupedo_msgs/legs_control leg2
+
+robot_cuadrupedo_msgs/legs_control leg3
+
+robot_cuadrupedo_msgs/legs_control leg4

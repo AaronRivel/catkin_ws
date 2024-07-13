@@ -1,0 +1,8 @@
+prefix=/home/aaron/catkin_ws/install
+
+Name: robot_cuadrupedo
+Description: Description of robot_cuadrupedo
+Version: 0.0.0
+Cflags: -I${prefix}/include
+Libs: -L${prefix}/lib 
+Requires: dynamixel_sdk dynamixel_workbench_toolbox roscpp rospy std_msgs message_runtime

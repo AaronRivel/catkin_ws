@@ -99,6 +99,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/aaron/catkin_ws/src/robot_cuadrupedo/scripts/animation.py"
   "/home/aaron/catkin_ws/src/robot_cuadrupedo/scripts/gate_secuence.py"
   "/home/aaron/catkin_ws/src/robot_cuadrupedo/scripts/leg_control.py"
+  "/home/aaron/catkin_ws/src/robot_cuadrupedo/scripts/leg_control2.py"
   "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/CMakeLists.txt"
   "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/package.xml"
   "/opt/ros/noetic/share/catkin/cmake/all.cmake"

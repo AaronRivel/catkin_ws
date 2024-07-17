@@ -21,8 +21,8 @@ DynamixelWorkbench dxl_wb;
 
 const char *l;
 const int dynamixel_nomber = 2;
-uint8_t dxl_id[dynamixel_nomber]= {3,8};
-uint8_t new_dxl_id[dynamixel_nomber] = {3,8};
+uint8_t dxl_id[dynamixel_nomber]= {1,2};
+uint8_t new_dxl_id[dynamixel_nomber] = {1,2};
 
 
 int main(){
@@ -40,6 +40,10 @@ int main(){
 
     dxl_wb.ledOn(dxl_id[i],&l);
     printf("Log : %s\n",l);
+
+    dxl_wb.changeProtocolVersion(dxl_id[i], PROTOCOL_VERSION, &l);
+    printf("Log : %s\n",l);
+    printf("Protocol version : %f\n\n",dxl_wb.getProtocolVersion());
     /*
     dxl_wb.torqueOff(dxl_id[i],&l);
     printf("Log : %s\n",l);
@@ -52,9 +56,9 @@ int main(){
     printf("Log : %s\n",l);
     */
 
-    dxl_wb.goalPosition(dxl_id[i],0,&l);
+   /* dxl_wb.goalPosition(dxl_id[i],0,&l);
     printf("Log : %s\n",l);
-    
+    */
 
     cin.ignore(cin.rdbuf()->in_avail()+1);
 

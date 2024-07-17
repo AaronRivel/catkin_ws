@@ -35,7 +35,7 @@ INIT_POSITION_F = 10
 INIT_POSITION_P = 10
 
 BAUDRATE = 1000000
-DEVICE_NAME = "/dev/ttyUSB0".encode('utf-8')
+DEVICE_NAME = "/dev/ttyUSB0"#.encode('utf-8')
 
 MAX_GOAL_VALUE = 4095
 MIN_ERROR = 5
@@ -46,15 +46,16 @@ TORQUE_DISABLE = 0
 
 ESC_ASCII_VALUE             = 0x1b
 
-flag = False;
-shutdown_flag = False;
-dxl_flag = True;
+flag = False
+shutdown_flag = False
+dxl_flag = True
 
 port_num =  PortHandler(DEVICE_NAME)
+packet_handler = Protocol2PacketHandler()
 
 def init_dxl():
-    Protocol2PacketHandler.write1ByteTxOnly(port_num,ID_F,ADD_TORQUE_ENABLE,TORQUE_ENABLE)
-    Protocol2PacketHandler.write1ByteTxOnly(port_num,ID_F,ADD_TORQUE_ENABLE,TORQUE_ENABLE)
+    packet_handler.write1ByteTxOnly(port_num,ID_F,ADD_TORQUE_ENABLE,TORQUE_ENABLE)
+    packet_handler.write1ByteTxOnly(port_num,ID_F,ADD_TORQUE_ENABLE,TORQUE_ENABLE)
 def shutdown():
     shutdown_flag = True
 
@@ -63,47 +64,44 @@ def shutdown():
 
     set_leg_position(theta_f, theta_p)
 
-    Protocol2PacketHandler.write1ByteTxOnly(port_num,ID_F,ADD_TORQUE_ENABLE,TORQUE_DISABLE)
-    Protocol2PacketHandler.write1ByteTxOnly(port_num,ID_F,ADD_TORQUE_ENABLE,TORQUE_DISABLE)
+    packet_handler.write1ByteTxOnly(port_num,ID_F,ADD_TORQUE_ENABLE,TORQUE_DISABLE)
+    packet_handler.write1ByteTxOnly(port_num,ID_F,ADD_TORQUE_ENABLE,TORQUE_DISABLE)
 
 def set_leg_position(theta_f,theta_p):
 
     goal_position_f = MAX_GOAL_VALUE*(theta_f/360.0)
     goal_position_p = MAX_GOAL_VALUE*(theta_p/360.0)
 
-    print("I recive GoalPosition F : [%0f], GoalPosition P : [%0f]\n",goal_position_f,goal_position_p)
+    rospy.loginfo("I recive GoalPosition F : [%0f], GoalPosition P : [%0f]",goal_position_f,goal_position_p)
 
     if ((goal_position_f + goal_position_p) > (MAX_GOAL_VALUE - 100)):
-        print('JOINT COLISION')
+        rospy.loginfo("JOINT COLISION")
         shutdown()
     else:
-        Protocol2PacketHandler.write4ByteTxOnly(port_num,ID_F,ADD_GOAL_POSITION,goal_position_f)
-        Protocol2PacketHandler.write4ByteTxOnly(port_num,ID_P,ADD_GOAL_POSITION,goal_position_p)
-        moving_status_f = Protocol2PacketHandler.read1ByteRx(port_num,ID_F, ADD_MOVING_STATUS)
-        moving_status_p = Protocol2PacketHandler.read1ByteRx(port_num,ID_P, ADD_MOVING_STATUS)
+        packet_handler.write4ByteTxOnly(port_num,ID_F,ADD_GOAL_POSITION,int(goal_position_f))
+        packet_handler.write4ByteTxOnly(port_num,ID_P,ADD_GOAL_POSITION,int(goal_position_p))
+        moving_status_f = packet_handler.read1ByteTxRx(port_num,ID_F, ADD_MOVING_STATUS)
+        moving_status_p = packet_handler.read1ByteTxRx(port_num,ID_P, ADD_MOVING_STATUS)
 
         count = 0
-        while(count < 15 and  (moving_status_f and moving_status_p)):
-            '''
-            if(kbhit() == ESC_ASCII_VALUE):
-                shutdown()
-                print("SHUTDOWN!!: EXIT PROGRAM\n")
-                break
-            '''
-            Protocol2PacketHandler.write4ByteTxOnly(port_num,ID_F,ADD_GOAL_POSITION,goal_position_f)
-            Protocol2PacketHandler.write4ByteTxOnly(port_num,ID_P,ADD_GOAL_POSITION,goal_position_p)
+        
+        while(count < 15 and  (moving_status_f or moving_status_p) ):
+            
+            packet_handler.write4ByteTxOnly(port_num,ID_F,ADD_GOAL_POSITION,int(goal_position_f))
+            packet_handler.write4ByteTxOnly(port_num,ID_P,ADD_GOAL_POSITION,int(goal_position_p))
 
-            moving_status_f = Protocol2PacketHandler.read1ByteRx(port_num,ID_F, ADD_MOVING_STATUS)
-            moving_status_p = Protocol2PacketHandler.read1ByteRx(port_num,ID_P, ADD_MOVING_STATUS)
+            moving_status_f = packet_handler.read1ByteTxRx(port_num,ID_F, ADD_MOVING_STATUS)
+            moving_status_p = packet_handler.read1ByteTxRx(port_num,ID_P, ADD_MOVING_STATUS)
 
-            present_position_f = Protocol2PacketHandler.read4ByteRx(port_num,ID_F,ADD_PRESENT_POSTION)
-            present_position_p = Protocol2PacketHandler.read4ByteRx(port_num,ID_P,ADD_PRESENT_POSTION)
+            present_position_f = packet_handler.read4ByteTxRx(port_num,ID_F,ADD_PRESENT_POSTION)
+            present_position_p = packet_handler.read4ByteTxRx(port_num,ID_P,ADD_PRESENT_POSTION)
 
-
-            print("[ID:%d] GoalPos:%0f  PresPos:%d,[ID:%d] GoalPos:%0f  PresPos:%d\n", ID_F,goal_position_f,present_position_f, ID_P,goal_position_p,present_position_p)
+            rospy.loginfo(ID_F)
+            #rospy.loginfo(ID_F,ID_P,goal_position_f,goal_position_p,present_position_f,present_position_p)
+            #rospy.loginfo("[ID:%d] GoalPos:%0f  PresPos:%d,[ID:%d] GoalPos:%0f  PresPos:%d\n", ID_F,goal_position_f,present_position_f, ID_P,goal_position_p,present_position_p)
 
             count = count + 1
-            if (count == 15): print('Couldnt reach position')
+            if (count == 15): rospy.loginfo("Couldnt reach position")
 
 
         
@@ -111,38 +109,40 @@ def set_leg_position(theta_f,theta_p):
 def callback(datain):
     global flag
 
-    theta_f = datain.leg1.theta_f
-    theta_p = datain.leg1.theta_p
+    theta_f = datain.leg1.frontal_motor
+    theta_p = datain.leg1.posterior_motor
     walk = datain.leg1.walk
     if (walk == True and flag == True):
         flag = False
         init_dxl()
     elif (walk == False):
         flag = True
-        shutdown()
-        print('SHUTDOWN: POWER OFF')
+        #shutdown()
+        #rospy.loginfo("SHUTDOWN: POWER OFF")
     
     if(theta_f > 300): theta_f = theta_f-360
   
     if(theta_p > 400): theta_p = theta_p-360
 
     if(shutdown_flag == False and dxl_flag == True):
-        print("I recive Theta f : [%f]deg, Theta p : [%f]deg, Walk ? : [%d]\n",theta_f,theta_p,walk)
+        rospy.loginfo("I recive Theta f : [%f]deg, Theta p : [%f]deg, Walk ? : [%d]",theta_f,theta_p,walk)
 
         theta_f = OFFSET+theta_f
         theta_p = OFFSET+(180-theta_p)
 
-        set_leg_position(theta_f,theta_p)
+        #set_leg_position(theta_f,theta_p)
 
         
 
 def main():
-    Protocol2PacketHandler()
     PortHandler.openPort(port_num)
     PortHandler.setBaudRate(port_num,BAUDRATE)
 
-    Protocol2PacketHandler.write1ByteTxOnly(port_num,ID_F,ADD_TORQUE_ENABLE)
-    Protocol2PacketHandler.write1ByteTxOnly(port_num,ID_P,ADD_TORQUE_ENABLE)
+    result = packet_handler.write1ByteTxOnly(port_num,ID_F,ADD_TORQUE_ENABLE, TORQUE_ENABLE)
+    #rospy.loginfo("Torque Enabled of dxl [%d] : %s",ID_F,packet_handler.getTxRxResult(result))
+    result = packet_handler.write1ByteTxOnly(port_num,ID_P,ADD_TORQUE_ENABLE, TORQUE_ENABLE)
+    #rospy.loginfo("Torque Enabled of dxl [%d] : %s",ID_P,packet_handler.getTxRxResult(result))
+
 
     rospy.init_node('Leg_control', anonymous=True)
     rospy.Subscriber("Gate_control", motors_states, callback)

@@ -103,3 +103,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/robot_cuadrupedo" TYPE PROGRAM FILES "/home/aaron/catkin_ws/build/robot_cuadrupedo/catkin_generated/installspace/leg_control.py")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/robot_cuadrupedo" TYPE PROGRAM FILES "/home/aaron/catkin_ws/build/robot_cuadrupedo/catkin_generated/installspace/leg_control2.py")
+endif()
+

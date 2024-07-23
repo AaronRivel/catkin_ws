@@ -75,6 +75,3 @@ catkin_install_python(PROGRAMS scripts/animation.py
 catkin_install_python(PROGRAMS scripts/leg_control.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
-catkin_install_python(PROGRAMS scripts/leg_control2.py
-  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
-)

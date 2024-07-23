@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+#funcion write4BytesTxOnly() causes a fail whit read4BytesTxRx()
 
 import rospy
 from dynamixel_sdk.port_handler import *
@@ -13,6 +14,9 @@ ADD_GOAL_POSITION = 116
 ADD_PRESENT_POSTION = 132
 ADD_MOVING_STATUS = 122
 ADD_PROTOCOL_TYPE = 13
+ADD_VELOCITY = 112
+ADD_ACCELERATION = 108
+ADD_BAUDRATE = 8
 
 PROTOCOL_VERSION = 2
 
@@ -22,14 +26,15 @@ INIT_POSITION_F = 10
 INIT_POSITION_P = 10
 
 BAUDRATE = 1000000
-DEVICE_NAME = "/dev/ttyUSB0"#.encode('utf-8')
+DEVICE_NAME = "/dev/ttyUSB0"
 
 MAX_GOAL_VALUE = 4095
-MIN_ERROR = 5
+MIN_ERROR = 10
 VELOCITY = 400
-ACELERATION = 150
+ACCELERATION = 150
 TORQUE_ENABLE = 1
 TORQUE_DISABLE = 0
+TIME_OUT = 30
 
 ESC_ASCII_VALUE             = 0x1b
 
@@ -38,29 +43,68 @@ shutdown_flag = False
 dxl_flag = True
 
 port_num =  PortHandler(DEVICE_NAME)
-packet_handler = Protocol2PacketHandler()
+packet_handler = PacketHandler(PROTOCOL_VERSION)
     
 def init_dxl():
     dxl_id = [ID_F,ID_P]
 
     for i in range(len(dxl_id)):
-        result = packet_handler.write1ByteTxOnly(port_num,dxl_id[i],ADD_TORQUE_ENABLE, TORQUE_DISABLE)
-        rospy.loginfo("Torque Disable of dxl [%d] : %s",dxl_id[i],packet_handler.getTxRxResult(result))
-        if result != COMM_SUCCESS : dxl_flag = False
+        global dxl_flag
 
-        result = packet_handler.write1ByteTxOnly(port_num,dxl_id[i],ADD_PROTOCOL_TYPE,PROTOCOL_VERSION)
-        rospy.loginfo("Writing protocol version %0.1f to dxl %d", PROTOCOL_VERSION,dxl_id[i])
+        result, error = packet_handler.write1ByteTxRx(port_num,dxl_id[i],ADD_TORQUE_ENABLE, TORQUE_DISABLE)
+        data, _ ,_ = packet_handler.read1ByteTxRx(port_num,dxl_id[i],ADD_TORQUE_ENABLE)
+        if (result == COMM_SUCCESS):
+            rospy.loginfo("Torque of dxl [ID %d] : |%d|",dxl_id[i],data)
+        else:
+            rospy.loginfo("FAIL Torque disable of dxl [ID %d] : %s  %s",dxl_id[i],packet_handler.getTxRxResult(result),packet_handler.getRxPacketError(error))
+            dxl_flag = False
 
-        result,_,_ = packet_handler.read1ByteTxRx(port_num,dxl_id[i],ADD_PROTOCOL_TYPE)
-        rospy.loginfo("ID [%d] Protocol Type: %0.1f",dxl_id[i],result)
+        result, error = packet_handler.write1ByteTxRx(port_num,dxl_id[i],ADD_PROTOCOL_TYPE,PROTOCOL_VERSION)
+        data, _, _ = packet_handler.read1ByteTxRx(port_num,dxl_id[i],ADD_PROTOCOL_TYPE)
+        if (result == COMM_SUCCESS):
+            rospy.loginfo("Protocol version |%0.1f| to dxl [ID %d]",data,dxl_id[i])
+        else:
+            rospy.loginfo("FAIL Writing protocol version |%0.1f| to dxl [ID %d] : %s  %s",PROTOCOL_VERSION,dxl_id[i],packet_handler.getTxRxResult(result),packet_handler.getRxPacketError(error))
+            dxl_flag = False
+        
+        result, error = packet_handler.write1ByteTxRx(port_num,dxl_id[i],ADD_TORQUE_ENABLE, TORQUE_ENABLE)
+        data, _ ,_ = packet_handler.read1ByteTxRx(port_num,dxl_id[i],ADD_TORQUE_ENABLE)
+        if (result == COMM_SUCCESS):
+            rospy.loginfo("Torque of dxl [ID %d] : |%d|",dxl_id[i],data)
+        else:
+            rospy.loginfo("FAIL Torque Enable of dxl [ID %d] : %s  %s",dxl_id[i],packet_handler.getTxRxResult(result),packet_handler.getRxPacketError(error))
+            dxl_flag = False
+
+        result, error = packet_handler.write1ByteTxRx(port_num,dxl_id[i],ADD_BAUDRATE,3) # 3 -> 1,000,000 bauds
+        data,_,_ = packet_handler.read1ByteTxRx(port_num,dxl_id[i],ADD_BAUDRATE)
+        if (result == COMM_SUCCESS):
+            rospy.loginfo("[ID %d] buad rate: |%d|",dxl_id[i],data)
+        else:
+            rospy.loginfo("FAIL [ID %d] baud rate: |%d| %s  %s",dxl_id[i],BAUDRATE,packet_handler.getTxRxResult(result),packet_handler.getRxPacketError(error))
+            dxl_flag = False
 
         model,result,error = packet_handler.ping(port_num,dxl_id[i])
-        rospy.loginfo("ID: %d Model: %s  Communication result: %s, Packet error: %s",dxl_id[i],model,packet_handler.getTxRxResult(result),packet_handler.getRxPacketError(error))
+        if (result == COMM_SUCCESS):
+            rospy.loginfo("Ping dxl [ID %d] Model: %s ",dxl_id[i],model)
+        else:
+            rospy.loginfo("FAIL Ping dxl [ID %d] Model: %s  %s  %s",dxl_id[i],model,packet_handler.getTxRxResult(result),packet_handler.getRxPacketError(error))
+            dxl_flag = False
 
-        result = packet_handler.write1ByteTxOnly(port_num,dxl_id[i],ADD_TORQUE_ENABLE, TORQUE_ENABLE)
-        rospy.loginfo("Torque Enabled of dxl [%d] : %s",dxl_id[i],packet_handler.getTxRxResult(result))
-        if result != COMM_SUCCESS : dxl_flag = False
-   
+        result, error = packet_handler.write4ByteTxRx(port_num,dxl_id[i],ADD_VELOCITY,VELOCITY)
+        data, _, _ = packet_handler.read4ByteTxRx(port_num,dxl_id[i],ADD_VELOCITY)
+        if (result == COMM_SUCCESS):
+            rospy.loginfo("Velocity of dxl [ID %d] to |%d| ",dxl_id[i],data)
+        else:
+            rospy.loginfo("FAIL Writing velocity of dxl [ID %d] to |%d| : %s  %s",dxl_id[i],VELOCITY,packet_handler.getTxRxResult(result),packet_handler.getRxPacketError(error))
+            dxl_flag = False
+
+        result, error = packet_handler.write4ByteTxRx(port_num,dxl_id[i],ADD_ACCELERATION,ACCELERATION)
+        data, _, _ = packet_handler.read4ByteTxRx(port_num,dxl_id[i],ADD_ACCELERATION)
+        if (result == COMM_SUCCESS):
+            rospy.loginfo("Acceleration of dxl [ID %d] to |%d| ",dxl_id[i],data)
+        else:
+            rospy.loginfo("FAIL Writing acceleration of dxl [ID %d] to |%d| : %s  %s",dxl_id[i],ACCELERATION,packet_handler.getTxRxResult(result),packet_handler.getRxPacketError(error))
+            dxl_flag = False
 
 def shutdown():
     global shutdown_flag
@@ -71,10 +115,18 @@ def shutdown():
 
     set_leg_position(theta_f, theta_p)
 
-    result = packet_handler.write1ByteTxOnly(port_num,ID_F,ADD_TORQUE_ENABLE,TORQUE_DISABLE)
-    rospy.loginfo("Torque Disable of dxl [%d] : %s",ID_F,packet_handler.getTxRxResult(result))
-    result = packet_handler.write1ByteTxOnly(port_num,ID_F,ADD_TORQUE_ENABLE,TORQUE_DISABLE)
-    rospy.loginfo("Torque Disable of dxl [%d] : %s",ID_P,packet_handler.getTxRxResult(result))
+    result, error = packet_handler.write1ByteTxRx(port_num,ID_F,ADD_TORQUE_ENABLE,TORQUE_DISABLE)
+    if (packet_handler.getTxRxResult(result) == COMM_SUCCESS):
+        rospy.loginfo("Torque Disable of dxl [%d] : %s",ID_F,packet_handler.getTxRxResult(result))
+    else:
+        rospy.loginfo("Torque Disable of dxl [%d] : %s  %s",ID_F,packet_handler.getTxRxResult(result),packet_handler.getRxPacketError(error))
+
+    result, error = packet_handler.write1ByteTxRx(port_num,ID_P,ADD_TORQUE_ENABLE,TORQUE_DISABLE)
+    if (packet_handler.getTxRxResult(result) == COMM_SUCCESS):
+        rospy.loginfo("Torque Disable of dxl [%d] : %s",ID_P,packet_handler.getTxRxResult(result))
+    else:
+        rospy.loginfo("Torque Disable of dxl [%d] : %s  %s",ID_P,packet_handler.getTxRxResult(result),packet_handler.getRxPacketError(error))
+        dxl_flag = False
 
     rospy.loginfo("SHUTDOWN: POWER OFF")
 
@@ -89,31 +141,22 @@ def set_leg_position(theta_f,theta_p):
         rospy.loginfo("JOINT COLISION")
         shutdown()
     else:
-        result = packet_handler.write4ByteTxOnly(port_num,ID_F,ADD_GOAL_POSITION,int(goal_position_f))
-        rospy.loginfo("Set Goal Position of dxl [%d] : %s",ID_F,packet_handler.getTxRxResult(result))
-        result = packet_handler.write4ByteTxOnly(port_num,ID_P,ADD_GOAL_POSITION,int(goal_position_p))
-        rospy.loginfo("Set Goal Position of dxl [%d] : %s",ID_P,packet_handler.getTxRxResult(result))
-
-        moving_status_f = packet_handler.read1ByteTxRx(port_num,ID_F, ADD_MOVING_STATUS)
-        moving_status_p = packet_handler.read1ByteTxRx(port_num,ID_P, ADD_MOVING_STATUS)
-
+        
+        packet_handler.write4ByteTxRx(port_num,ID_F,ADD_GOAL_POSITION,int(goal_position_f))
+        packet_handler.write4ByteTxRx(port_num,ID_P,ADD_GOAL_POSITION,int(goal_position_p))
+    
         count = 0
         
-        while(count < 15 and  (moving_status_f or moving_status_p) ):
-            
-            packet_handler.write4ByteTxOnly(port_num,ID_F,ADD_GOAL_POSITION,int(goal_position_f))
-            packet_handler.write4ByteTxOnly(port_num,ID_P,ADD_GOAL_POSITION,int(goal_position_p))
+        while(1):
+            present_position_f, _, _ = packet_handler.read4ByteTxRx(port_num,ID_F, ADD_PRESENT_POSTION)
+            present_position_p, _, _ = packet_handler.read4ByteTxRx(port_num,ID_P, ADD_PRESENT_POSTION)
 
-            moving_status_f ,_,_= packet_handler.read1ByteTxRx(port_num,ID_F, ADD_MOVING_STATUS)
-            moving_status_p,_,_ = packet_handler.read1ByteTxRx(port_num,ID_P, ADD_MOVING_STATUS)
-
-            present_position_f,_,_ = packet_handler.read4ByteTxRx(port_num,ID_F,ADD_PRESENT_POSTION)
-            present_position_p,_,_ = packet_handler.read4ByteTxRx(port_num,ID_P,ADD_PRESENT_POSTION)
-
-            #rospy.loginfo("[ID:%d] GoalPos:%0f PresPos:%d Moving: %d [ID:%d] GoalPos:%0f  PresPos:%d MOving %d ", ID_F,goal_position_f,present_position_f,moving_status_f, ID_P,goal_position_p,present_position_p,moving_status_p)
+            rospy.loginfo("[ID:%d] GoalPos:%0f PresPos:%d [ID:%d] GoalPos:%0f  PresPos:%d ", ID_F,goal_position_f,present_position_f, ID_P,goal_position_p,present_position_p)
 
             count = count + 1
-            if (count == 15): rospy.loginfo("Couldnt reach position")
+            if (count == TIME_OUT or (abs(present_position_f-goal_position_f) <= MIN_ERROR and abs(present_position_p-goal_position_p) <= MIN_ERROR)): 
+                if (count == TIME_OUT): rospy.loginfo("Couldnt reach position")
+                break
 
 def callback(datain):
     global flag

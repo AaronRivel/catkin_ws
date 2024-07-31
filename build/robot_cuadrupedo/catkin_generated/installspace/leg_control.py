@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 #funcion write4BytesTxOnly() causes a fail whit read4BytesTxRx()
-
 import rospy
 from dynamixel_sdk.port_handler import *
 from dynamixel_sdk.packet_handler import *
 from robot_cuadrupedo.msg import robot_state
 from robot_cuadrupedo.msg import motors_states
+from robot_cuadrupedo.kbhit import KBHit 
 
 OFFSET = 90
 PI = 3.14159265359
@@ -36,11 +36,13 @@ TORQUE_ENABLE = 1
 TORQUE_DISABLE = 0
 TIME_OUT = 30
 
-ESC_ASCII_VALUE             = 0x1b
+ESC_ASCII_VALUE             = 27 #0x1b
 
 flag = False
 shutdown_flag = False
 dxl_flag = True
+
+kb = KBHit()
 
 port_num =  PortHandler(DEVICE_NAME)
 packet_handler = PacketHandler(PROTOCOL_VERSION)
@@ -138,8 +140,8 @@ def set_leg_position(theta_f,theta_p):
     rospy.loginfo("I recive GoalPosition F : [%0f], GoalPosition P : [%0f]",goal_position_f,goal_position_p)
 
     if ((goal_position_f + goal_position_p) > (MAX_GOAL_VALUE - 100)):
-        rospy.loginfo("JOINT COLISION")
         shutdown()
+        rospy.loginfo("JOINT COLISION")
     else:
         
         packet_handler.write4ByteTxRx(port_num,ID_F,ADD_GOAL_POSITION,int(goal_position_f))
@@ -154,6 +156,16 @@ def set_leg_position(theta_f,theta_p):
             rospy.loginfo("[ID:%d] GoalPos:%0f PresPos:%d [ID:%d] GoalPos:%0f  PresPos:%d ", ID_F,goal_position_f,present_position_f, ID_P,goal_position_p,present_position_p)
 
             count = count + 1
+            
+            c_ord = ''
+            if (kb.kbhit()):
+                c = kb.getch()
+                c_ord = ord(c)
+            if (c_ord == ESC_ASCII_VALUE):
+                shutdown()
+                rospy.loginfo("EXIT PROGRAM!!")
+                break
+
             if (count == TIME_OUT or (abs(present_position_f-goal_position_f) <= MIN_ERROR and abs(present_position_p-goal_position_p) <= MIN_ERROR)): 
                 if (count == TIME_OUT): rospy.loginfo("Couldnt reach position")
                 break
@@ -169,6 +181,7 @@ def callback(datain):
     elif (walk == False):
         flag = True
         shutdown()
+        rospy.loginfo("STOP WALKING!!")
         
     
     if(theta_f > 300): theta_f = theta_f-360

@@ -164,6 +164,13 @@
 /home/aaron/catkin_ws/build/Dynamixel_workbench/dynamixel-workbench/dynamixel_workbench_toolbox/CMakeFiles/edit_cache.dir
 /home/aaron/catkin_ws/build/Dynamixel_workbench/dynamixel-workbench/dynamixel_workbench_toolbox/CMakeFiles/test.dir
 /home/aaron/catkin_ws/build/Dynamixel_workbench/dynamixel-workbench/dynamixel_workbench_toolbox/CMakeFiles/dynamixel_workbench_toolbox.dir
+/home/aaron/catkin_ws/build/prueba/CMakeFiles/install/strip.dir
+/home/aaron/catkin_ws/build/prueba/CMakeFiles/install/local.dir
+/home/aaron/catkin_ws/build/prueba/CMakeFiles/install.dir
+/home/aaron/catkin_ws/build/prueba/CMakeFiles/list_install_components.dir
+/home/aaron/catkin_ws/build/prueba/CMakeFiles/rebuild_cache.dir
+/home/aaron/catkin_ws/build/prueba/CMakeFiles/edit_cache.dir
+/home/aaron/catkin_ws/build/prueba/CMakeFiles/test.dir
 /home/aaron/catkin_ws/build/robot_cuadrupedo_msgs/CMakeFiles/install/strip.dir
 /home/aaron/catkin_ws/build/robot_cuadrupedo_msgs/CMakeFiles/install/local.dir
 /home/aaron/catkin_ws/build/robot_cuadrupedo_msgs/CMakeFiles/install.dir

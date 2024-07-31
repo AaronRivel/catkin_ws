@@ -12,12 +12,15 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 
+catkin_python_setup()
+
  add_message_files(
    FILES
    robot_state.msg
    motors_states.msg
 
    )
+
 
 
  generate_messages(
@@ -75,3 +78,4 @@ catkin_install_python(PROGRAMS scripts/animation.py
 catkin_install_python(PROGRAMS scripts/leg_control.py
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
+

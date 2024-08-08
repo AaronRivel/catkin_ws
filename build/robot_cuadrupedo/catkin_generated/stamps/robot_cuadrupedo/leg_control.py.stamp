@@ -3,7 +3,6 @@
 import rospy
 from dynamixel_sdk.port_handler import *
 from dynamixel_sdk.packet_handler import *
-from robot_cuadrupedo.msg import robot_state
 from robot_cuadrupedo.msg import motors_states
 from robot_cuadrupedo.kbhit import KBHit 
 
@@ -23,7 +22,7 @@ PROTOCOL_VERSION = 2
 ID_F = 1
 ID_P = 2
 INIT_POSITION_F = 10
-INIT_POSITION_P = 10
+INIT_POSITION_P = 170
 
 BAUDRATE = 1000000
 DEVICE_NAME = "/dev/ttyUSB0"
@@ -35,6 +34,7 @@ ACCELERATION = 150
 TORQUE_ENABLE = 1
 TORQUE_DISABLE = 0
 TIME_OUT = 30
+DELTA = 30
 
 ESC_ASCII_VALUE             = 27 #0x1b
 
@@ -112,8 +112,8 @@ def shutdown():
     global shutdown_flag
     shutdown_flag = True
 
-    theta_f = INIT_POSITION_F + OFFSET
-    theta_p = INIT_POSITION_P + OFFSET
+    theta_f = INIT_POSITION_F 
+    theta_p = INIT_POSITION_P 
 
     set_leg_position(theta_f, theta_p)
 
@@ -134,41 +134,58 @@ def shutdown():
 
 def set_leg_position(theta_f,theta_p):
 
-    goal_position_f = MAX_GOAL_VALUE*(theta_f/360.0)
-    goal_position_p = MAX_GOAL_VALUE*(theta_p/360.0)
+    f = OFFSET+theta_f
+    p = OFFSET+(180-theta_p)
+
+    pub = rospy.Publisher("Feedback", motors_states, queue_size=10)
+
+    goal_position_f = MAX_GOAL_VALUE*(f/360.0)
+    goal_position_p = MAX_GOAL_VALUE*(p/360.0)
+
 
     rospy.loginfo("I recive GoalPosition F : [%0f], GoalPosition P : [%0f]",goal_position_f,goal_position_p)
 
-    if ((goal_position_f + goal_position_p) > (MAX_GOAL_VALUE - 100)):
+    if (theta_f > (theta_p - DELTA) or theta_f < ((theta_p-(180)) - DELTA)):
+        rospy.loginfo("JOINT OUT OF RANGE!!")
         shutdown()
-        rospy.loginfo("JOINT COLISION")
-    else:
-        
-        packet_handler.write4ByteTxRx(port_num,ID_F,ADD_GOAL_POSITION,int(goal_position_f))
-        packet_handler.write4ByteTxRx(port_num,ID_P,ADD_GOAL_POSITION,int(goal_position_p))
+        return
     
-        count = 0
+
+    packet_handler.write4ByteTxRx(port_num,ID_F,ADD_GOAL_POSITION,int(goal_position_f))
+    packet_handler.write4ByteTxRx(port_num,ID_P,ADD_GOAL_POSITION,int(goal_position_p))
+
+    count = 0
+
+    while(True):
+        present_position_f, _, _ = packet_handler.read4ByteTxRx(port_num,ID_F, ADD_PRESENT_POSTION)
+        present_position_p, _, _ = packet_handler.read4ByteTxRx(port_num,ID_P, ADD_PRESENT_POSTION)
+
+        rospy.loginfo("[ID:%d] GoalPos:%0f PresPos:%d [ID:%d] GoalPos:%0f  PresPos:%d ", ID_F,goal_position_f,present_position_f, ID_P,goal_position_p,present_position_p)
+
+        count = count + 1
         
-        while(1):
-            present_position_f, _, _ = packet_handler.read4ByteTxRx(port_num,ID_F, ADD_PRESENT_POSTION)
-            present_position_p, _, _ = packet_handler.read4ByteTxRx(port_num,ID_P, ADD_PRESENT_POSTION)
+        c_ord = ''
+        if (kb.kbhit()):
+            c = kb.getch()
+            c_ord = ord(c)
+        if (c_ord == ESC_ASCII_VALUE):
+            rospy.loginfo("EXIT PROGRAM!!")
+            shutdown()
+            break
 
-            rospy.loginfo("[ID:%d] GoalPos:%0f PresPos:%d [ID:%d] GoalPos:%0f  PresPos:%d ", ID_F,goal_position_f,present_position_f, ID_P,goal_position_p,present_position_p)
+        if (count == TIME_OUT or (abs(present_position_f-goal_position_f) <= MIN_ERROR and abs(present_position_p-goal_position_p) <= MIN_ERROR)): 
+            if (count == TIME_OUT): 
+                rospy.loginfo("Couldnt reach position")
+            else:
+                rospy.loginfo("Position reached")
+                dataout = motors_states()
+                dataout.leg1.frontal_motor = theta_f
+                dataout.leg1.posterior_motor = theta_p
+                dataout.leg1.goal_position_feedback = True
+                pub.publish(dataout)
+            break
 
-            count = count + 1
-            
-            c_ord = ''
-            if (kb.kbhit()):
-                c = kb.getch()
-                c_ord = ord(c)
-            if (c_ord == ESC_ASCII_VALUE):
-                shutdown()
-                rospy.loginfo("EXIT PROGRAM!!")
-                break
 
-            if (count == TIME_OUT or (abs(present_position_f-goal_position_f) <= MIN_ERROR and abs(present_position_p-goal_position_p) <= MIN_ERROR)): 
-                if (count == TIME_OUT): rospy.loginfo("Couldnt reach position")
-                break
 
 def callback(datain):
     global flag
@@ -180,19 +197,12 @@ def callback(datain):
         init_dxl()
     elif (walk == False):
         flag = True
-        shutdown()
         rospy.loginfo("STOP WALKING!!")
+        shutdown()
         
-    
-    if(theta_f > 300): theta_f = theta_f-360
-  
-    if(theta_p > 400): theta_p = theta_p-360
 
     if(shutdown_flag == False and dxl_flag == True):
         rospy.loginfo("I recive Theta f : [%f]deg, Theta p : [%f]deg, Walk ? : [%d]",theta_f,theta_p,walk)
-
-        theta_f = OFFSET+theta_f
-        theta_p = OFFSET+(180-theta_p)
 
         set_leg_position(theta_f,theta_p)
 

@@ -15,7 +15,7 @@ int main(int argc, char **argv)
 
   ros::Publisher pub = n.advertise<robot_cuadrupedo::robot_state>("RC_control", 1000);
 
-  ros::Rate loop_rate(1);
+  ros::Rate loop_rate(3);
    
   int count = 0;
   while (ros::ok())

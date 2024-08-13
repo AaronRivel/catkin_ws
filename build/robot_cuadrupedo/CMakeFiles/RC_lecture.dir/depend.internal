@@ -3,7 +3,6 @@
 
 robot_cuadrupedo/CMakeFiles/RC_lecture.dir/src/RC_lecture.cpp.o
  /home/aaron/catkin_ws/devel/include/robot_cuadrupedo/robot_state.h
- /home/aaron/catkin_ws/devel/include/robot_cuadrupedo_msgs/robot_velocity.h
  /home/aaron/catkin_ws/src/robot_cuadrupedo/src/RC_lecture.cpp
  /opt/ros/noetic/include/ros/advertise_options.h
  /opt/ros/noetic/include/ros/advertise_service_options.h

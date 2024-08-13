@@ -22,6 +22,8 @@ class legs_control {
       this.posterior_motor = null;
       this.walk = null;
       this.goal_position_feedback = null;
+      this.id_f = null;
+      this.id_p = null;
     }
     else {
       if (initObj.hasOwnProperty('frontal_motor')) {
@@ -48,6 +50,18 @@ class legs_control {
       else {
         this.goal_position_feedback = false;
       }
+      if (initObj.hasOwnProperty('id_f')) {
+        this.id_f = initObj.id_f
+      }
+      else {
+        this.id_f = 0;
+      }
+      if (initObj.hasOwnProperty('id_p')) {
+        this.id_p = initObj.id_p
+      }
+      else {
+        this.id_p = 0;
+      }
     }
   }
 
@@ -61,6 +75,10 @@ class legs_control {
     bufferOffset = _serializer.bool(obj.walk, buffer, bufferOffset);
     // Serialize message field [goal_position_feedback]
     bufferOffset = _serializer.bool(obj.goal_position_feedback, buffer, bufferOffset);
+    // Serialize message field [id_f]
+    bufferOffset = _serializer.int64(obj.id_f, buffer, bufferOffset);
+    // Serialize message field [id_p]
+    bufferOffset = _serializer.int64(obj.id_p, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -76,11 +94,15 @@ class legs_control {
     data.walk = _deserializer.bool(buffer, bufferOffset);
     // Deserialize message field [goal_position_feedback]
     data.goal_position_feedback = _deserializer.bool(buffer, bufferOffset);
+    // Deserialize message field [id_f]
+    data.id_f = _deserializer.int64(buffer, bufferOffset);
+    // Deserialize message field [id_p]
+    data.id_p = _deserializer.int64(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 18;
+    return 34;
   }
 
   static datatype() {
@@ -90,7 +112,7 @@ class legs_control {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '97a124f2ec231fd19890257578b60ad2';
+    return '889997f071d49233501da79c98b3e3ac';
   }
 
   static messageDefinition() {
@@ -100,6 +122,8 @@ class legs_control {
     float64 posterior_motor
     bool walk
     bool goal_position_feedback
+    int64 id_f
+    int64 id_p
     `;
   }
 
@@ -135,6 +159,20 @@ class legs_control {
     }
     else {
       resolved.goal_position_feedback = false
+    }
+
+    if (msg.id_f !== undefined) {
+      resolved.id_f = msg.id_f;
+    }
+    else {
+      resolved.id_f = 0
+    }
+
+    if (msg.id_p !== undefined) {
+      resolved.id_p = msg.id_p;
+    }
+    else {
+      resolved.id_p = 0
     }
 
     return resolved;

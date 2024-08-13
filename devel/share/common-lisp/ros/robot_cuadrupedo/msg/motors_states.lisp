@@ -7,26 +7,36 @@
 ;//! \htmlinclude motors_states.msg.html
 
 (cl:defclass <motors_states> (roslisp-msg-protocol:ros-message)
-  ((leg1
-    :reader leg1
-    :initarg :leg1
-    :type robot_cuadrupedo_msgs-msg:legs_control
-    :initform (cl:make-instance 'robot_cuadrupedo_msgs-msg:legs_control))
-   (leg2
-    :reader leg2
-    :initarg :leg2
-    :type robot_cuadrupedo_msgs-msg:legs_control
-    :initform (cl:make-instance 'robot_cuadrupedo_msgs-msg:legs_control))
-   (leg3
-    :reader leg3
-    :initarg :leg3
-    :type robot_cuadrupedo_msgs-msg:legs_control
-    :initform (cl:make-instance 'robot_cuadrupedo_msgs-msg:legs_control))
-   (leg4
-    :reader leg4
-    :initarg :leg4
-    :type robot_cuadrupedo_msgs-msg:legs_control
-    :initform (cl:make-instance 'robot_cuadrupedo_msgs-msg:legs_control)))
+  ((frontal_motor
+    :reader frontal_motor
+    :initarg :frontal_motor
+    :type cl:float
+    :initform 0.0)
+   (posterior_motor
+    :reader posterior_motor
+    :initarg :posterior_motor
+    :type cl:float
+    :initform 0.0)
+   (walk
+    :reader walk
+    :initarg :walk
+    :type cl:boolean
+    :initform cl:nil)
+   (goal_position_feedback
+    :reader goal_position_feedback
+    :initarg :goal_position_feedback
+    :type cl:boolean
+    :initform cl:nil)
+   (id_f
+    :reader id_f
+    :initarg :id_f
+    :type cl:integer
+    :initform 0)
+   (id_p
+    :reader id_p
+    :initarg :id_p
+    :type cl:integer
+    :initform 0))
 )
 
 (cl:defclass motors_states (<motors_states>)
@@ -37,38 +47,122 @@
   (cl:unless (cl:typep m 'motors_states)
     (roslisp-msg-protocol:msg-deprecation-warning "using old message class name robot_cuadrupedo-msg:<motors_states> is deprecated: use robot_cuadrupedo-msg:motors_states instead.")))
 
-(cl:ensure-generic-function 'leg1-val :lambda-list '(m))
-(cl:defmethod leg1-val ((m <motors_states>))
-  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader robot_cuadrupedo-msg:leg1-val is deprecated.  Use robot_cuadrupedo-msg:leg1 instead.")
-  (leg1 m))
+(cl:ensure-generic-function 'frontal_motor-val :lambda-list '(m))
+(cl:defmethod frontal_motor-val ((m <motors_states>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader robot_cuadrupedo-msg:frontal_motor-val is deprecated.  Use robot_cuadrupedo-msg:frontal_motor instead.")
+  (frontal_motor m))
 
-(cl:ensure-generic-function 'leg2-val :lambda-list '(m))
-(cl:defmethod leg2-val ((m <motors_states>))
-  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader robot_cuadrupedo-msg:leg2-val is deprecated.  Use robot_cuadrupedo-msg:leg2 instead.")
-  (leg2 m))
+(cl:ensure-generic-function 'posterior_motor-val :lambda-list '(m))
+(cl:defmethod posterior_motor-val ((m <motors_states>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader robot_cuadrupedo-msg:posterior_motor-val is deprecated.  Use robot_cuadrupedo-msg:posterior_motor instead.")
+  (posterior_motor m))
 
-(cl:ensure-generic-function 'leg3-val :lambda-list '(m))
-(cl:defmethod leg3-val ((m <motors_states>))
-  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader robot_cuadrupedo-msg:leg3-val is deprecated.  Use robot_cuadrupedo-msg:leg3 instead.")
-  (leg3 m))
+(cl:ensure-generic-function 'walk-val :lambda-list '(m))
+(cl:defmethod walk-val ((m <motors_states>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader robot_cuadrupedo-msg:walk-val is deprecated.  Use robot_cuadrupedo-msg:walk instead.")
+  (walk m))
 
-(cl:ensure-generic-function 'leg4-val :lambda-list '(m))
-(cl:defmethod leg4-val ((m <motors_states>))
-  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader robot_cuadrupedo-msg:leg4-val is deprecated.  Use robot_cuadrupedo-msg:leg4 instead.")
-  (leg4 m))
+(cl:ensure-generic-function 'goal_position_feedback-val :lambda-list '(m))
+(cl:defmethod goal_position_feedback-val ((m <motors_states>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader robot_cuadrupedo-msg:goal_position_feedback-val is deprecated.  Use robot_cuadrupedo-msg:goal_position_feedback instead.")
+  (goal_position_feedback m))
+
+(cl:ensure-generic-function 'id_f-val :lambda-list '(m))
+(cl:defmethod id_f-val ((m <motors_states>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader robot_cuadrupedo-msg:id_f-val is deprecated.  Use robot_cuadrupedo-msg:id_f instead.")
+  (id_f m))
+
+(cl:ensure-generic-function 'id_p-val :lambda-list '(m))
+(cl:defmethod id_p-val ((m <motors_states>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader robot_cuadrupedo-msg:id_p-val is deprecated.  Use robot_cuadrupedo-msg:id_p instead.")
+  (id_p m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <motors_states>) ostream)
   "Serializes a message object of type '<motors_states>"
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'leg1) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'leg2) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'leg3) ostream)
-  (roslisp-msg-protocol:serialize (cl:slot-value msg 'leg4) ostream)
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'frontal_motor))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'posterior_motor))))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
+  (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:if (cl:slot-value msg 'walk) 1 0)) ostream)
+  (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:if (cl:slot-value msg 'goal_position_feedback) 1 0)) ostream)
+  (cl:let* ((signed (cl:slot-value msg 'id_f)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 18446744073709551616) signed)))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) unsigned) ostream)
+    )
+  (cl:let* ((signed (cl:slot-value msg 'id_p)) (unsigned (cl:if (cl:< signed 0) (cl:+ signed 18446744073709551616) signed)))
+    (cl:write-byte (cl:ldb (cl:byte 8 0) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 8) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 16) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 24) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 32) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 40) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 48) unsigned) ostream)
+    (cl:write-byte (cl:ldb (cl:byte 8 56) unsigned) ostream)
+    )
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <motors_states>) istream)
   "Deserializes a message object of type '<motors_states>"
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'leg1) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'leg2) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'leg3) istream)
-  (roslisp-msg-protocol:deserialize (cl:slot-value msg 'leg4) istream)
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'frontal_motor) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:let ((bits 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
+    (cl:setf (cl:slot-value msg 'posterior_motor) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:setf (cl:slot-value msg 'walk) (cl:not (cl:zerop (cl:read-byte istream))))
+    (cl:setf (cl:slot-value msg 'goal_position_feedback) (cl:not (cl:zerop (cl:read-byte istream))))
+    (cl:let ((unsigned 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'id_f) (cl:if (cl:< unsigned 9223372036854775808) unsigned (cl:- unsigned 18446744073709551616))))
+    (cl:let ((unsigned 0))
+      (cl:setf (cl:ldb (cl:byte 8 0) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 8) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 16) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 24) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 32) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 40) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 48) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:ldb (cl:byte 8 56) unsigned) (cl:read-byte istream))
+      (cl:setf (cl:slot-value msg 'id_p) (cl:if (cl:< unsigned 9223372036854775808) unsigned (cl:- unsigned 18446744073709551616))))
   msg
 )
 (cl:defmethod roslisp-msg-protocol:ros-datatype ((msg (cl:eql '<motors_states>)))
@@ -79,28 +173,32 @@
   "robot_cuadrupedo/motors_states")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<motors_states>)))
   "Returns md5sum for a message object of type '<motors_states>"
-  "c6779dc7494c3c55386a9358df1a0c6a")
+  "889997f071d49233501da79c98b3e3ac")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'motors_states)))
   "Returns md5sum for a message object of type 'motors_states"
-  "c6779dc7494c3c55386a9358df1a0c6a")
+  "889997f071d49233501da79c98b3e3ac")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<motors_states>)))
   "Returns full string definition for message of type '<motors_states>"
-  (cl:format cl:nil "robot_cuadrupedo_msgs/legs_control leg1~%~%robot_cuadrupedo_msgs/legs_control leg2~%~%robot_cuadrupedo_msgs/legs_control leg3~%~%robot_cuadrupedo_msgs/legs_control leg4~%================================================================================~%MSG: robot_cuadrupedo_msgs/legs_control~%float64 frontal_motor~%float64 posterior_motor~%bool walk~%bool goal_position_feedback~%~%"))
+  (cl:format cl:nil "float64 frontal_motor~%float64 posterior_motor~%bool walk~%bool goal_position_feedback~%int64 id_f~%int64 id_p~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'motors_states)))
   "Returns full string definition for message of type 'motors_states"
-  (cl:format cl:nil "robot_cuadrupedo_msgs/legs_control leg1~%~%robot_cuadrupedo_msgs/legs_control leg2~%~%robot_cuadrupedo_msgs/legs_control leg3~%~%robot_cuadrupedo_msgs/legs_control leg4~%================================================================================~%MSG: robot_cuadrupedo_msgs/legs_control~%float64 frontal_motor~%float64 posterior_motor~%bool walk~%bool goal_position_feedback~%~%"))
+  (cl:format cl:nil "float64 frontal_motor~%float64 posterior_motor~%bool walk~%bool goal_position_feedback~%int64 id_f~%int64 id_p~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <motors_states>))
   (cl:+ 0
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'leg1))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'leg2))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'leg3))
-     (roslisp-msg-protocol:serialization-length (cl:slot-value msg 'leg4))
+     8
+     8
+     1
+     1
+     8
+     8
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <motors_states>))
   "Converts a ROS message object to a list"
   (cl:list 'motors_states
-    (cl:cons ':leg1 (leg1 msg))
-    (cl:cons ':leg2 (leg2 msg))
-    (cl:cons ':leg3 (leg3 msg))
-    (cl:cons ':leg4 (leg4 msg))
+    (cl:cons ':frontal_motor (frontal_motor msg))
+    (cl:cons ':posterior_motor (posterior_motor msg))
+    (cl:cons ':walk (walk msg))
+    (cl:cons ':goal_position_feedback (goal_position_feedback msg))
+    (cl:cons ':id_f (id_f msg))
+    (cl:cons ':id_p (id_p msg))
 ))

@@ -20,12 +20,11 @@ int main(int argc, char **argv)
   int count = 0;
   while (ros::ok())
   {
-    
     robot_cuadrupedo::robot_state data;
-    data.rc.walk = true;
-    data.rc.velocity = abs(sin(count*PI/12)*1023);
+    data.walk = true;
+    data.velocity = abs(sin(count*PI/12)*1023);
 
-    ROS_INFO("I send : Walk state [%d], Velocity [%f]", data.rc.walk,data.rc.velocity);
+    ROS_INFO("I send : Walk state [%d], Velocity [%f]", data.walk,data.velocity);
 
     pub.publish(data);
 

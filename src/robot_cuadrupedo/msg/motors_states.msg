@@ -1,7 +1,6 @@
-robot_cuadrupedo_msgs/legs_control leg1
-
-robot_cuadrupedo_msgs/legs_control leg2
-
-robot_cuadrupedo_msgs/legs_control leg3
-
-robot_cuadrupedo_msgs/legs_control leg4
+float64 frontal_motor
+float64 posterior_motor
+bool walk
+bool goal_position_feedback
+int64 id_f
+int64 id_p

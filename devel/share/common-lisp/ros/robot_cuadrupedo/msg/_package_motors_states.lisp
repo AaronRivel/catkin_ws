@@ -1,10 +1,14 @@
 (cl:in-package robot_cuadrupedo-msg)
-(cl:export '(LEG1-VAL
-          LEG1
-          LEG2-VAL
-          LEG2
-          LEG3-VAL
-          LEG3
-          LEG4-VAL
-          LEG4
+(cl:export '(FRONTAL_MOTOR-VAL
+          FRONTAL_MOTOR
+          POSTERIOR_MOTOR-VAL
+          POSTERIOR_MOTOR
+          WALK-VAL
+          WALK
+          GOAL_POSITION_FEEDBACK-VAL
+          GOAL_POSITION_FEEDBACK
+          ID_F-VAL
+          ID_F
+          ID_P-VAL
+          ID_P
 ))

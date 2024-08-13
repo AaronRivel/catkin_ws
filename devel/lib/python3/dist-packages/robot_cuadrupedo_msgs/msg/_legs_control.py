@@ -8,15 +8,17 @@ import struct
 
 
 class legs_control(genpy.Message):
-  _md5sum = "97a124f2ec231fd19890257578b60ad2"
+  _md5sum = "889997f071d49233501da79c98b3e3ac"
   _type = "robot_cuadrupedo_msgs/legs_control"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """float64 frontal_motor
 float64 posterior_motor
 bool walk
-bool goal_position_feedback"""
-  __slots__ = ['frontal_motor','posterior_motor','walk','goal_position_feedback']
-  _slot_types = ['float64','float64','bool','bool']
+bool goal_position_feedback
+int64 id_f
+int64 id_p"""
+  __slots__ = ['frontal_motor','posterior_motor','walk','goal_position_feedback','id_f','id_p']
+  _slot_types = ['float64','float64','bool','bool','int64','int64']
 
   def __init__(self, *args, **kwds):
     """
@@ -26,7 +28,7 @@ bool goal_position_feedback"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       frontal_motor,posterior_motor,walk,goal_position_feedback
+       frontal_motor,posterior_motor,walk,goal_position_feedback,id_f,id_p
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -43,11 +45,17 @@ bool goal_position_feedback"""
         self.walk = False
       if self.goal_position_feedback is None:
         self.goal_position_feedback = False
+      if self.id_f is None:
+        self.id_f = 0
+      if self.id_p is None:
+        self.id_p = 0
     else:
       self.frontal_motor = 0.
       self.posterior_motor = 0.
       self.walk = False
       self.goal_position_feedback = False
+      self.id_f = 0
+      self.id_p = 0
 
   def _get_types(self):
     """
@@ -62,7 +70,7 @@ bool goal_position_feedback"""
     """
     try:
       _x = self
-      buff.write(_get_struct_2d2B().pack(_x.frontal_motor, _x.posterior_motor, _x.walk, _x.goal_position_feedback))
+      buff.write(_get_struct_2d2B2q().pack(_x.frontal_motor, _x.posterior_motor, _x.walk, _x.goal_position_feedback, _x.id_f, _x.id_p))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -77,8 +85,8 @@ bool goal_position_feedback"""
       end = 0
       _x = self
       start = end
-      end += 18
-      (_x.frontal_motor, _x.posterior_motor, _x.walk, _x.goal_position_feedback,) = _get_struct_2d2B().unpack(str[start:end])
+      end += 34
+      (_x.frontal_motor, _x.posterior_motor, _x.walk, _x.goal_position_feedback, _x.id_f, _x.id_p,) = _get_struct_2d2B2q().unpack(str[start:end])
       self.walk = bool(self.walk)
       self.goal_position_feedback = bool(self.goal_position_feedback)
       return self
@@ -94,7 +102,7 @@ bool goal_position_feedback"""
     """
     try:
       _x = self
-      buff.write(_get_struct_2d2B().pack(_x.frontal_motor, _x.posterior_motor, _x.walk, _x.goal_position_feedback))
+      buff.write(_get_struct_2d2B2q().pack(_x.frontal_motor, _x.posterior_motor, _x.walk, _x.goal_position_feedback, _x.id_f, _x.id_p))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -110,8 +118,8 @@ bool goal_position_feedback"""
       end = 0
       _x = self
       start = end
-      end += 18
-      (_x.frontal_motor, _x.posterior_motor, _x.walk, _x.goal_position_feedback,) = _get_struct_2d2B().unpack(str[start:end])
+      end += 34
+      (_x.frontal_motor, _x.posterior_motor, _x.walk, _x.goal_position_feedback, _x.id_f, _x.id_p,) = _get_struct_2d2B2q().unpack(str[start:end])
       self.walk = bool(self.walk)
       self.goal_position_feedback = bool(self.goal_position_feedback)
       return self
@@ -122,9 +130,9 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_2d2B = None
-def _get_struct_2d2B():
-    global _struct_2d2B
-    if _struct_2d2B is None:
-        _struct_2d2B = struct.Struct("<2d2B")
-    return _struct_2d2B
+_struct_2d2B2q = None
+def _get_struct_2d2B2q():
+    global _struct_2d2B2q
+    if _struct_2d2B2q is None:
+        _struct_2d2B2q = struct.Struct("<2d2B2q")
+    return _struct_2d2B2q

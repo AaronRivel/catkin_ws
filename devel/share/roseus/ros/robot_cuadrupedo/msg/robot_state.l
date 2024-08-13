@@ -10,63 +10,65 @@
 
 (in-package "ROS")
 ;;//! \htmlinclude robot_state.msg.html
-(if (not (find-package "ROBOT_CUADRUPEDO_MSGS"))
-  (ros::roseus-add-msgs "robot_cuadrupedo_msgs"))
 
 
 (defclass robot_cuadrupedo::robot_state
   :super ros::object
-  :slots (_rc ))
+  :slots (_walk _velocity ))
 
 (defmethod robot_cuadrupedo::robot_state
   (:init
    (&key
-    ((:rc __rc) (instance robot_cuadrupedo_msgs::robot_velocity :init))
+    ((:walk __walk) nil)
+    ((:velocity __velocity) 0.0)
     )
    (send-super :init)
-   (setq _rc __rc)
+   (setq _walk __walk)
+   (setq _velocity (float __velocity))
    self)
-  (:rc
-   (&rest __rc)
-   (if (keywordp (car __rc))
-       (send* _rc __rc)
-     (progn
-       (if __rc (setq _rc (car __rc)))
-       _rc)))
+  (:walk
+   (&optional (__walk :null))
+   (if (not (eq __walk :null)) (setq _walk __walk)) _walk)
+  (:velocity
+   (&optional __velocity)
+   (if __velocity (setq _velocity __velocity)) _velocity)
   (:serialization-length
    ()
    (+
-    ;; robot_cuadrupedo_msgs/robot_velocity _rc
-    (send _rc :serialization-length)
+    ;; bool _walk
+    1
+    ;; float64 _velocity
+    8
     ))
   (:serialize
    (&optional strm)
    (let ((s (if strm strm
               (make-string-output-stream (send self :serialization-length)))))
-     ;; robot_cuadrupedo_msgs/robot_velocity _rc
-       (send _rc :serialize s)
+     ;; bool _walk
+       (if _walk (write-byte -1 s) (write-byte 0 s))
+     ;; float64 _velocity
+       (sys::poke _velocity (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
-   ;; robot_cuadrupedo_msgs/robot_velocity _rc
-     (send _rc :deserialize buf ptr-) (incf ptr- (send _rc :serialization-length))
+   ;; bool _walk
+     (setq _walk (not (= 0 (sys::peek buf ptr- :char)))) (incf ptr- 1)
+   ;; float64 _velocity
+     (setq _velocity (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;;
    self)
   )
 
-(setf (get robot_cuadrupedo::robot_state :md5sum-) "4aab73bea9dabf128c8c483534d2bbfe")
+(setf (get robot_cuadrupedo::robot_state :md5sum-) "8bed2b6d4486708eb51d1d25b9ec31fb")
 (setf (get robot_cuadrupedo::robot_state :datatype-) "robot_cuadrupedo/robot_state")
 (setf (get robot_cuadrupedo::robot_state :definition-)
-      "robot_cuadrupedo_msgs/robot_velocity rc
-================================================================================
-MSG: robot_cuadrupedo_msgs/robot_velocity
-bool walk
+      "bool walk
 float64 velocity
 ")
 
 
 
-(provide :robot_cuadrupedo/robot_state "4aab73bea9dabf128c8c483534d2bbfe")
+(provide :robot_cuadrupedo/robot_state "8bed2b6d4486708eb51d1d25b9ec31fb")
 
 

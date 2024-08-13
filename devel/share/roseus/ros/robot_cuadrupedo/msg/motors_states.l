@@ -10,116 +10,153 @@
 
 (in-package "ROS")
 ;;//! \htmlinclude motors_states.msg.html
-(if (not (find-package "ROBOT_CUADRUPEDO_MSGS"))
-  (ros::roseus-add-msgs "robot_cuadrupedo_msgs"))
 
 
 (defclass robot_cuadrupedo::motors_states
   :super ros::object
-  :slots (_leg1 _leg2 _leg3 _leg4 ))
+  :slots (_frontal_motor _posterior_motor _walk _goal_position_feedback _id_f _id_p ))
 
 (defmethod robot_cuadrupedo::motors_states
   (:init
    (&key
-    ((:leg1 __leg1) (instance robot_cuadrupedo_msgs::legs_control :init))
-    ((:leg2 __leg2) (instance robot_cuadrupedo_msgs::legs_control :init))
-    ((:leg3 __leg3) (instance robot_cuadrupedo_msgs::legs_control :init))
-    ((:leg4 __leg4) (instance robot_cuadrupedo_msgs::legs_control :init))
+    ((:frontal_motor __frontal_motor) 0.0)
+    ((:posterior_motor __posterior_motor) 0.0)
+    ((:walk __walk) nil)
+    ((:goal_position_feedback __goal_position_feedback) nil)
+    ((:id_f __id_f) 0)
+    ((:id_p __id_p) 0)
     )
    (send-super :init)
-   (setq _leg1 __leg1)
-   (setq _leg2 __leg2)
-   (setq _leg3 __leg3)
-   (setq _leg4 __leg4)
+   (setq _frontal_motor (float __frontal_motor))
+   (setq _posterior_motor (float __posterior_motor))
+   (setq _walk __walk)
+   (setq _goal_position_feedback __goal_position_feedback)
+   (setq _id_f (round __id_f))
+   (setq _id_p (round __id_p))
    self)
-  (:leg1
-   (&rest __leg1)
-   (if (keywordp (car __leg1))
-       (send* _leg1 __leg1)
-     (progn
-       (if __leg1 (setq _leg1 (car __leg1)))
-       _leg1)))
-  (:leg2
-   (&rest __leg2)
-   (if (keywordp (car __leg2))
-       (send* _leg2 __leg2)
-     (progn
-       (if __leg2 (setq _leg2 (car __leg2)))
-       _leg2)))
-  (:leg3
-   (&rest __leg3)
-   (if (keywordp (car __leg3))
-       (send* _leg3 __leg3)
-     (progn
-       (if __leg3 (setq _leg3 (car __leg3)))
-       _leg3)))
-  (:leg4
-   (&rest __leg4)
-   (if (keywordp (car __leg4))
-       (send* _leg4 __leg4)
-     (progn
-       (if __leg4 (setq _leg4 (car __leg4)))
-       _leg4)))
+  (:frontal_motor
+   (&optional __frontal_motor)
+   (if __frontal_motor (setq _frontal_motor __frontal_motor)) _frontal_motor)
+  (:posterior_motor
+   (&optional __posterior_motor)
+   (if __posterior_motor (setq _posterior_motor __posterior_motor)) _posterior_motor)
+  (:walk
+   (&optional (__walk :null))
+   (if (not (eq __walk :null)) (setq _walk __walk)) _walk)
+  (:goal_position_feedback
+   (&optional (__goal_position_feedback :null))
+   (if (not (eq __goal_position_feedback :null)) (setq _goal_position_feedback __goal_position_feedback)) _goal_position_feedback)
+  (:id_f
+   (&optional __id_f)
+   (if __id_f (setq _id_f __id_f)) _id_f)
+  (:id_p
+   (&optional __id_p)
+   (if __id_p (setq _id_p __id_p)) _id_p)
   (:serialization-length
    ()
    (+
-    ;; robot_cuadrupedo_msgs/legs_control _leg1
-    (send _leg1 :serialization-length)
-    ;; robot_cuadrupedo_msgs/legs_control _leg2
-    (send _leg2 :serialization-length)
-    ;; robot_cuadrupedo_msgs/legs_control _leg3
-    (send _leg3 :serialization-length)
-    ;; robot_cuadrupedo_msgs/legs_control _leg4
-    (send _leg4 :serialization-length)
+    ;; float64 _frontal_motor
+    8
+    ;; float64 _posterior_motor
+    8
+    ;; bool _walk
+    1
+    ;; bool _goal_position_feedback
+    1
+    ;; int64 _id_f
+    8
+    ;; int64 _id_p
+    8
     ))
   (:serialize
    (&optional strm)
    (let ((s (if strm strm
               (make-string-output-stream (send self :serialization-length)))))
-     ;; robot_cuadrupedo_msgs/legs_control _leg1
-       (send _leg1 :serialize s)
-     ;; robot_cuadrupedo_msgs/legs_control _leg2
-       (send _leg2 :serialize s)
-     ;; robot_cuadrupedo_msgs/legs_control _leg3
-       (send _leg3 :serialize s)
-     ;; robot_cuadrupedo_msgs/legs_control _leg4
-       (send _leg4 :serialize s)
+     ;; float64 _frontal_motor
+       (sys::poke _frontal_motor (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _posterior_motor
+       (sys::poke _posterior_motor (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; bool _walk
+       (if _walk (write-byte -1 s) (write-byte 0 s))
+     ;; bool _goal_position_feedback
+       (if _goal_position_feedback (write-byte -1 s) (write-byte 0 s))
+     ;; int64 _id_f
+#+(or :alpha :irix6 :x86_64)
+       (progn (sys::poke _id_f (send s :buffer) (send s :count) :long) (incf (stream-count s) 8))
+#-(or :alpha :irix6 :x86_64)
+       (cond ((and (class _id_f) (= (length (_id_f . bv)) 2)) ;; bignum
+              (write-long (ash (elt (_id_f . bv) 0) 0) s)
+              (write-long (ash (elt (_id_f . bv) 1) -1) s))
+             ((and (class _id_f) (= (length (_id_f . bv)) 1)) ;; big1
+              (write-long (elt (_id_f . bv) 0) s)
+              (write-long (if (>= _id_f 0) 0 #xffffffff) s))
+             (t                                         ;; integer
+              (write-long _id_f s)(write-long (if (>= _id_f 0) 0 #xffffffff) s)))
+     ;; int64 _id_p
+#+(or :alpha :irix6 :x86_64)
+       (progn (sys::poke _id_p (send s :buffer) (send s :count) :long) (incf (stream-count s) 8))
+#-(or :alpha :irix6 :x86_64)
+       (cond ((and (class _id_p) (= (length (_id_p . bv)) 2)) ;; bignum
+              (write-long (ash (elt (_id_p . bv) 0) 0) s)
+              (write-long (ash (elt (_id_p . bv) 1) -1) s))
+             ((and (class _id_p) (= (length (_id_p . bv)) 1)) ;; big1
+              (write-long (elt (_id_p . bv) 0) s)
+              (write-long (if (>= _id_p 0) 0 #xffffffff) s))
+             (t                                         ;; integer
+              (write-long _id_p s)(write-long (if (>= _id_p 0) 0 #xffffffff) s)))
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
-   ;; robot_cuadrupedo_msgs/legs_control _leg1
-     (send _leg1 :deserialize buf ptr-) (incf ptr- (send _leg1 :serialization-length))
-   ;; robot_cuadrupedo_msgs/legs_control _leg2
-     (send _leg2 :deserialize buf ptr-) (incf ptr- (send _leg2 :serialization-length))
-   ;; robot_cuadrupedo_msgs/legs_control _leg3
-     (send _leg3 :deserialize buf ptr-) (incf ptr- (send _leg3 :serialization-length))
-   ;; robot_cuadrupedo_msgs/legs_control _leg4
-     (send _leg4 :deserialize buf ptr-) (incf ptr- (send _leg4 :serialization-length))
+   ;; float64 _frontal_motor
+     (setq _frontal_motor (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _posterior_motor
+     (setq _posterior_motor (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; bool _walk
+     (setq _walk (not (= 0 (sys::peek buf ptr- :char)))) (incf ptr- 1)
+   ;; bool _goal_position_feedback
+     (setq _goal_position_feedback (not (= 0 (sys::peek buf ptr- :char)))) (incf ptr- 1)
+   ;; int64 _id_f
+#+(or :alpha :irix6 :x86_64)
+      (setf _id_f (prog1 (sys::peek buf ptr- :long) (incf ptr- 8)))
+#-(or :alpha :irix6 :x86_64)
+      (setf _id_f (let ((b0 (prog1 (sys::peek buf ptr- :integer) (incf ptr- 4)))
+                  (b1 (prog1 (sys::peek buf ptr- :integer) (incf ptr- 4))))
+              (cond ((= b1 -1) b0)
+                     ((and (= b1  0)
+                           (<= lisp::most-negative-fixnum b0 lisp::most-positive-fixnum))
+                      b0)
+                    ((= b1  0) (make-instance bignum :size 1 :bv (integer-vector b0)))
+                    (t (make-instance bignum :size 2 :bv (integer-vector b0 (ash b1 1)))))))
+   ;; int64 _id_p
+#+(or :alpha :irix6 :x86_64)
+      (setf _id_p (prog1 (sys::peek buf ptr- :long) (incf ptr- 8)))
+#-(or :alpha :irix6 :x86_64)
+      (setf _id_p (let ((b0 (prog1 (sys::peek buf ptr- :integer) (incf ptr- 4)))
+                  (b1 (prog1 (sys::peek buf ptr- :integer) (incf ptr- 4))))
+              (cond ((= b1 -1) b0)
+                     ((and (= b1  0)
+                           (<= lisp::most-negative-fixnum b0 lisp::most-positive-fixnum))
+                      b0)
+                    ((= b1  0) (make-instance bignum :size 1 :bv (integer-vector b0)))
+                    (t (make-instance bignum :size 2 :bv (integer-vector b0 (ash b1 1)))))))
    ;;
    self)
   )
 
-(setf (get robot_cuadrupedo::motors_states :md5sum-) "c6779dc7494c3c55386a9358df1a0c6a")
+(setf (get robot_cuadrupedo::motors_states :md5sum-) "889997f071d49233501da79c98b3e3ac")
 (setf (get robot_cuadrupedo::motors_states :datatype-) "robot_cuadrupedo/motors_states")
 (setf (get robot_cuadrupedo::motors_states :definition-)
-      "robot_cuadrupedo_msgs/legs_control leg1
-
-robot_cuadrupedo_msgs/legs_control leg2
-
-robot_cuadrupedo_msgs/legs_control leg3
-
-robot_cuadrupedo_msgs/legs_control leg4
-================================================================================
-MSG: robot_cuadrupedo_msgs/legs_control
-float64 frontal_motor
+      "float64 frontal_motor
 float64 posterior_motor
 bool walk
 bool goal_position_feedback
+int64 id_f
+int64 id_p
 ")
 
 
 
-(provide :robot_cuadrupedo/motors_states "c6779dc7494c3c55386a9358df1a0c6a")
+(provide :robot_cuadrupedo/motors_states "889997f071d49233501da79c98b3e3ac")
 
 

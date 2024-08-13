@@ -11,7 +11,6 @@ const _deserializer = _ros_msg_utils.Deserialize;
 const _arrayDeserializer = _deserializer.Array;
 const _finder = _ros_msg_utils.Find;
 const _getByteLength = _ros_msg_utils.getByteLength;
-let robot_cuadrupedo_msgs = _finder('robot_cuadrupedo_msgs');
 
 //-----------------------------------------------------------
 
@@ -19,49 +18,67 @@ class motors_states {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.leg1 = null;
-      this.leg2 = null;
-      this.leg3 = null;
-      this.leg4 = null;
+      this.frontal_motor = null;
+      this.posterior_motor = null;
+      this.walk = null;
+      this.goal_position_feedback = null;
+      this.id_f = null;
+      this.id_p = null;
     }
     else {
-      if (initObj.hasOwnProperty('leg1')) {
-        this.leg1 = initObj.leg1
+      if (initObj.hasOwnProperty('frontal_motor')) {
+        this.frontal_motor = initObj.frontal_motor
       }
       else {
-        this.leg1 = new robot_cuadrupedo_msgs.msg.legs_control();
+        this.frontal_motor = 0.0;
       }
-      if (initObj.hasOwnProperty('leg2')) {
-        this.leg2 = initObj.leg2
-      }
-      else {
-        this.leg2 = new robot_cuadrupedo_msgs.msg.legs_control();
-      }
-      if (initObj.hasOwnProperty('leg3')) {
-        this.leg3 = initObj.leg3
+      if (initObj.hasOwnProperty('posterior_motor')) {
+        this.posterior_motor = initObj.posterior_motor
       }
       else {
-        this.leg3 = new robot_cuadrupedo_msgs.msg.legs_control();
+        this.posterior_motor = 0.0;
       }
-      if (initObj.hasOwnProperty('leg4')) {
-        this.leg4 = initObj.leg4
+      if (initObj.hasOwnProperty('walk')) {
+        this.walk = initObj.walk
       }
       else {
-        this.leg4 = new robot_cuadrupedo_msgs.msg.legs_control();
+        this.walk = false;
+      }
+      if (initObj.hasOwnProperty('goal_position_feedback')) {
+        this.goal_position_feedback = initObj.goal_position_feedback
+      }
+      else {
+        this.goal_position_feedback = false;
+      }
+      if (initObj.hasOwnProperty('id_f')) {
+        this.id_f = initObj.id_f
+      }
+      else {
+        this.id_f = 0;
+      }
+      if (initObj.hasOwnProperty('id_p')) {
+        this.id_p = initObj.id_p
+      }
+      else {
+        this.id_p = 0;
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type motors_states
-    // Serialize message field [leg1]
-    bufferOffset = robot_cuadrupedo_msgs.msg.legs_control.serialize(obj.leg1, buffer, bufferOffset);
-    // Serialize message field [leg2]
-    bufferOffset = robot_cuadrupedo_msgs.msg.legs_control.serialize(obj.leg2, buffer, bufferOffset);
-    // Serialize message field [leg3]
-    bufferOffset = robot_cuadrupedo_msgs.msg.legs_control.serialize(obj.leg3, buffer, bufferOffset);
-    // Serialize message field [leg4]
-    bufferOffset = robot_cuadrupedo_msgs.msg.legs_control.serialize(obj.leg4, buffer, bufferOffset);
+    // Serialize message field [frontal_motor]
+    bufferOffset = _serializer.float64(obj.frontal_motor, buffer, bufferOffset);
+    // Serialize message field [posterior_motor]
+    bufferOffset = _serializer.float64(obj.posterior_motor, buffer, bufferOffset);
+    // Serialize message field [walk]
+    bufferOffset = _serializer.bool(obj.walk, buffer, bufferOffset);
+    // Serialize message field [goal_position_feedback]
+    bufferOffset = _serializer.bool(obj.goal_position_feedback, buffer, bufferOffset);
+    // Serialize message field [id_f]
+    bufferOffset = _serializer.int64(obj.id_f, buffer, bufferOffset);
+    // Serialize message field [id_p]
+    bufferOffset = _serializer.int64(obj.id_p, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -69,19 +86,23 @@ class motors_states {
     //deserializes a message object of type motors_states
     let len;
     let data = new motors_states(null);
-    // Deserialize message field [leg1]
-    data.leg1 = robot_cuadrupedo_msgs.msg.legs_control.deserialize(buffer, bufferOffset);
-    // Deserialize message field [leg2]
-    data.leg2 = robot_cuadrupedo_msgs.msg.legs_control.deserialize(buffer, bufferOffset);
-    // Deserialize message field [leg3]
-    data.leg3 = robot_cuadrupedo_msgs.msg.legs_control.deserialize(buffer, bufferOffset);
-    // Deserialize message field [leg4]
-    data.leg4 = robot_cuadrupedo_msgs.msg.legs_control.deserialize(buffer, bufferOffset);
+    // Deserialize message field [frontal_motor]
+    data.frontal_motor = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [posterior_motor]
+    data.posterior_motor = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [walk]
+    data.walk = _deserializer.bool(buffer, bufferOffset);
+    // Deserialize message field [goal_position_feedback]
+    data.goal_position_feedback = _deserializer.bool(buffer, bufferOffset);
+    // Deserialize message field [id_f]
+    data.id_f = _deserializer.int64(buffer, bufferOffset);
+    // Deserialize message field [id_p]
+    data.id_p = _deserializer.int64(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 72;
+    return 34;
   }
 
   static datatype() {
@@ -91,25 +112,18 @@ class motors_states {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'c6779dc7494c3c55386a9358df1a0c6a';
+    return '889997f071d49233501da79c98b3e3ac';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    robot_cuadrupedo_msgs/legs_control leg1
-    
-    robot_cuadrupedo_msgs/legs_control leg2
-    
-    robot_cuadrupedo_msgs/legs_control leg3
-    
-    robot_cuadrupedo_msgs/legs_control leg4
-    ================================================================================
-    MSG: robot_cuadrupedo_msgs/legs_control
     float64 frontal_motor
     float64 posterior_motor
     bool walk
     bool goal_position_feedback
+    int64 id_f
+    int64 id_p
     `;
   }
 
@@ -119,32 +133,46 @@ class motors_states {
       msg = {};
     }
     const resolved = new motors_states(null);
-    if (msg.leg1 !== undefined) {
-      resolved.leg1 = robot_cuadrupedo_msgs.msg.legs_control.Resolve(msg.leg1)
+    if (msg.frontal_motor !== undefined) {
+      resolved.frontal_motor = msg.frontal_motor;
     }
     else {
-      resolved.leg1 = new robot_cuadrupedo_msgs.msg.legs_control()
+      resolved.frontal_motor = 0.0
     }
 
-    if (msg.leg2 !== undefined) {
-      resolved.leg2 = robot_cuadrupedo_msgs.msg.legs_control.Resolve(msg.leg2)
+    if (msg.posterior_motor !== undefined) {
+      resolved.posterior_motor = msg.posterior_motor;
     }
     else {
-      resolved.leg2 = new robot_cuadrupedo_msgs.msg.legs_control()
+      resolved.posterior_motor = 0.0
     }
 
-    if (msg.leg3 !== undefined) {
-      resolved.leg3 = robot_cuadrupedo_msgs.msg.legs_control.Resolve(msg.leg3)
+    if (msg.walk !== undefined) {
+      resolved.walk = msg.walk;
     }
     else {
-      resolved.leg3 = new robot_cuadrupedo_msgs.msg.legs_control()
+      resolved.walk = false
     }
 
-    if (msg.leg4 !== undefined) {
-      resolved.leg4 = robot_cuadrupedo_msgs.msg.legs_control.Resolve(msg.leg4)
+    if (msg.goal_position_feedback !== undefined) {
+      resolved.goal_position_feedback = msg.goal_position_feedback;
     }
     else {
-      resolved.leg4 = new robot_cuadrupedo_msgs.msg.legs_control()
+      resolved.goal_position_feedback = false
+    }
+
+    if (msg.id_f !== undefined) {
+      resolved.id_f = msg.id_f;
+    }
+    else {
+      resolved.id_f = 0
+    }
+
+    if (msg.id_p !== undefined) {
+      resolved.id_p = msg.id_p;
+    }
+    else {
+      resolved.id_p = 0
     }
 
     return resolved;

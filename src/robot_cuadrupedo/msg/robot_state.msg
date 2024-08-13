@@ -1,1 +1,2 @@
-robot_cuadrupedo_msgs/robot_velocity rc
+bool walk
+float64 velocity

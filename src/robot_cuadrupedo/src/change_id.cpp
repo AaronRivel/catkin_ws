@@ -21,8 +21,8 @@ DynamixelWorkbench dxl_wb;
 
 const char *l;
 const int dynamixel_nomber = 2;
-uint8_t dxl_id[dynamixel_nomber]= {1,2};
-uint8_t new_dxl_id[dynamixel_nomber] = {1,2};
+uint8_t dxl_id[dynamixel_nomber]= {5,6};
+uint8_t new_dxl_id[dynamixel_nomber] = {5,6};
 
 
 int main(){

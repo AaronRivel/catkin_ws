@@ -5,7 +5,7 @@
 <node name="Leg3_control" pkg="robot_cuadrupedo" type="leg3_control" />
 <node name="Leg4_control" pkg="robot_cuadrupedo" type="leg4_control" />
 <node name="Animation" pkg="robot_cuadrupedo" type="animation.py" output = "screen"/>-->
-<node name="Leg_control" pkg="robot_cuadrupedo" type="leg_control.py" output = "screen" />
+<node name="Leg_control" pkg="robot_cuadrupedo" type="leg_control.py"  output = "screen"/>
 <node name="Gate_secuence" pkg="robot_cuadrupedo" type="gate_secuence.py"  />
 
 </launch>

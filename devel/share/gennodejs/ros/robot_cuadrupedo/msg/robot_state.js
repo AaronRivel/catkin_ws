@@ -11,7 +11,6 @@ const _deserializer = _ros_msg_utils.Deserialize;
 const _arrayDeserializer = _deserializer.Array;
 const _finder = _ros_msg_utils.Find;
 const _getByteLength = _ros_msg_utils.getByteLength;
-let robot_cuadrupedo_msgs = _finder('robot_cuadrupedo_msgs');
 
 //-----------------------------------------------------------
 
@@ -19,22 +18,31 @@ class robot_state {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.rc = null;
+      this.walk = null;
+      this.velocity = null;
     }
     else {
-      if (initObj.hasOwnProperty('rc')) {
-        this.rc = initObj.rc
+      if (initObj.hasOwnProperty('walk')) {
+        this.walk = initObj.walk
       }
       else {
-        this.rc = new robot_cuadrupedo_msgs.msg.robot_velocity();
+        this.walk = false;
+      }
+      if (initObj.hasOwnProperty('velocity')) {
+        this.velocity = initObj.velocity
+      }
+      else {
+        this.velocity = 0.0;
       }
     }
   }
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type robot_state
-    // Serialize message field [rc]
-    bufferOffset = robot_cuadrupedo_msgs.msg.robot_velocity.serialize(obj.rc, buffer, bufferOffset);
+    // Serialize message field [walk]
+    bufferOffset = _serializer.bool(obj.walk, buffer, bufferOffset);
+    // Serialize message field [velocity]
+    bufferOffset = _serializer.float64(obj.velocity, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -42,8 +50,10 @@ class robot_state {
     //deserializes a message object of type robot_state
     let len;
     let data = new robot_state(null);
-    // Deserialize message field [rc]
-    data.rc = robot_cuadrupedo_msgs.msg.robot_velocity.deserialize(buffer, bufferOffset);
+    // Deserialize message field [walk]
+    data.walk = _deserializer.bool(buffer, bufferOffset);
+    // Deserialize message field [velocity]
+    data.velocity = _deserializer.float64(buffer, bufferOffset);
     return data;
   }
 
@@ -58,15 +68,12 @@ class robot_state {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '4aab73bea9dabf128c8c483534d2bbfe';
+    return '8bed2b6d4486708eb51d1d25b9ec31fb';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    robot_cuadrupedo_msgs/robot_velocity rc
-    ================================================================================
-    MSG: robot_cuadrupedo_msgs/robot_velocity
     bool walk
     float64 velocity
     `;
@@ -78,11 +85,18 @@ class robot_state {
       msg = {};
     }
     const resolved = new robot_state(null);
-    if (msg.rc !== undefined) {
-      resolved.rc = robot_cuadrupedo_msgs.msg.robot_velocity.Resolve(msg.rc)
+    if (msg.walk !== undefined) {
+      resolved.walk = msg.walk;
     }
     else {
-      resolved.rc = new robot_cuadrupedo_msgs.msg.robot_velocity()
+      resolved.walk = false
+    }
+
+    if (msg.velocity !== undefined) {
+      resolved.velocity = msg.velocity;
+    }
+    else {
+      resolved.velocity = 0.0
     }
 
     return resolved;

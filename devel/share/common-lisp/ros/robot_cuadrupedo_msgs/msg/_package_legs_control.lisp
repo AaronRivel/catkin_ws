@@ -7,4 +7,8 @@
           WALK
           GOAL_POSITION_FEEDBACK-VAL
           GOAL_POSITION_FEEDBACK
+          ID_F-VAL
+          ID_F
+          ID_P-VAL
+          ID_P
 ))

@@ -15,7 +15,6 @@
 #include <ros/builtin_message_traits.h>
 #include <ros/message_operations.h>
 
-#include <robot_cuadrupedo_msgs/robot_velocity.h>
 
 namespace robot_cuadrupedo
 {
@@ -25,17 +24,22 @@ struct robot_state_
   typedef robot_state_<ContainerAllocator> Type;
 
   robot_state_()
-    : rc()  {
+    : walk(false)
+    , velocity(0.0)  {
     }
   robot_state_(const ContainerAllocator& _alloc)
-    : rc(_alloc)  {
+    : walk(false)
+    , velocity(0.0)  {
   (void)_alloc;
     }
 
 
 
-   typedef  ::robot_cuadrupedo_msgs::robot_velocity_<ContainerAllocator>  _rc_type;
-  _rc_type rc;
+   typedef uint8_t _walk_type;
+  _walk_type walk;
+
+   typedef double _velocity_type;
+  _velocity_type velocity;
 
 
 
@@ -66,7 +70,8 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::robot_cuadrupedo::robot_state_<ContainerAllocator1> & lhs, const ::robot_cuadrupedo::robot_state_<ContainerAllocator2> & rhs)
 {
-  return lhs.rc == rhs.rc;
+  return lhs.walk == rhs.walk &&
+    lhs.velocity == rhs.velocity;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -123,12 +128,12 @@ struct MD5Sum< ::robot_cuadrupedo::robot_state_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "4aab73bea9dabf128c8c483534d2bbfe";
+    return "8bed2b6d4486708eb51d1d25b9ec31fb";
   }
 
   static const char* value(const ::robot_cuadrupedo::robot_state_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x4aab73bea9dabf12ULL;
-  static const uint64_t static_value2 = 0x8c8c483534d2bbfeULL;
+  static const uint64_t static_value1 = 0x8bed2b6d4486708eULL;
+  static const uint64_t static_value2 = 0xb51d1d25b9ec31fbULL;
 };
 
 template<class ContainerAllocator>
@@ -147,10 +152,7 @@ struct Definition< ::robot_cuadrupedo::robot_state_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "robot_cuadrupedo_msgs/robot_velocity rc\n"
-"================================================================================\n"
-"MSG: robot_cuadrupedo_msgs/robot_velocity\n"
-"bool walk\n"
+    return "bool walk\n"
 "float64 velocity\n"
 ;
   }
@@ -170,7 +172,8 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.rc);
+      stream.next(m.walk);
+      stream.next(m.velocity);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -189,9 +192,10 @@ struct Printer< ::robot_cuadrupedo::robot_state_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::robot_cuadrupedo::robot_state_<ContainerAllocator>& v)
   {
-    s << indent << "rc: ";
-    s << std::endl;
-    Printer< ::robot_cuadrupedo_msgs::robot_velocity_<ContainerAllocator> >::stream(s, indent + "  ", v.rc);
+    s << indent << "walk: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.walk);
+    s << indent << "velocity: ";
+    Printer<double>::stream(s, indent + "  ", v.velocity);
   }
 };
 

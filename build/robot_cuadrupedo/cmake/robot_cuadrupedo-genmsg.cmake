@@ -19,12 +19,12 @@ add_custom_target(robot_cuadrupedo_generate_messages ALL)
 
 get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/robot_state.msg" NAME_WE)
 add_custom_target(_robot_cuadrupedo_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "robot_cuadrupedo" "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/robot_state.msg" "robot_cuadrupedo_msgs/robot_velocity"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "robot_cuadrupedo" "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/robot_state.msg" ""
 )
 
 get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/motors_states.msg" NAME_WE)
 add_custom_target(_robot_cuadrupedo_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "robot_cuadrupedo" "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/motors_states.msg" "robot_cuadrupedo_msgs/legs_control"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "robot_cuadrupedo" "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/motors_states.msg" ""
 )
 
 #
@@ -36,13 +36,13 @@ add_custom_target(_robot_cuadrupedo_generate_messages_check_deps_${_filename}
 _generate_msg_cpp(robot_cuadrupedo
   "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/robot_state.msg"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/robot_cuadrupedo
 )
 _generate_msg_cpp(robot_cuadrupedo
   "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/motors_states.msg"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/legs_control.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/robot_cuadrupedo
 )
 
@@ -77,13 +77,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS robot_cuadrupedo_generate_messages_
 _generate_msg_eus(robot_cuadrupedo
   "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/robot_state.msg"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/robot_cuadrupedo
 )
 _generate_msg_eus(robot_cuadrupedo
   "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/motors_states.msg"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/legs_control.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/robot_cuadrupedo
 )
 
@@ -118,13 +118,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS robot_cuadrupedo_generate_messages_
 _generate_msg_lisp(robot_cuadrupedo
   "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/robot_state.msg"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/robot_cuadrupedo
 )
 _generate_msg_lisp(robot_cuadrupedo
   "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/motors_states.msg"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/legs_control.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/robot_cuadrupedo
 )
 
@@ -159,13 +159,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS robot_cuadrupedo_generate_messages_
 _generate_msg_nodejs(robot_cuadrupedo
   "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/robot_state.msg"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/robot_cuadrupedo
 )
 _generate_msg_nodejs(robot_cuadrupedo
   "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/motors_states.msg"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/legs_control.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/robot_cuadrupedo
 )
 
@@ -200,13 +200,13 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS robot_cuadrupedo_generate_messages_
 _generate_msg_py(robot_cuadrupedo
   "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/robot_state.msg"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/robot_cuadrupedo
 )
 _generate_msg_py(robot_cuadrupedo
   "/home/aaron/catkin_ws/src/robot_cuadrupedo/msg/motors_states.msg"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/legs_control.msg"
+  ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/robot_cuadrupedo
 )
 

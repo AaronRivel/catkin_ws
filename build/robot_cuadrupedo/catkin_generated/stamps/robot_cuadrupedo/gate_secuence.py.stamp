@@ -3,69 +3,166 @@ import rospy
 from robot_cuadrupedo.msg import robot_state
 from robot_cuadrupedo.msg import motors_states
 import time 
-OFFSET = 90
-INIT_POSITION_F = 10
-INIT_POSITION_P = 170 
+import numpy as np
 
-theta_p =  [134.70322775290674, 134.70322775290674, 134.43726792867216, 131.0831441941569, 126.86907230375515, 122.18927876429053, 477.2998335885741, 472.3836338684413, 467.55292731735096, 462.8370042617942, 457.8333301070627, 457.8333301070627, 462.3114188711919, 466.7642550948859, 471.17723774781894, 475.5236136048184, 119.76580639814134, 123.85762123963873, 127.74720911954908, 131.38032903227202, 134.70322775290674]
-theta_f =  [46.16501335837322, 46.16501335837322, 32.360161990021695, 23.439349415940427, 15.870609400252391, 9.574289185817534, 364.6848440101011, 361.38517096493854, 359.9091325391345, 360.7598983231438, 369.2951157125292, 369.2951157125292, 370.88573428288544, 373.1709892733404, 376.13624359299706, 379.75760168178704, 23.99979447510995, 28.816627084816844, 34.15394329800357, 39.95464444396556, 46.16501335837322]
+LEG_1_F = 1
+LEG_1_P = 2
+
+#LEG_2_F = 3
+#LEG_2_P = 8
+
+LEG_3_F = 5
+LEG_3_P = 6
+
+LEG_4_F = 4
+LEG_4_P = 7
+
+OFFSET = 90
+INIT_POSITION_F = 45
+INIT_POSITION_P = 135
+POINTS = 20
+Q0 = [20,5]
+
+secuence = ((LEG_1_F,LEG_1_P),
+            (LEG_3_F,LEG_3_P),
+            (LEG_4_F,LEG_4_P))
+
+secuence_index = 0
+
 index = 0
 init_flag = True
 velocity = 0
 walk = True
 
+def gate_patern(points,Q0):
+    ld1,ld2,lf,lp,lt = [7,7,7,7,14]
+    base = np.identity(4)
+    base[0][3] = 20
+    base [1][3] = 20
+
+    def inverse_kinematic(x,y):
+        index = 0
+        Theta_f_vector = []
+        Theta_p_vector = []
+        while(True):
+            x_value = x[round(index)]- base[0][3]
+            y_value = y[round(index)]- base [1][3] 
+            c = np.sqrt(x_value**2+y_value**2)
+            B = np.arctan2(x_value,y_value)*180/np.pi
+            phi=  B-90
+            alpha2 = np.arccos((lt**2-lf**2-c**2)/(-2*lf*c))*180/np.pi
+            theta_f = 180-phi-alpha2
+            theta_d_2  = np.arccos((c**2-lf**2-lt**2)/(-2*lf*lt))*180/np.pi
+            beta = 90 - theta_d_2/2
+            theta_p = theta_f +2*beta
+
+            if(theta_f > 300): theta_f = theta_f-360
+
+            if(theta_p > 400): theta_p = theta_p-360
+
+            index = index + 1
+            Theta_f_vector.append(theta_f)
+            Theta_p_vector.append(theta_p)
+            if (index == len(x)-1):
+                break
+
+        return Theta_f_vector, Theta_p_vector
+
+    def elipse(ar, br):
+        x = np.linspace(Q0[0]+ar,Q0[0]-ar,points)
+        x0 = Q0[0]
+        y0 = Q0[1]
+        y =(br*np.sqrt(ar**2-x**2+2*x*x0-x0**2))/(ar)+y0
+        line = np.linspace(Q0[0]-ar,Q0[0]+ar,points)
+        walk = []
+        x2 = []
+        for i in range (len(x)*2):
+            if (i < points):
+                x2.append(x[i])
+                walk.append(y[i])
+            else:
+                x2.append(line[i-points])
+                walk.append(5)
+        f, p = inverse_kinematic(x2,walk)
+        return f,p
+    ar = 5
+    br = 2
+    f,p = elipse(ar,br)
+    return f,p
+
+def send_parameters(theta_f, theta_p, id_f, id_p):
+    dataout = motors_states()
+
+    dataout.frontal_motor = theta_f 
+    dataout.posterior_motor = theta_p 
+    dataout.walk = True
+    dataout.id_f = id_f
+    dataout.id_p = id_p
+    rospy.loginfo("I send gate parameters: Theta f [%f], Theta p [%f] , Walkin state [%d]",dataout.frontal_motor,dataout.posterior_motor,dataout.walk)
+
+
+    return dataout
+
 def callback(datain):
     rospy.loginfo("callback")
-    velocity = datain.rc.velocity
-    walk = datain.rc.walk
+    velocity = datain.velocity
+    walk = datain.walk
         
     rospy.loginfo("I recive Robot State: velocity [%f], Walking state [%d]", velocity,walk)
     
 
-def feedback_callback(feedback_data, pub):
+def feedback_callback(feedback_data, args):
+    pub = args[0]
+    theta_f = args[1]
+    theta_p = args[2]
     rospy.loginfo("feedback callback")
-    goal_position_feedback = feedback_data.leg1.goal_position_feedback
+    goal_position_feedback = feedback_data.goal_position_feedback
 
     if goal_position_feedback == True:
-
         global index
+        global secuence_index
         dataout = motors_states()
         if(walk == True ):
             if (index == len(theta_f)):
                 index = 0
+                secuence_index = secuence_index + 1
+                if (secuence_index == len(secuence)): secuence_index = 0
 
-            if(theta_f[index] > 300): theta_f[index] = theta_f[index]-360
-
-            if(theta_p[index] > 400): theta_p[index] = theta_p[index]-360
-            
-            dataout.leg1.frontal_motor = theta_f[index]
-            dataout.leg1.posterior_motor = theta_p[index]
-            dataout.leg1.walk = True
-            rospy.loginfo("I send gate parameters: Theta f [%f], Theta p [%f] , Walkin state [%d]",dataout.leg1.frontal_motor,dataout.leg1.posterior_motor,dataout.leg1.walk)
+            id_f = secuence[secuence_index][0]
+            id_p = secuence[secuence_index][1]
+            dataout = send_parameters(theta_f[index],theta_p[index],id_f,id_p)
             pub.publish(dataout)
             index = index + 1
-
+        
         if(walk == False):
-            dataout.leg1.walk = False
+            dataout.walk = False
             pub.publish(dataout)
         
 def main():
+    f,p = gate_patern(POINTS,Q0)
+    
     rospy.init_node('Gate_secuence', anonymous=True)
-    pub = rospy.Publisher('Gate_control', motors_states, queue_size=10)
-    dataout = motors_states()
 
-    dataout.leg1.frontal_motor = INIT_POSITION_F 
-    dataout.leg1.posterior_motor = INIT_POSITION_P 
-    dataout.leg1.walk = True
+    pub = rospy.Publisher('Gate_control', motors_states, queue_size=10)
 
     rospy.loginfo("Init conection 'Gate control'... ")
-    time.sleep(1)
-    rospy.loginfo("Sucesfully conected ")
+    time.sleep(3)
 
+    dataout = send_parameters(INIT_POSITION_F,INIT_POSITION_P,LEG_1_F,LEG_1_P)
     pub.publish(dataout)
 
+    time.sleep(3)
 
-    rospy.Subscriber("Feedback", motors_states, feedback_callback,pub) 
+    dataout = send_parameters(INIT_POSITION_F,INIT_POSITION_P,LEG_3_F,LEG_3_P)
+    pub.publish(dataout)
+
+    time.sleep(3)
+
+    dataout = send_parameters(INIT_POSITION_F,INIT_POSITION_P,LEG_4_F,LEG_4_P)
+    pub.publish(dataout)
+
+   
+    rospy.Subscriber("Feedback", motors_states, feedback_callback,(pub,f,p)) 
     rospy.Subscriber("RC_control", robot_state,callback)
     rospy.loginfo("Suscribing to feedback and RC_control")
     time.sleep(1)

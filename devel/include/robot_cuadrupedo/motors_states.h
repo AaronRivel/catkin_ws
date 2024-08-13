@@ -15,10 +15,6 @@
 #include <ros/builtin_message_traits.h>
 #include <ros/message_operations.h>
 
-#include <robot_cuadrupedo_msgs/legs_control.h>
-#include <robot_cuadrupedo_msgs/legs_control.h>
-#include <robot_cuadrupedo_msgs/legs_control.h>
-#include <robot_cuadrupedo_msgs/legs_control.h>
 
 namespace robot_cuadrupedo
 {
@@ -28,32 +24,42 @@ struct motors_states_
   typedef motors_states_<ContainerAllocator> Type;
 
   motors_states_()
-    : leg1()
-    , leg2()
-    , leg3()
-    , leg4()  {
+    : frontal_motor(0.0)
+    , posterior_motor(0.0)
+    , walk(false)
+    , goal_position_feedback(false)
+    , id_f(0)
+    , id_p(0)  {
     }
   motors_states_(const ContainerAllocator& _alloc)
-    : leg1(_alloc)
-    , leg2(_alloc)
-    , leg3(_alloc)
-    , leg4(_alloc)  {
+    : frontal_motor(0.0)
+    , posterior_motor(0.0)
+    , walk(false)
+    , goal_position_feedback(false)
+    , id_f(0)
+    , id_p(0)  {
   (void)_alloc;
     }
 
 
 
-   typedef  ::robot_cuadrupedo_msgs::legs_control_<ContainerAllocator>  _leg1_type;
-  _leg1_type leg1;
+   typedef double _frontal_motor_type;
+  _frontal_motor_type frontal_motor;
 
-   typedef  ::robot_cuadrupedo_msgs::legs_control_<ContainerAllocator>  _leg2_type;
-  _leg2_type leg2;
+   typedef double _posterior_motor_type;
+  _posterior_motor_type posterior_motor;
 
-   typedef  ::robot_cuadrupedo_msgs::legs_control_<ContainerAllocator>  _leg3_type;
-  _leg3_type leg3;
+   typedef uint8_t _walk_type;
+  _walk_type walk;
 
-   typedef  ::robot_cuadrupedo_msgs::legs_control_<ContainerAllocator>  _leg4_type;
-  _leg4_type leg4;
+   typedef uint8_t _goal_position_feedback_type;
+  _goal_position_feedback_type goal_position_feedback;
+
+   typedef int64_t _id_f_type;
+  _id_f_type id_f;
+
+   typedef int64_t _id_p_type;
+  _id_p_type id_p;
 
 
 
@@ -84,10 +90,12 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::robot_cuadrupedo::motors_states_<ContainerAllocator1> & lhs, const ::robot_cuadrupedo::motors_states_<ContainerAllocator2> & rhs)
 {
-  return lhs.leg1 == rhs.leg1 &&
-    lhs.leg2 == rhs.leg2 &&
-    lhs.leg3 == rhs.leg3 &&
-    lhs.leg4 == rhs.leg4;
+  return lhs.frontal_motor == rhs.frontal_motor &&
+    lhs.posterior_motor == rhs.posterior_motor &&
+    lhs.walk == rhs.walk &&
+    lhs.goal_position_feedback == rhs.goal_position_feedback &&
+    lhs.id_f == rhs.id_f &&
+    lhs.id_p == rhs.id_p;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -144,12 +152,12 @@ struct MD5Sum< ::robot_cuadrupedo::motors_states_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "c6779dc7494c3c55386a9358df1a0c6a";
+    return "889997f071d49233501da79c98b3e3ac";
   }
 
   static const char* value(const ::robot_cuadrupedo::motors_states_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xc6779dc7494c3c55ULL;
-  static const uint64_t static_value2 = 0x386a9358df1a0c6aULL;
+  static const uint64_t static_value1 = 0x889997f071d49233ULL;
+  static const uint64_t static_value2 = 0x501da79c98b3e3acULL;
 };
 
 template<class ContainerAllocator>
@@ -168,19 +176,12 @@ struct Definition< ::robot_cuadrupedo::motors_states_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "robot_cuadrupedo_msgs/legs_control leg1\n"
-"\n"
-"robot_cuadrupedo_msgs/legs_control leg2\n"
-"\n"
-"robot_cuadrupedo_msgs/legs_control leg3\n"
-"\n"
-"robot_cuadrupedo_msgs/legs_control leg4\n"
-"================================================================================\n"
-"MSG: robot_cuadrupedo_msgs/legs_control\n"
-"float64 frontal_motor\n"
+    return "float64 frontal_motor\n"
 "float64 posterior_motor\n"
 "bool walk\n"
 "bool goal_position_feedback\n"
+"int64 id_f\n"
+"int64 id_p\n"
 ;
   }
 
@@ -199,10 +200,12 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.leg1);
-      stream.next(m.leg2);
-      stream.next(m.leg3);
-      stream.next(m.leg4);
+      stream.next(m.frontal_motor);
+      stream.next(m.posterior_motor);
+      stream.next(m.walk);
+      stream.next(m.goal_position_feedback);
+      stream.next(m.id_f);
+      stream.next(m.id_p);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -221,18 +224,18 @@ struct Printer< ::robot_cuadrupedo::motors_states_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::robot_cuadrupedo::motors_states_<ContainerAllocator>& v)
   {
-    s << indent << "leg1: ";
-    s << std::endl;
-    Printer< ::robot_cuadrupedo_msgs::legs_control_<ContainerAllocator> >::stream(s, indent + "  ", v.leg1);
-    s << indent << "leg2: ";
-    s << std::endl;
-    Printer< ::robot_cuadrupedo_msgs::legs_control_<ContainerAllocator> >::stream(s, indent + "  ", v.leg2);
-    s << indent << "leg3: ";
-    s << std::endl;
-    Printer< ::robot_cuadrupedo_msgs::legs_control_<ContainerAllocator> >::stream(s, indent + "  ", v.leg3);
-    s << indent << "leg4: ";
-    s << std::endl;
-    Printer< ::robot_cuadrupedo_msgs::legs_control_<ContainerAllocator> >::stream(s, indent + "  ", v.leg4);
+    s << indent << "frontal_motor: ";
+    Printer<double>::stream(s, indent + "  ", v.frontal_motor);
+    s << indent << "posterior_motor: ";
+    Printer<double>::stream(s, indent + "  ", v.posterior_motor);
+    s << indent << "walk: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.walk);
+    s << indent << "goal_position_feedback: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.goal_position_feedback);
+    s << indent << "id_f: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.id_f);
+    s << indent << "id_p: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.id_p);
   }
 };
 

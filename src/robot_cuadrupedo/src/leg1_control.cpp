@@ -109,9 +109,9 @@ void init_dynamixel(void);
 
 void Callback(const robot_cuadrupedo::motors_states::ConstPtr& data)
 {
-  float theta_f = data->leg1.frontal_motor;
-  float theta_p = data->leg1.posterior_motor;
-  bool walk = data->leg1.walk;
+  float theta_f = data->frontal_motor;
+  float theta_p = data->posterior_motor;
+  bool walk = data->walk;
   
   if(walk == true and flag == true){
     flag = false;

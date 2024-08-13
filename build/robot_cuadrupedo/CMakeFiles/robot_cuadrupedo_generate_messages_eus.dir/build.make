@@ -60,13 +60,11 @@ robot_cuadrupedo/CMakeFiles/robot_cuadrupedo_generate_messages_eus: /home/aaron/
 
 /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo/msg/robot_state.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo/msg/robot_state.l: /home/aaron/catkin_ws/src/robot_cuadrupedo/msg/robot_state.msg
-/home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo/msg/robot_state.l: /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating EusLisp code from robot_cuadrupedo/robot_state.msg"
 	cd /home/aaron/catkin_ws/build/robot_cuadrupedo && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/aaron/catkin_ws/src/robot_cuadrupedo/msg/robot_state.msg -Irobot_cuadrupedo:/home/aaron/catkin_ws/src/robot_cuadrupedo/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Irobot_cuadrupedo_msgs:/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg -p robot_cuadrupedo -o /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo/msg
 
 /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo/msg/motors_states.l: /opt/ros/noetic/lib/geneus/gen_eus.py
 /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo/msg/motors_states.l: /home/aaron/catkin_ws/src/robot_cuadrupedo/msg/motors_states.msg
-/home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo/msg/motors_states.l: /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/legs_control.msg
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from robot_cuadrupedo/motors_states.msg"
 	cd /home/aaron/catkin_ws/build/robot_cuadrupedo && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/aaron/catkin_ws/src/robot_cuadrupedo/msg/motors_states.msg -Irobot_cuadrupedo:/home/aaron/catkin_ws/src/robot_cuadrupedo/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -Irobot_cuadrupedo_msgs:/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg -p robot_cuadrupedo -o /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo/msg
 

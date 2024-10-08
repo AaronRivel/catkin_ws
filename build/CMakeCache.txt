@@ -570,6 +570,12 @@ prueba_BINARY_DIR:STATIC=/home/aaron/catkin_ws/build/prueba
 prueba_SOURCE_DIR:STATIC=/home/aaron/catkin_ws/src/prueba
 
 //Value Computed by CMake
+quadruped_robot_BINARY_DIR:STATIC=/home/aaron/catkin_ws/build/quadruped_robot
+
+//Value Computed by CMake
+quadruped_robot_SOURCE_DIR:STATIC=/home/aaron/catkin_ws/src/quadruped_robot
+
+//Value Computed by CMake
 robot_cuadrupedo_BINARY_DIR:STATIC=/home/aaron/catkin_ws/build/robot_cuadrupedo
 
 robot_cuadrupedo_DIR:PATH=
@@ -770,7 +776,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=15
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=16
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

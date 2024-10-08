@@ -1,0 +1,7 @@
+<launch>
+
+<node name="motor_scan" pkg="quadruped_robot" type="motor_scan.py"   output = "screen"/>
+<node name="animation" pkg="quadruped_robot" type="animation.py"   />
+<node name="velocity_control" pkg="quadruped_robot" type="velocity_control.py"  />
+
+</launch>

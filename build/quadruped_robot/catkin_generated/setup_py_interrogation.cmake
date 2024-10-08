@@ -1,0 +1,7 @@
+set(quadruped_robot_SETUP_PY_SETUP_MODULE "setuptools")
+set(quadruped_robot_SETUP_PY_VERSION "0.0.0")
+set(quadruped_robot_SETUP_PY_SCRIPTS "")
+set(quadruped_robot_SETUP_PY_PACKAGES "quadruped_robot")
+set(quadruped_robot_SETUP_PY_PACKAGE_DIRS "lib/quadruped_robot")
+set(quadruped_robot_SETUP_PY_MODULES "")
+set(quadruped_robot_SETUP_PY_MODULE_DIRS "")

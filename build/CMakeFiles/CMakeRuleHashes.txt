@@ -27,6 +27,9 @@ b026be3925cd264820da0621dceff4cd /home/aaron/catkin_ws/devel/include/dynamixel_w
 7e6b67ca30170d065b75aa01880b4f8d /home/aaron/catkin_ws/devel/include/dynamixel_workbench_msgs/XL320.h
 284253bc95f9c335e22e2f7b35229314 /home/aaron/catkin_ws/devel/include/dynamixel_workbench_msgs/XM.h
 fcea54712a3a51cd62229074be5639e5 /home/aaron/catkin_ws/devel/include/dynamixel_workbench_msgs/XMExt.h
+2fd5059c8f1eb913ea635c3706283b58 /home/aaron/catkin_ws/devel/include/quadruped_robot/motor_state.h
+a63470345a6da0ce34fbc4b70ee65abe /home/aaron/catkin_ws/devel/include/quadruped_robot/period.h
+a5f666b97547a5d8c9667c4415ef75f9 /home/aaron/catkin_ws/devel/include/quadruped_robot/time_state.h
 c2c6666282454d19abe692de470e2038 /home/aaron/catkin_ws/devel/include/robot_cuadrupedo/2d_vector.h
 0e7b8d6e22e4d4b1bad59cf4d7f8e8a5 /home/aaron/catkin_ws/devel/include/robot_cuadrupedo/2vector.h
 8e92446bb910e4127767176a17270134 /home/aaron/catkin_ws/devel/include/robot_cuadrupedo/angle.h
@@ -68,6 +71,10 @@ e4a382a5574c93eba87ee0b7d83d0c1b /home/aaron/catkin_ws/devel/lib/python3/dist-pa
 6e783f71f98325db35d6ea70f70276f8 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/dynamixel_workbench_msgs/srv/_DynamixelCommand.py
 472bfda945b4243a6b3c92a921ed73f7 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/dynamixel_workbench_msgs/srv/_GetDynamixelInfo.py
 41f320b1334469aa272c8e926aa2b265 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/dynamixel_workbench_msgs/srv/__init__.py
+24c9d04c5fb112f99282abf63518eee8 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/__init__.py
+7cab064875a01d32604d491406c41756 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_motor_state.py
+39b780988616898a253494272d37926e /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_period.py
+eecd18c74ce8f4849c3a23437273a5e2 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_time_state.py
 f8e9fb4764e4f5ca2bb299e7a452b6f7 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo/msg/_2d_vector.py
 22764572776395bbf4ac6d95a1b70a51 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo/msg/_2vector.py
 8cc7c0b7a8c89ca12b46b0ce1e3a61d3 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo/msg/__init__.py
@@ -105,6 +112,9 @@ fe86ef1957e5d64ef5aa3c02f0b016fa /home/aaron/catkin_ws/devel/share/common-lisp/r
 b4eefeb0541d8d0e1f78f6ec533b8da6 /home/aaron/catkin_ws/devel/share/common-lisp/ros/dynamixel_workbench_msgs/msg/XMExt.lisp
 fdaffdf8972f7db609a4fb3f1a5567ce /home/aaron/catkin_ws/devel/share/common-lisp/ros/dynamixel_workbench_msgs/srv/DynamixelCommand.lisp
 e1ad71cde0f8edac7494558276083bc3 /home/aaron/catkin_ws/devel/share/common-lisp/ros/dynamixel_workbench_msgs/srv/GetDynamixelInfo.lisp
+ba7f197aa42de5e5b02ec8c06f0269d0 /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/motor_state.lisp
+b93eeba7c9c02d6dd48e13d76f74d152 /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/period.lisp
+be7c5b3517e89faf4d65bdb8b3ac641e /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/time_state.lisp
 d8b2ed1c675952451381dcb4d0690804 /home/aaron/catkin_ws/devel/share/common-lisp/ros/robot_cuadrupedo/msg/2d_vector.lisp
 864a163737f92d53213602cd6391f6a3 /home/aaron/catkin_ws/devel/share/common-lisp/ros/robot_cuadrupedo/msg/2vector.lisp
 b8b6aa3446fd58ab436f1654774d1ca0 /home/aaron/catkin_ws/devel/share/common-lisp/ros/robot_cuadrupedo/msg/angle.lisp
@@ -140,6 +150,9 @@ b20ea27ae87e357ab167516d01493914 /home/aaron/catkin_ws/devel/share/gennodejs/ros
 07ba6c518ac16e8da1ef2306c3e5c2f5 /home/aaron/catkin_ws/devel/share/gennodejs/ros/dynamixel_workbench_msgs/msg/XMExt.js
 dd3ba531e6091428fc60e6726d488b7c /home/aaron/catkin_ws/devel/share/gennodejs/ros/dynamixel_workbench_msgs/srv/DynamixelCommand.js
 aac576d637305c73d0b8fe748616198b /home/aaron/catkin_ws/devel/share/gennodejs/ros/dynamixel_workbench_msgs/srv/GetDynamixelInfo.js
+944c8ee091e7d7db401196bf1fc84c84 /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/motor_state.js
+a7e08e335a576447633620c6632d1cda /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/period.js
+0b3f7ad7db3d20304458bf8b46549b05 /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/time_state.js
 dd8e246f608a6b9588317f43a670f566 /home/aaron/catkin_ws/devel/share/gennodejs/ros/robot_cuadrupedo/msg/2d_vector.js
 9f88fa4133f446437976c3b8fea660ad /home/aaron/catkin_ws/devel/share/gennodejs/ros/robot_cuadrupedo/msg/2vector.js
 e9cd682f4a29002b6935aa85b73b5f41 /home/aaron/catkin_ws/devel/share/gennodejs/ros/robot_cuadrupedo/msg/angle.js
@@ -178,6 +191,10 @@ dc77138b7ebfb1ddacc64a14e09df3b5 /home/aaron/catkin_ws/devel/share/roseus/ros/dy
 1cce980e363cc4414e0ac6251ed89a34 /home/aaron/catkin_ws/devel/share/roseus/ros/dynamixel_workbench_msgs/msg/XMExt.l
 6ec8881c14f1440a4562d7cc80ea13f7 /home/aaron/catkin_ws/devel/share/roseus/ros/dynamixel_workbench_msgs/srv/DynamixelCommand.l
 e452146ea9ebcfb2f5b5b52f36b1012d /home/aaron/catkin_ws/devel/share/roseus/ros/dynamixel_workbench_msgs/srv/GetDynamixelInfo.l
+4bafc200bd6692562faf60f4017da13b /home/aaron/catkin_ws/devel/share/roseus/ros/quadruped_robot/manifest.l
+0922d8e396a82a6ee921c8dd110a5567 /home/aaron/catkin_ws/devel/share/roseus/ros/quadruped_robot/msg/motor_state.l
+f188795373434ee96aeba4e7a1fc8999 /home/aaron/catkin_ws/devel/share/roseus/ros/quadruped_robot/msg/period.l
+bd99938db33b5446a1a3b5ae4149ac7d /home/aaron/catkin_ws/devel/share/roseus/ros/quadruped_robot/msg/time_state.l
 9a857cf7717cda9be371b90472e86cc9 /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo/manifest.l
 f2d5b6880a8fcaee047c54eb615450d0 /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo/msg/2d_vector.l
 64dee83a0826ef5e9b398e3876525bd7 /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo/msg/2vector.l
@@ -231,6 +248,14 @@ b91794b26dc494fde0122338e78de3a3 Dynamixel_workbench_msgs/dynamixel-workbench-ms
 62e3c716aeca232d1852d10a6387fd8b beginner_tutorial/CMakeFiles/beginner_tutorial_generate_messages_lisp
 62e3c716aeca232d1852d10a6387fd8b beginner_tutorial/CMakeFiles/beginner_tutorial_generate_messages_nodejs
 62e3c716aeca232d1852d10a6387fd8b beginner_tutorial/CMakeFiles/beginner_tutorial_generate_messages_py
+6b7e14d40406e2a235a230bce5c79310 quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_motor_state
+318c7c62456d9c4f3e2ddd78ad7b92e4 quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_period
+ed3f28ef2b4ed017f0252e59f7b63393 quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_time_state
+937fdcb3648673b3f5a3acfe55a3d522 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp
+937fdcb3648673b3f5a3acfe55a3d522 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_eus
+937fdcb3648673b3f5a3acfe55a3d522 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp
+937fdcb3648673b3f5a3acfe55a3d522 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs
+937fdcb3648673b3f5a3acfe55a3d522 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py
 c266827645ba552035323a07b59219fc robot_cuadrupedo/CMakeFiles/_robot_cuadrupedo_generate_messages_check_deps_motors_states
 a7f36c2b79485aa7d181621ee8eb9cd6 robot_cuadrupedo/CMakeFiles/_robot_cuadrupedo_generate_messages_check_deps_robot_state
 32cb1287626a2b2af2519a3c8da259dd robot_cuadrupedo/CMakeFiles/robot_cuadrupedo_generate_messages_cpp

@@ -55,6 +55,7 @@ include robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages
 
 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/_legs_control.py
 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/_robot_velocity.py
+robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/_motor_state.py
 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/__init__.py
 
 
@@ -68,15 +69,22 @@ robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_py: /ho
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python from MSG robot_cuadrupedo_msgs/robot_velocity"
 	cd /home/aaron/catkin_ws/build/robot_cuadrupedo_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg -Irobot_cuadrupedo_msgs:/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p robot_cuadrupedo_msgs -o /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg
 
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/_motor_state.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/_motor_state.py: /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python from MSG robot_cuadrupedo_msgs/motor_state"
+	cd /home/aaron/catkin_ws/build/robot_cuadrupedo_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg -Irobot_cuadrupedo_msgs:/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p robot_cuadrupedo_msgs -o /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg
+
 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/_legs_control.py
 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/_robot_velocity.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python msg __init__.py for robot_cuadrupedo_msgs"
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/_motor_state.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python msg __init__.py for robot_cuadrupedo_msgs"
 	cd /home/aaron/catkin_ws/build/robot_cuadrupedo_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg --initpy
 
 robot_cuadrupedo_msgs_generate_messages_py: robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_py
 robot_cuadrupedo_msgs_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/_legs_control.py
 robot_cuadrupedo_msgs_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/_robot_velocity.py
+robot_cuadrupedo_msgs_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/_motor_state.py
 robot_cuadrupedo_msgs_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/robot_cuadrupedo_msgs/msg/__init__.py
 robot_cuadrupedo_msgs_generate_messages_py: robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_py.dir/build.make
 

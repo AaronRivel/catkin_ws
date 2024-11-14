@@ -56,18 +56,6 @@ CMAKE_BINARY_DIR = /home/aaron/catkin_ws/build
 #=============================================================================
 # Targets provided globally by CMake.
 
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # Special rule for the target install/local
 install/local: preinstall
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
@@ -91,6 +79,16 @@ install/fast: preinstall/fast
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # Special rule for the target rebuild_cache
 rebuild_cache:
@@ -125,15 +123,17 @@ test/fast: test
 
 .PHONY : test/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
+# Special rule for the target install/strip
+install/strip: preinstall
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip
 
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
+# Special rule for the target install/strip
+install/strip/fast: preinstall/fast
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
+	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
+.PHONY : install/strip/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -183,6 +183,21 @@ quadruped_robot_generate_messages/fast:
 .PHONY : quadruped_robot_generate_messages/fast
 
 # Convenience name for target.
+quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_multi_leg_control.dir/rule:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_multi_leg_control.dir/rule
+.PHONY : quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_multi_leg_control.dir/rule
+
+# Convenience name for target.
+_quadruped_robot_generate_messages_check_deps_multi_leg_control: quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_multi_leg_control.dir/rule
+
+.PHONY : _quadruped_robot_generate_messages_check_deps_multi_leg_control
+
+# fast build rule for target.
+_quadruped_robot_generate_messages_check_deps_multi_leg_control/fast:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_multi_leg_control.dir/build.make quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_multi_leg_control.dir/build
+.PHONY : _quadruped_robot_generate_messages_check_deps_multi_leg_control/fast
+
+# Convenience name for target.
 quadruped_robot/CMakeFiles/quadruped_robot_genpy.dir/rule:
 	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 quadruped_robot/CMakeFiles/quadruped_robot_genpy.dir/rule
 .PHONY : quadruped_robot/CMakeFiles/quadruped_robot_genpy.dir/rule
@@ -228,34 +243,79 @@ quadruped_robot_genlisp/fast:
 .PHONY : quadruped_robot_genlisp/fast
 
 # Convenience name for target.
-quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_motor_state.dir/rule:
-	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_motor_state.dir/rule
-.PHONY : quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_motor_state.dir/rule
+quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_read_dxl.dir/rule:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_read_dxl.dir/rule
+.PHONY : quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_read_dxl.dir/rule
 
 # Convenience name for target.
-_quadruped_robot_generate_messages_check_deps_motor_state: quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_motor_state.dir/rule
+_quadruped_robot_generate_messages_check_deps_read_dxl: quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_read_dxl.dir/rule
 
-.PHONY : _quadruped_robot_generate_messages_check_deps_motor_state
+.PHONY : _quadruped_robot_generate_messages_check_deps_read_dxl
 
 # fast build rule for target.
-_quadruped_robot_generate_messages_check_deps_motor_state/fast:
-	cd /home/aaron/catkin_ws/build && $(MAKE) -f quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_motor_state.dir/build.make quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_motor_state.dir/build
-.PHONY : _quadruped_robot_generate_messages_check_deps_motor_state/fast
+_quadruped_robot_generate_messages_check_deps_read_dxl/fast:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_read_dxl.dir/build.make quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_read_dxl.dir/build
+.PHONY : _quadruped_robot_generate_messages_check_deps_read_dxl/fast
 
 # Convenience name for target.
-quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_time_state.dir/rule:
-	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_time_state.dir/rule
-.PHONY : quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_time_state.dir/rule
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/rule:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/rule
+.PHONY : quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/rule
 
 # Convenience name for target.
-_quadruped_robot_generate_messages_check_deps_time_state: quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_time_state.dir/rule
+quadruped_robot_generate_messages_py: quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/rule
 
-.PHONY : _quadruped_robot_generate_messages_check_deps_time_state
+.PHONY : quadruped_robot_generate_messages_py
 
 # fast build rule for target.
-_quadruped_robot_generate_messages_check_deps_time_state/fast:
-	cd /home/aaron/catkin_ws/build && $(MAKE) -f quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_time_state.dir/build.make quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_time_state.dir/build
-.PHONY : _quadruped_robot_generate_messages_check_deps_time_state/fast
+quadruped_robot_generate_messages_py/fast:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/build
+.PHONY : quadruped_robot_generate_messages_py/fast
+
+# Convenience name for target.
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/rule:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/rule
+.PHONY : quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/rule
+
+# Convenience name for target.
+quadruped_robot_generate_messages_lisp: quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/rule
+
+.PHONY : quadruped_robot_generate_messages_lisp
+
+# fast build rule for target.
+quadruped_robot_generate_messages_lisp/fast:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/build
+.PHONY : quadruped_robot_generate_messages_lisp/fast
+
+# Convenience name for target.
+quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_write_dxl.dir/rule:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_write_dxl.dir/rule
+.PHONY : quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_write_dxl.dir/rule
+
+# Convenience name for target.
+_quadruped_robot_generate_messages_check_deps_write_dxl: quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_write_dxl.dir/rule
+
+.PHONY : _quadruped_robot_generate_messages_check_deps_write_dxl
+
+# fast build rule for target.
+_quadruped_robot_generate_messages_check_deps_write_dxl/fast:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_write_dxl.dir/build.make quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_write_dxl.dir/build
+.PHONY : _quadruped_robot_generate_messages_check_deps_write_dxl/fast
+
+# Convenience name for target.
+quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_leg_state.dir/rule:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_leg_state.dir/rule
+.PHONY : quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_leg_state.dir/rule
+
+# Convenience name for target.
+_quadruped_robot_generate_messages_check_deps_leg_state: quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_leg_state.dir/rule
+
+.PHONY : _quadruped_robot_generate_messages_check_deps_leg_state
+
+# fast build rule for target.
+_quadruped_robot_generate_messages_check_deps_leg_state/fast:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_leg_state.dir/build.make quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_leg_state.dir/build
+.PHONY : _quadruped_robot_generate_messages_check_deps_leg_state/fast
 
 # Convenience name for target.
 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp.dir/rule:
@@ -288,21 +348,6 @@ quadruped_robot_generate_messages_nodejs/fast:
 .PHONY : quadruped_robot_generate_messages_nodejs/fast
 
 # Convenience name for target.
-quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/rule:
-	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/rule
-.PHONY : quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/rule
-
-# Convenience name for target.
-quadruped_robot_gencpp: quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/rule
-
-.PHONY : quadruped_robot_gencpp
-
-# fast build rule for target.
-quadruped_robot_gencpp/fast:
-	cd /home/aaron/catkin_ws/build && $(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/build
-.PHONY : quadruped_robot_gencpp/fast
-
-# Convenience name for target.
 quadruped_robot/CMakeFiles/quadruped_robot_gennodejs.dir/rule:
 	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 quadruped_robot/CMakeFiles/quadruped_robot_gennodejs.dir/rule
 .PHONY : quadruped_robot/CMakeFiles/quadruped_robot_gennodejs.dir/rule
@@ -316,6 +361,21 @@ quadruped_robot_gennodejs: quadruped_robot/CMakeFiles/quadruped_robot_gennodejs.
 quadruped_robot_gennodejs/fast:
 	cd /home/aaron/catkin_ws/build && $(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_gennodejs.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_gennodejs.dir/build
 .PHONY : quadruped_robot_gennodejs/fast
+
+# Convenience name for target.
+quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/rule:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/rule
+.PHONY : quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/rule
+
+# Convenience name for target.
+quadruped_robot_gencpp: quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/rule
+
+.PHONY : quadruped_robot_gencpp
+
+# fast build rule for target.
+quadruped_robot_gencpp/fast:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/build
+.PHONY : quadruped_robot_gencpp/fast
 
 # Convenience name for target.
 quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_period.dir/rule:
@@ -347,63 +407,35 @@ quadruped_robot_generate_messages_eus/fast:
 	cd /home/aaron/catkin_ws/build && $(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_eus.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_eus.dir/build
 .PHONY : quadruped_robot_generate_messages_eus/fast
 
-# Convenience name for target.
-quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/rule:
-	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/rule
-.PHONY : quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/rule
-
-# Convenience name for target.
-quadruped_robot_generate_messages_lisp: quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/rule
-
-.PHONY : quadruped_robot_generate_messages_lisp
-
-# fast build rule for target.
-quadruped_robot_generate_messages_lisp/fast:
-	cd /home/aaron/catkin_ws/build && $(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/build
-.PHONY : quadruped_robot_generate_messages_lisp/fast
-
-# Convenience name for target.
-quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/rule:
-	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/rule
-.PHONY : quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/rule
-
-# Convenience name for target.
-quadruped_robot_generate_messages_py: quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/rule
-
-.PHONY : quadruped_robot_generate_messages_py
-
-# fast build rule for target.
-quadruped_robot_generate_messages_py/fast:
-	cd /home/aaron/catkin_ws/build && $(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/build
-.PHONY : quadruped_robot_generate_messages_py/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... install/strip"
 	@echo "... install/local"
 	@echo "... install"
+	@echo "... list_install_components"
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test"
 	@echo "... quadruped_robot_generate_messages"
+	@echo "... _quadruped_robot_generate_messages_check_deps_multi_leg_control"
 	@echo "... quadruped_robot_genpy"
 	@echo "... quadruped_robot_geneus"
 	@echo "... quadruped_robot_genlisp"
-	@echo "... list_install_components"
-	@echo "... _quadruped_robot_generate_messages_check_deps_motor_state"
-	@echo "... _quadruped_robot_generate_messages_check_deps_time_state"
+	@echo "... install/strip"
+	@echo "... _quadruped_robot_generate_messages_check_deps_read_dxl"
+	@echo "... quadruped_robot_generate_messages_py"
+	@echo "... quadruped_robot_generate_messages_lisp"
+	@echo "... _quadruped_robot_generate_messages_check_deps_write_dxl"
+	@echo "... _quadruped_robot_generate_messages_check_deps_leg_state"
 	@echo "... quadruped_robot_generate_messages_cpp"
 	@echo "... quadruped_robot_generate_messages_nodejs"
-	@echo "... quadruped_robot_gencpp"
 	@echo "... quadruped_robot_gennodejs"
+	@echo "... quadruped_robot_gencpp"
 	@echo "... _quadruped_robot_generate_messages_check_deps_period"
 	@echo "... quadruped_robot_generate_messages_eus"
-	@echo "... quadruped_robot_generate_messages_lisp"
-	@echo "... quadruped_robot_generate_messages_py"
 .PHONY : help
 
 

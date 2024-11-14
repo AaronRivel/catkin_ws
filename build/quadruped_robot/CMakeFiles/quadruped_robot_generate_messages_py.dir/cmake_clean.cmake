@@ -1,8 +1,11 @@
 file(REMOVE_RECURSE
   "/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/__init__.py"
-  "/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_motor_state.py"
+  "/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_leg_state.py"
+  "/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_multi_leg_control.py"
   "/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_period.py"
-  "/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_time_state.py"
+  "/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/__init__.py"
+  "/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/_read_dxl.py"
+  "/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/_write_dxl.py"
   "CMakeFiles/quadruped_robot_generate_messages_py"
 )
 

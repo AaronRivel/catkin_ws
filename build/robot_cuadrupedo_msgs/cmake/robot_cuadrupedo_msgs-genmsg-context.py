@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/legs_control.msg;/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg"
+messages_str = "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/legs_control.msg;/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg;/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg"
 services_str = ""
 pkg_name = "robot_cuadrupedo_msgs"
 dependencies_str = "std_msgs"

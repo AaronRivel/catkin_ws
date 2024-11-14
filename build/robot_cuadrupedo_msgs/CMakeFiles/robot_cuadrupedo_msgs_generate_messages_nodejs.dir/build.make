@@ -55,6 +55,7 @@ include robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages
 
 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/robot_cuadrupedo_msgs/msg/legs_control.js
 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/robot_cuadrupedo_msgs/msg/robot_velocity.js
+robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/robot_cuadrupedo_msgs/msg/motor_state.js
 
 
 /home/aaron/catkin_ws/devel/share/gennodejs/ros/robot_cuadrupedo_msgs/msg/legs_control.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
@@ -67,9 +68,15 @@ robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_nodejs:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from robot_cuadrupedo_msgs/robot_velocity.msg"
 	cd /home/aaron/catkin_ws/build/robot_cuadrupedo_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg -Irobot_cuadrupedo_msgs:/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p robot_cuadrupedo_msgs -o /home/aaron/catkin_ws/devel/share/gennodejs/ros/robot_cuadrupedo_msgs/msg
 
+/home/aaron/catkin_ws/devel/share/gennodejs/ros/robot_cuadrupedo_msgs/msg/motor_state.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
+/home/aaron/catkin_ws/devel/share/gennodejs/ros/robot_cuadrupedo_msgs/msg/motor_state.js: /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Javascript code from robot_cuadrupedo_msgs/motor_state.msg"
+	cd /home/aaron/catkin_ws/build/robot_cuadrupedo_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg -Irobot_cuadrupedo_msgs:/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p robot_cuadrupedo_msgs -o /home/aaron/catkin_ws/devel/share/gennodejs/ros/robot_cuadrupedo_msgs/msg
+
 robot_cuadrupedo_msgs_generate_messages_nodejs: robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_nodejs
 robot_cuadrupedo_msgs_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/robot_cuadrupedo_msgs/msg/legs_control.js
 robot_cuadrupedo_msgs_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/robot_cuadrupedo_msgs/msg/robot_velocity.js
+robot_cuadrupedo_msgs_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/robot_cuadrupedo_msgs/msg/motor_state.js
 robot_cuadrupedo_msgs_generate_messages_nodejs: robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_nodejs.dir/build.make
 
 .PHONY : robot_cuadrupedo_msgs_generate_messages_nodejs

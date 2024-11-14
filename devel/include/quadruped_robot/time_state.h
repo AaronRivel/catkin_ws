@@ -28,14 +28,18 @@ struct time_state_
     , q0(0.0)
     , q1(0.0)
     , q0_dot(0.0)
-    , q1_dot(0.0)  {
+    , q1_dot(0.0)
+    , leg_pos()
+    , leg_name()  {
     }
   time_state_(const ContainerAllocator& _alloc)
     : t(0.0)
     , q0(0.0)
     , q1(0.0)
     , q0_dot(0.0)
-    , q1_dot(0.0)  {
+    , q1_dot(0.0)
+    , leg_pos(_alloc)
+    , leg_name(_alloc)  {
   (void)_alloc;
     }
 
@@ -55,6 +59,12 @@ struct time_state_
 
    typedef double _q1_dot_type;
   _q1_dot_type q1_dot;
+
+   typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _leg_pos_type;
+  _leg_pos_type leg_pos;
+
+   typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _leg_name_type;
+  _leg_name_type leg_name;
 
 
 
@@ -89,7 +99,9 @@ bool operator==(const ::quadruped_robot::time_state_<ContainerAllocator1> & lhs,
     lhs.q0 == rhs.q0 &&
     lhs.q1 == rhs.q1 &&
     lhs.q0_dot == rhs.q0_dot &&
-    lhs.q1_dot == rhs.q1_dot;
+    lhs.q1_dot == rhs.q1_dot &&
+    lhs.leg_pos == rhs.leg_pos &&
+    lhs.leg_name == rhs.leg_name;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -122,12 +134,12 @@ struct IsMessage< ::quadruped_robot::time_state_<ContainerAllocator> const>
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::quadruped_robot::time_state_<ContainerAllocator> >
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
 struct IsFixedSize< ::quadruped_robot::time_state_<ContainerAllocator> const>
-  : TrueType
+  : FalseType
   { };
 
 template <class ContainerAllocator>
@@ -146,12 +158,12 @@ struct MD5Sum< ::quadruped_robot::time_state_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "fdf95eab8e31bbe478f129be831ec16a";
+    return "71fd01f75d21eb38a83b3d74f3d14390";
   }
 
   static const char* value(const ::quadruped_robot::time_state_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0xfdf95eab8e31bbe4ULL;
-  static const uint64_t static_value2 = 0x78f129be831ec16aULL;
+  static const uint64_t static_value1 = 0x71fd01f75d21eb38ULL;
+  static const uint64_t static_value2 = 0xa83b3d74f3d14390ULL;
 };
 
 template<class ContainerAllocator>
@@ -175,6 +187,8 @@ struct Definition< ::quadruped_robot::time_state_<ContainerAllocator> >
 "float64 q1\n"
 "float64 q0_dot\n"
 "float64 q1_dot\n"
+"string leg_pos\n"
+"string leg_name\n"
 ;
   }
 
@@ -198,6 +212,8 @@ namespace serialization
       stream.next(m.q1);
       stream.next(m.q0_dot);
       stream.next(m.q1_dot);
+      stream.next(m.leg_pos);
+      stream.next(m.leg_name);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -226,6 +242,10 @@ struct Printer< ::quadruped_robot::time_state_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.q0_dot);
     s << indent << "q1_dot: ";
     Printer<double>::stream(s, indent + "  ", v.q1_dot);
+    s << indent << "leg_pos: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.leg_pos);
+    s << indent << "leg_name: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.leg_name);
   }
 };
 

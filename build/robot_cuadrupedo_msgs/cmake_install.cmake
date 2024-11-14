@@ -41,6 +41,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/robot_cuadrupedo_msgs/msg" TYPE FILE FILES
     "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/legs_control.msg"
     "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg"
+    "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg"
     )
 endif()
 

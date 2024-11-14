@@ -1,11 +1,11 @@
 (cl:defpackage quadruped_robot-msg
   (:use )
   (:export
-   "<MOTOR_STATE>"
-   "MOTOR_STATE"
+   "<LEG_STATE>"
+   "LEG_STATE"
+   "<MULTI_LEG_CONTROL>"
+   "MULTI_LEG_CONTROL"
    "<PERIOD>"
    "PERIOD"
-   "<TIME_STATE>"
-   "TIME_STATE"
   ))
 

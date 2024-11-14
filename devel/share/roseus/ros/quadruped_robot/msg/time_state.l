@@ -14,7 +14,7 @@
 
 (defclass quadruped_robot::time_state
   :super ros::object
-  :slots (_t _q0 _q1 _q0_dot _q1_dot ))
+  :slots (_t _q0 _q1 _q0_dot _q1_dot _leg_pos _leg_name ))
 
 (defmethod quadruped_robot::time_state
   (:init
@@ -24,6 +24,8 @@
     ((:q1 __q1) 0.0)
     ((:q0_dot __q0_dot) 0.0)
     ((:q1_dot __q1_dot) 0.0)
+    ((:leg_pos __leg_pos) "")
+    ((:leg_name __leg_name) "")
     )
    (send-super :init)
    (setq _t (float __t))
@@ -31,6 +33,8 @@
    (setq _q1 (float __q1))
    (setq _q0_dot (float __q0_dot))
    (setq _q1_dot (float __q1_dot))
+   (setq _leg_pos (string __leg_pos))
+   (setq _leg_name (string __leg_name))
    self)
   (:t
    (&optional __t)
@@ -47,6 +51,12 @@
   (:q1_dot
    (&optional __q1_dot)
    (if __q1_dot (setq _q1_dot __q1_dot)) _q1_dot)
+  (:leg_pos
+   (&optional __leg_pos)
+   (if __leg_pos (setq _leg_pos __leg_pos)) _leg_pos)
+  (:leg_name
+   (&optional __leg_name)
+   (if __leg_name (setq _leg_name __leg_name)) _leg_name)
   (:serialization-length
    ()
    (+
@@ -60,6 +70,10 @@
     8
     ;; float64 _q1_dot
     8
+    ;; string _leg_pos
+    4 (length _leg_pos)
+    ;; string _leg_name
+    4 (length _leg_name)
     ))
   (:serialize
    (&optional strm)
@@ -75,6 +89,10 @@
        (sys::poke _q0_dot (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;; float64 _q1_dot
        (sys::poke _q1_dot (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; string _leg_pos
+       (write-long (length _leg_pos) s) (princ _leg_pos s)
+     ;; string _leg_name
+       (write-long (length _leg_name) s) (princ _leg_name s)
      ;;
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
@@ -89,11 +107,15 @@
      (setq _q0_dot (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;; float64 _q1_dot
      (setq _q1_dot (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; string _leg_pos
+     (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _leg_pos (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
+   ;; string _leg_name
+     (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _leg_name (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
    ;;
    self)
   )
 
-(setf (get quadruped_robot::time_state :md5sum-) "fdf95eab8e31bbe478f129be831ec16a")
+(setf (get quadruped_robot::time_state :md5sum-) "71fd01f75d21eb38a83b3d74f3d14390")
 (setf (get quadruped_robot::time_state :datatype-) "quadruped_robot/time_state")
 (setf (get quadruped_robot::time_state :definition-)
       "float64 t
@@ -101,11 +123,13 @@ float64 q0
 float64 q1
 float64 q0_dot
 float64 q1_dot
+string leg_pos
+string leg_name
 
 ")
 
 
 
-(provide :quadruped_robot/time_state "fdf95eab8e31bbe478f129be831ec16a")
+(provide :quadruped_robot/time_state "71fd01f75d21eb38a83b3d74f3d14390")
 
 

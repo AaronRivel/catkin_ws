@@ -52,6 +52,7 @@ find_package(catkin REQUIRED COMPONENTS
    FILES
    legs_control.msg
    robot_velocity.msg
+   motor_state.msg
  )
 
 ## Generate services in the 'srv' folder

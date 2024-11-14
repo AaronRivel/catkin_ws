@@ -1,5 +1,6 @@
 file(REMOVE_RECURSE
   "/home/aaron/catkin_ws/devel/share/common-lisp/ros/robot_cuadrupedo_msgs/msg/legs_control.lisp"
+  "/home/aaron/catkin_ws/devel/share/common-lisp/ros/robot_cuadrupedo_msgs/msg/motor_state.lisp"
   "/home/aaron/catkin_ws/devel/share/common-lisp/ros/robot_cuadrupedo_msgs/msg/robot_velocity.lisp"
   "CMakeFiles/robot_cuadrupedo_msgs_generate_messages_lisp"
 )

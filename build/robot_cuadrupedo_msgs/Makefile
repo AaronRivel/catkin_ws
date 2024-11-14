@@ -92,27 +92,6 @@ install/fast: preinstall/fast
 	/usr/bin/cmake -P cmake_install.cmake
 .PHONY : install/fast
 
-# Special rule for the target test
-test:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
-	/usr/bin/ctest --force-new-ctest-process $(ARGS)
-.PHONY : test
-
-# Special rule for the target test
-test/fast: test
-
-.PHONY : test/fast
-
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-
-.PHONY : list_install_components/fast
-
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
@@ -134,6 +113,27 @@ edit_cache:
 edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
+
+# Special rule for the target test
+test:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running tests..."
+	/usr/bin/ctest --force-new-ctest-process $(ARGS)
+.PHONY : test
+
+# Special rule for the target test
+test/fast: test
+
+.PHONY : test/fast
+
+# Special rule for the target list_install_components
+list_install_components:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
+.PHONY : list_install_components
+
+# Special rule for the target list_install_components
+list_install_components/fast: list_install_components
+
+.PHONY : list_install_components/fast
 
 # The main all target
 all: cmake_check_build_system
@@ -213,6 +213,21 @@ _robot_cuadrupedo_msgs_generate_messages_check_deps_robot_velocity/fast:
 .PHONY : _robot_cuadrupedo_msgs_generate_messages_check_deps_robot_velocity/fast
 
 # Convenience name for target.
+robot_cuadrupedo_msgs/CMakeFiles/_robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state.dir/rule:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_cuadrupedo_msgs/CMakeFiles/_robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state.dir/rule
+.PHONY : robot_cuadrupedo_msgs/CMakeFiles/_robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state.dir/rule
+
+# Convenience name for target.
+_robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state: robot_cuadrupedo_msgs/CMakeFiles/_robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state.dir/rule
+
+.PHONY : _robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state
+
+# fast build rule for target.
+_robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state/fast:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f robot_cuadrupedo_msgs/CMakeFiles/_robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state.dir/build.make robot_cuadrupedo_msgs/CMakeFiles/_robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state.dir/build
+.PHONY : _robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state/fast
+
+# Convenience name for target.
 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_geneus.dir/rule:
 	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_geneus.dir/rule
 .PHONY : robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_geneus.dir/rule
@@ -271,6 +286,36 @@ robot_cuadrupedo_msgs_gennodejs: robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupe
 robot_cuadrupedo_msgs_gennodejs/fast:
 	cd /home/aaron/catkin_ws/build && $(MAKE) -f robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gennodejs.dir/build.make robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gennodejs.dir/build
 .PHONY : robot_cuadrupedo_msgs_gennodejs/fast
+
+# Convenience name for target.
+robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/rule:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/rule
+.PHONY : robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/rule
+
+# Convenience name for target.
+robot_cuadrupedo_msgs_genpy: robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/rule
+
+.PHONY : robot_cuadrupedo_msgs_genpy
+
+# fast build rule for target.
+robot_cuadrupedo_msgs_genpy/fast:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/build.make robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/build
+.PHONY : robot_cuadrupedo_msgs_genpy/fast
+
+# Convenience name for target.
+robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/rule:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/rule
+.PHONY : robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/rule
+
+# Convenience name for target.
+robot_cuadrupedo_msgs_gencpp: robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/rule
+
+.PHONY : robot_cuadrupedo_msgs_gencpp
+
+# fast build rule for target.
+robot_cuadrupedo_msgs_gencpp/fast:
+	cd /home/aaron/catkin_ws/build && $(MAKE) -f robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/build.make robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/build
+.PHONY : robot_cuadrupedo_msgs_gencpp/fast
 
 # Convenience name for target.
 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_eus.dir/rule:
@@ -332,36 +377,6 @@ robot_cuadrupedo_msgs_generate_messages_nodejs/fast:
 	cd /home/aaron/catkin_ws/build && $(MAKE) -f robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_nodejs.dir/build.make robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_nodejs.dir/build
 .PHONY : robot_cuadrupedo_msgs_generate_messages_nodejs/fast
 
-# Convenience name for target.
-robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/rule:
-	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/rule
-.PHONY : robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/rule
-
-# Convenience name for target.
-robot_cuadrupedo_msgs_gencpp: robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/rule
-
-.PHONY : robot_cuadrupedo_msgs_gencpp
-
-# fast build rule for target.
-robot_cuadrupedo_msgs_gencpp/fast:
-	cd /home/aaron/catkin_ws/build && $(MAKE) -f robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/build.make robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/build
-.PHONY : robot_cuadrupedo_msgs_gencpp/fast
-
-# Convenience name for target.
-robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/rule:
-	cd /home/aaron/catkin_ws/build && $(MAKE) -f CMakeFiles/Makefile2 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/rule
-.PHONY : robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/rule
-
-# Convenience name for target.
-robot_cuadrupedo_msgs_genpy: robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/rule
-
-.PHONY : robot_cuadrupedo_msgs_genpy
-
-# fast build rule for target.
-robot_cuadrupedo_msgs_genpy/fast:
-	cd /home/aaron/catkin_ws/build && $(MAKE) -f robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/build.make robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/build
-.PHONY : robot_cuadrupedo_msgs_genpy/fast
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -374,20 +389,21 @@ help:
 	@echo "... robot_cuadrupedo_msgs_generate_messages"
 	@echo "... robot_cuadrupedo_msgs_genlisp"
 	@echo "... _robot_cuadrupedo_msgs_generate_messages_check_deps_robot_velocity"
+	@echo "... _robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state"
 	@echo "... robot_cuadrupedo_msgs_geneus"
 	@echo "... robot_cuadrupedo_msgs_generate_messages_cpp"
 	@echo "... robot_cuadrupedo_msgs_generate_messages_py"
 	@echo "... robot_cuadrupedo_msgs_gennodejs"
+	@echo "... rebuild_cache"
+	@echo "... edit_cache"
+	@echo "... robot_cuadrupedo_msgs_genpy"
+	@echo "... robot_cuadrupedo_msgs_gencpp"
 	@echo "... test"
 	@echo "... robot_cuadrupedo_msgs_generate_messages_eus"
 	@echo "... robot_cuadrupedo_msgs_generate_messages_lisp"
 	@echo "... list_install_components"
 	@echo "... _robot_cuadrupedo_msgs_generate_messages_check_deps_legs_control"
 	@echo "... robot_cuadrupedo_msgs_generate_messages_nodejs"
-	@echo "... rebuild_cache"
-	@echo "... edit_cache"
-	@echo "... robot_cuadrupedo_msgs_gencpp"
-	@echo "... robot_cuadrupedo_msgs_genpy"
 .PHONY : help
 
 

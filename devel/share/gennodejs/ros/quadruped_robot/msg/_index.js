@@ -2,11 +2,11 @@
 "use strict";
 
 let period = require('./period.js');
-let time_state = require('./time_state.js');
-let motor_state = require('./motor_state.js');
+let leg_state = require('./leg_state.js');
+let multi_leg_control = require('./multi_leg_control.js');
 
 module.exports = {
   period: period,
-  time_state: time_state,
-  motor_state: motor_state,
+  leg_state: leg_state,
+  multi_leg_control: multi_leg_control,
 };

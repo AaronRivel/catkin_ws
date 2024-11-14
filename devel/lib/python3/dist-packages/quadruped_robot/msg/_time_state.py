@@ -8,7 +8,7 @@ import struct
 
 
 class time_state(genpy.Message):
-  _md5sum = "fdf95eab8e31bbe478f129be831ec16a"
+  _md5sum = "71fd01f75d21eb38a83b3d74f3d14390"
   _type = "quadruped_robot/time_state"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """float64 t
@@ -16,9 +16,11 @@ float64 q0
 float64 q1
 float64 q0_dot
 float64 q1_dot
+string leg_pos
+string leg_name
 """
-  __slots__ = ['t','q0','q1','q0_dot','q1_dot']
-  _slot_types = ['float64','float64','float64','float64','float64']
+  __slots__ = ['t','q0','q1','q0_dot','q1_dot','leg_pos','leg_name']
+  _slot_types = ['float64','float64','float64','float64','float64','string','string']
 
   def __init__(self, *args, **kwds):
     """
@@ -28,7 +30,7 @@ float64 q1_dot
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       t,q0,q1,q0_dot,q1_dot
+       t,q0,q1,q0_dot,q1_dot,leg_pos,leg_name
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -47,12 +49,18 @@ float64 q1_dot
         self.q0_dot = 0.
       if self.q1_dot is None:
         self.q1_dot = 0.
+      if self.leg_pos is None:
+        self.leg_pos = ''
+      if self.leg_name is None:
+        self.leg_name = ''
     else:
       self.t = 0.
       self.q0 = 0.
       self.q1 = 0.
       self.q0_dot = 0.
       self.q1_dot = 0.
+      self.leg_pos = ''
+      self.leg_name = ''
 
   def _get_types(self):
     """
@@ -68,6 +76,18 @@ float64 q1_dot
     try:
       _x = self
       buff.write(_get_struct_5d().pack(_x.t, _x.q0, _x.q1, _x.q0_dot, _x.q1_dot))
+      _x = self.leg_pos
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
+      _x = self.leg_name
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -84,6 +104,24 @@ float64 q1_dot
       start = end
       end += 40
       (_x.t, _x.q0, _x.q1, _x.q0_dot, _x.q1_dot,) = _get_struct_5d().unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.leg_pos = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.leg_pos = str[start:end]
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.leg_name = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.leg_name = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -98,6 +136,18 @@ float64 q1_dot
     try:
       _x = self
       buff.write(_get_struct_5d().pack(_x.t, _x.q0, _x.q1, _x.q0_dot, _x.q1_dot))
+      _x = self.leg_pos
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
+      _x = self.leg_name
+      length = len(_x)
+      if python3 or type(_x) == unicode:
+        _x = _x.encode('utf-8')
+        length = len(_x)
+      buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
 
@@ -115,6 +165,24 @@ float64 q1_dot
       start = end
       end += 40
       (_x.t, _x.q0, _x.q1, _x.q0_dot, _x.q1_dot,) = _get_struct_5d().unpack(str[start:end])
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.leg_pos = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.leg_pos = str[start:end]
+      start = end
+      end += 4
+      (length,) = _struct_I.unpack(str[start:end])
+      start = end
+      end += length
+      if python3:
+        self.leg_name = str[start:end].decode('utf-8', 'rosmsg')
+      else:
+        self.leg_name = str[start:end]
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill

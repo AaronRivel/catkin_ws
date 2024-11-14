@@ -53,30 +53,45 @@ CMAKE_BINARY_DIR = /home/aaron/catkin_ws/build
 # Include the progress variables for this target.
 include quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/progress.make
 
-quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp: /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/motor_state.lisp
-quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp: /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/time_state.lisp
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp: /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/leg_state.lisp
 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp: /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/period.lisp
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp: /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/multi_leg_control.lisp
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp: /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/srv/write_dxl.lisp
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp: /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/srv/read_dxl.lisp
 
 
-/home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/motor_state.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
-/home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/motor_state.lisp: /home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Lisp code from quadruped_robot/motor_state.msg"
-	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg
-
-/home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/time_state.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
-/home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/time_state.lisp: /home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Lisp code from quadruped_robot/time_state.msg"
-	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg
+/home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/leg_state.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
+/home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/leg_state.lisp: /home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Lisp code from quadruped_robot/leg_state.msg"
+	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg
 
 /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/period.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
 /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/period.lisp: /home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Lisp code from quadruped_robot/period.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Lisp code from quadruped_robot/period.msg"
 	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg
 
+/home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/multi_leg_control.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
+/home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/multi_leg_control.lisp: /home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg
+/home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/multi_leg_control.lisp: /home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Lisp code from quadruped_robot/multi_leg_control.msg"
+	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg
+
+/home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/srv/write_dxl.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
+/home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/srv/write_dxl.lisp: /home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Lisp code from quadruped_robot/write_dxl.srv"
+	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/srv
+
+/home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/srv/read_dxl.lisp: /opt/ros/noetic/lib/genlisp/gen_lisp.py
+/home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/srv/read_dxl.lisp: /home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Lisp code from quadruped_robot/read_dxl.srv"
+	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genlisp/cmake/../../../lib/genlisp/gen_lisp.py /home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/srv
+
 quadruped_robot_generate_messages_lisp: quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp
-quadruped_robot_generate_messages_lisp: /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/motor_state.lisp
-quadruped_robot_generate_messages_lisp: /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/time_state.lisp
+quadruped_robot_generate_messages_lisp: /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/leg_state.lisp
 quadruped_robot_generate_messages_lisp: /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/period.lisp
+quadruped_robot_generate_messages_lisp: /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/msg/multi_leg_control.lisp
+quadruped_robot_generate_messages_lisp: /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/srv/write_dxl.lisp
+quadruped_robot_generate_messages_lisp: /home/aaron/catkin_ws/devel/share/common-lisp/ros/quadruped_robot/srv/read_dxl.lisp
 quadruped_robot_generate_messages_lisp: quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/build.make
 
 .PHONY : quadruped_robot_generate_messages_lisp

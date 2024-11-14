@@ -55,6 +55,7 @@ include robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages
 
 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_eus: /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo_msgs/msg/legs_control.l
 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_eus: /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo_msgs/msg/robot_velocity.l
+robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_eus: /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo_msgs/msg/motor_state.l
 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_eus: /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo_msgs/manifest.l
 
 
@@ -68,13 +69,19 @@ robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_eus: /h
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating EusLisp code from robot_cuadrupedo_msgs/robot_velocity.msg"
 	cd /home/aaron/catkin_ws/build/robot_cuadrupedo_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg -Irobot_cuadrupedo_msgs:/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p robot_cuadrupedo_msgs -o /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo_msgs/msg
 
+/home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo_msgs/msg/motor_state.l: /opt/ros/noetic/lib/geneus/gen_eus.py
+/home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo_msgs/msg/motor_state.l: /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp code from robot_cuadrupedo_msgs/motor_state.msg"
+	cd /home/aaron/catkin_ws/build/robot_cuadrupedo_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg -Irobot_cuadrupedo_msgs:/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p robot_cuadrupedo_msgs -o /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo_msgs/msg
+
 /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo_msgs/manifest.l: /opt/ros/noetic/lib/geneus/gen_eus.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating EusLisp manifest code for robot_cuadrupedo_msgs"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating EusLisp manifest code for robot_cuadrupedo_msgs"
 	cd /home/aaron/catkin_ws/build/robot_cuadrupedo_msgs && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/geneus/cmake/../../../lib/geneus/gen_eus.py -m -o /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo_msgs robot_cuadrupedo_msgs std_msgs
 
 robot_cuadrupedo_msgs_generate_messages_eus: robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_eus
 robot_cuadrupedo_msgs_generate_messages_eus: /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo_msgs/msg/legs_control.l
 robot_cuadrupedo_msgs_generate_messages_eus: /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo_msgs/msg/robot_velocity.l
+robot_cuadrupedo_msgs_generate_messages_eus: /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo_msgs/msg/motor_state.l
 robot_cuadrupedo_msgs_generate_messages_eus: /home/aaron/catkin_ws/devel/share/roseus/ros/robot_cuadrupedo_msgs/manifest.l
 robot_cuadrupedo_msgs_generate_messages_eus: robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_eus.dir/build.make
 

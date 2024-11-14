@@ -1,0 +1,6 @@
+string action
+int64 motor_f
+int64 motor_p
+---
+int64 result_1
+int64 result_2

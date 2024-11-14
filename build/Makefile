@@ -1416,188 +1416,6 @@ dynamixel_workbench_toolbox/fast:
 .PHONY : dynamixel_workbench_toolbox/fast
 
 #=============================================================================
-# Target rules for targets named quadruped_robot_generate_messages
-
-# Build rule for target.
-quadruped_robot_generate_messages: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_generate_messages
-.PHONY : quadruped_robot_generate_messages
-
-# fast build rule for target.
-quadruped_robot_generate_messages/fast:
-	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages.dir/build
-.PHONY : quadruped_robot_generate_messages/fast
-
-#=============================================================================
-# Target rules for targets named quadruped_robot_genpy
-
-# Build rule for target.
-quadruped_robot_genpy: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_genpy
-.PHONY : quadruped_robot_genpy
-
-# fast build rule for target.
-quadruped_robot_genpy/fast:
-	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_genpy.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_genpy.dir/build
-.PHONY : quadruped_robot_genpy/fast
-
-#=============================================================================
-# Target rules for targets named quadruped_robot_geneus
-
-# Build rule for target.
-quadruped_robot_geneus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_geneus
-.PHONY : quadruped_robot_geneus
-
-# fast build rule for target.
-quadruped_robot_geneus/fast:
-	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_geneus.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_geneus.dir/build
-.PHONY : quadruped_robot_geneus/fast
-
-#=============================================================================
-# Target rules for targets named quadruped_robot_genlisp
-
-# Build rule for target.
-quadruped_robot_genlisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_genlisp
-.PHONY : quadruped_robot_genlisp
-
-# fast build rule for target.
-quadruped_robot_genlisp/fast:
-	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_genlisp.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_genlisp.dir/build
-.PHONY : quadruped_robot_genlisp/fast
-
-#=============================================================================
-# Target rules for targets named _quadruped_robot_generate_messages_check_deps_motor_state
-
-# Build rule for target.
-_quadruped_robot_generate_messages_check_deps_motor_state: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _quadruped_robot_generate_messages_check_deps_motor_state
-.PHONY : _quadruped_robot_generate_messages_check_deps_motor_state
-
-# fast build rule for target.
-_quadruped_robot_generate_messages_check_deps_motor_state/fast:
-	$(MAKE) -f quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_motor_state.dir/build.make quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_motor_state.dir/build
-.PHONY : _quadruped_robot_generate_messages_check_deps_motor_state/fast
-
-#=============================================================================
-# Target rules for targets named _quadruped_robot_generate_messages_check_deps_time_state
-
-# Build rule for target.
-_quadruped_robot_generate_messages_check_deps_time_state: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _quadruped_robot_generate_messages_check_deps_time_state
-.PHONY : _quadruped_robot_generate_messages_check_deps_time_state
-
-# fast build rule for target.
-_quadruped_robot_generate_messages_check_deps_time_state/fast:
-	$(MAKE) -f quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_time_state.dir/build.make quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_time_state.dir/build
-.PHONY : _quadruped_robot_generate_messages_check_deps_time_state/fast
-
-#=============================================================================
-# Target rules for targets named quadruped_robot_generate_messages_cpp
-
-# Build rule for target.
-quadruped_robot_generate_messages_cpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_generate_messages_cpp
-.PHONY : quadruped_robot_generate_messages_cpp
-
-# fast build rule for target.
-quadruped_robot_generate_messages_cpp/fast:
-	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp.dir/build
-.PHONY : quadruped_robot_generate_messages_cpp/fast
-
-#=============================================================================
-# Target rules for targets named quadruped_robot_generate_messages_nodejs
-
-# Build rule for target.
-quadruped_robot_generate_messages_nodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_generate_messages_nodejs
-.PHONY : quadruped_robot_generate_messages_nodejs
-
-# fast build rule for target.
-quadruped_robot_generate_messages_nodejs/fast:
-	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs.dir/build
-.PHONY : quadruped_robot_generate_messages_nodejs/fast
-
-#=============================================================================
-# Target rules for targets named quadruped_robot_gencpp
-
-# Build rule for target.
-quadruped_robot_gencpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_gencpp
-.PHONY : quadruped_robot_gencpp
-
-# fast build rule for target.
-quadruped_robot_gencpp/fast:
-	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/build
-.PHONY : quadruped_robot_gencpp/fast
-
-#=============================================================================
-# Target rules for targets named quadruped_robot_gennodejs
-
-# Build rule for target.
-quadruped_robot_gennodejs: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_gennodejs
-.PHONY : quadruped_robot_gennodejs
-
-# fast build rule for target.
-quadruped_robot_gennodejs/fast:
-	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_gennodejs.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_gennodejs.dir/build
-.PHONY : quadruped_robot_gennodejs/fast
-
-#=============================================================================
-# Target rules for targets named _quadruped_robot_generate_messages_check_deps_period
-
-# Build rule for target.
-_quadruped_robot_generate_messages_check_deps_period: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 _quadruped_robot_generate_messages_check_deps_period
-.PHONY : _quadruped_robot_generate_messages_check_deps_period
-
-# fast build rule for target.
-_quadruped_robot_generate_messages_check_deps_period/fast:
-	$(MAKE) -f quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_period.dir/build.make quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_period.dir/build
-.PHONY : _quadruped_robot_generate_messages_check_deps_period/fast
-
-#=============================================================================
-# Target rules for targets named quadruped_robot_generate_messages_eus
-
-# Build rule for target.
-quadruped_robot_generate_messages_eus: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_generate_messages_eus
-.PHONY : quadruped_robot_generate_messages_eus
-
-# fast build rule for target.
-quadruped_robot_generate_messages_eus/fast:
-	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_eus.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_eus.dir/build
-.PHONY : quadruped_robot_generate_messages_eus/fast
-
-#=============================================================================
-# Target rules for targets named quadruped_robot_generate_messages_lisp
-
-# Build rule for target.
-quadruped_robot_generate_messages_lisp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_generate_messages_lisp
-.PHONY : quadruped_robot_generate_messages_lisp
-
-# fast build rule for target.
-quadruped_robot_generate_messages_lisp/fast:
-	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/build
-.PHONY : quadruped_robot_generate_messages_lisp/fast
-
-#=============================================================================
-# Target rules for targets named quadruped_robot_generate_messages_py
-
-# Build rule for target.
-quadruped_robot_generate_messages_py: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_generate_messages_py
-.PHONY : quadruped_robot_generate_messages_py
-
-# fast build rule for target.
-quadruped_robot_generate_messages_py/fast:
-	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/build
-.PHONY : quadruped_robot_generate_messages_py/fast
-
-#=============================================================================
 # Target rules for targets named robot_cuadrupedo_msgs_generate_messages
 
 # Build rule for target.
@@ -1635,6 +1453,19 @@ _robot_cuadrupedo_msgs_generate_messages_check_deps_robot_velocity: cmake_check_
 _robot_cuadrupedo_msgs_generate_messages_check_deps_robot_velocity/fast:
 	$(MAKE) -f robot_cuadrupedo_msgs/CMakeFiles/_robot_cuadrupedo_msgs_generate_messages_check_deps_robot_velocity.dir/build.make robot_cuadrupedo_msgs/CMakeFiles/_robot_cuadrupedo_msgs_generate_messages_check_deps_robot_velocity.dir/build
 .PHONY : _robot_cuadrupedo_msgs_generate_messages_check_deps_robot_velocity/fast
+
+#=============================================================================
+# Target rules for targets named _robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state
+
+# Build rule for target.
+_robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state
+.PHONY : _robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state
+
+# fast build rule for target.
+_robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state/fast:
+	$(MAKE) -f robot_cuadrupedo_msgs/CMakeFiles/_robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state.dir/build.make robot_cuadrupedo_msgs/CMakeFiles/_robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state.dir/build
+.PHONY : _robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state/fast
 
 #=============================================================================
 # Target rules for targets named robot_cuadrupedo_msgs_geneus
@@ -1689,6 +1520,32 @@ robot_cuadrupedo_msgs_gennodejs/fast:
 .PHONY : robot_cuadrupedo_msgs_gennodejs/fast
 
 #=============================================================================
+# Target rules for targets named robot_cuadrupedo_msgs_genpy
+
+# Build rule for target.
+robot_cuadrupedo_msgs_genpy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 robot_cuadrupedo_msgs_genpy
+.PHONY : robot_cuadrupedo_msgs_genpy
+
+# fast build rule for target.
+robot_cuadrupedo_msgs_genpy/fast:
+	$(MAKE) -f robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/build.make robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/build
+.PHONY : robot_cuadrupedo_msgs_genpy/fast
+
+#=============================================================================
+# Target rules for targets named robot_cuadrupedo_msgs_gencpp
+
+# Build rule for target.
+robot_cuadrupedo_msgs_gencpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 robot_cuadrupedo_msgs_gencpp
+.PHONY : robot_cuadrupedo_msgs_gencpp
+
+# fast build rule for target.
+robot_cuadrupedo_msgs_gencpp/fast:
+	$(MAKE) -f robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/build.make robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/build
+.PHONY : robot_cuadrupedo_msgs_gencpp/fast
+
+#=============================================================================
 # Target rules for targets named robot_cuadrupedo_msgs_generate_messages_eus
 
 # Build rule for target.
@@ -1741,30 +1598,212 @@ robot_cuadrupedo_msgs_generate_messages_nodejs/fast:
 .PHONY : robot_cuadrupedo_msgs_generate_messages_nodejs/fast
 
 #=============================================================================
-# Target rules for targets named robot_cuadrupedo_msgs_gencpp
+# Target rules for targets named quadruped_robot_generate_messages
 
 # Build rule for target.
-robot_cuadrupedo_msgs_gencpp: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 robot_cuadrupedo_msgs_gencpp
-.PHONY : robot_cuadrupedo_msgs_gencpp
+quadruped_robot_generate_messages: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_generate_messages
+.PHONY : quadruped_robot_generate_messages
 
 # fast build rule for target.
-robot_cuadrupedo_msgs_gencpp/fast:
-	$(MAKE) -f robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/build.make robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_gencpp.dir/build
-.PHONY : robot_cuadrupedo_msgs_gencpp/fast
+quadruped_robot_generate_messages/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages.dir/build
+.PHONY : quadruped_robot_generate_messages/fast
 
 #=============================================================================
-# Target rules for targets named robot_cuadrupedo_msgs_genpy
+# Target rules for targets named _quadruped_robot_generate_messages_check_deps_multi_leg_control
 
 # Build rule for target.
-robot_cuadrupedo_msgs_genpy: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 robot_cuadrupedo_msgs_genpy
-.PHONY : robot_cuadrupedo_msgs_genpy
+_quadruped_robot_generate_messages_check_deps_multi_leg_control: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _quadruped_robot_generate_messages_check_deps_multi_leg_control
+.PHONY : _quadruped_robot_generate_messages_check_deps_multi_leg_control
 
 # fast build rule for target.
-robot_cuadrupedo_msgs_genpy/fast:
-	$(MAKE) -f robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/build.make robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_genpy.dir/build
-.PHONY : robot_cuadrupedo_msgs_genpy/fast
+_quadruped_robot_generate_messages_check_deps_multi_leg_control/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_multi_leg_control.dir/build.make quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_multi_leg_control.dir/build
+.PHONY : _quadruped_robot_generate_messages_check_deps_multi_leg_control/fast
+
+#=============================================================================
+# Target rules for targets named quadruped_robot_genpy
+
+# Build rule for target.
+quadruped_robot_genpy: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_genpy
+.PHONY : quadruped_robot_genpy
+
+# fast build rule for target.
+quadruped_robot_genpy/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_genpy.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_genpy.dir/build
+.PHONY : quadruped_robot_genpy/fast
+
+#=============================================================================
+# Target rules for targets named quadruped_robot_geneus
+
+# Build rule for target.
+quadruped_robot_geneus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_geneus
+.PHONY : quadruped_robot_geneus
+
+# fast build rule for target.
+quadruped_robot_geneus/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_geneus.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_geneus.dir/build
+.PHONY : quadruped_robot_geneus/fast
+
+#=============================================================================
+# Target rules for targets named quadruped_robot_genlisp
+
+# Build rule for target.
+quadruped_robot_genlisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_genlisp
+.PHONY : quadruped_robot_genlisp
+
+# fast build rule for target.
+quadruped_robot_genlisp/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_genlisp.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_genlisp.dir/build
+.PHONY : quadruped_robot_genlisp/fast
+
+#=============================================================================
+# Target rules for targets named _quadruped_robot_generate_messages_check_deps_read_dxl
+
+# Build rule for target.
+_quadruped_robot_generate_messages_check_deps_read_dxl: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _quadruped_robot_generate_messages_check_deps_read_dxl
+.PHONY : _quadruped_robot_generate_messages_check_deps_read_dxl
+
+# fast build rule for target.
+_quadruped_robot_generate_messages_check_deps_read_dxl/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_read_dxl.dir/build.make quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_read_dxl.dir/build
+.PHONY : _quadruped_robot_generate_messages_check_deps_read_dxl/fast
+
+#=============================================================================
+# Target rules for targets named quadruped_robot_generate_messages_py
+
+# Build rule for target.
+quadruped_robot_generate_messages_py: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_generate_messages_py
+.PHONY : quadruped_robot_generate_messages_py
+
+# fast build rule for target.
+quadruped_robot_generate_messages_py/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/build
+.PHONY : quadruped_robot_generate_messages_py/fast
+
+#=============================================================================
+# Target rules for targets named quadruped_robot_generate_messages_lisp
+
+# Build rule for target.
+quadruped_robot_generate_messages_lisp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_generate_messages_lisp
+.PHONY : quadruped_robot_generate_messages_lisp
+
+# fast build rule for target.
+quadruped_robot_generate_messages_lisp/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_lisp.dir/build
+.PHONY : quadruped_robot_generate_messages_lisp/fast
+
+#=============================================================================
+# Target rules for targets named _quadruped_robot_generate_messages_check_deps_write_dxl
+
+# Build rule for target.
+_quadruped_robot_generate_messages_check_deps_write_dxl: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _quadruped_robot_generate_messages_check_deps_write_dxl
+.PHONY : _quadruped_robot_generate_messages_check_deps_write_dxl
+
+# fast build rule for target.
+_quadruped_robot_generate_messages_check_deps_write_dxl/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_write_dxl.dir/build.make quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_write_dxl.dir/build
+.PHONY : _quadruped_robot_generate_messages_check_deps_write_dxl/fast
+
+#=============================================================================
+# Target rules for targets named _quadruped_robot_generate_messages_check_deps_leg_state
+
+# Build rule for target.
+_quadruped_robot_generate_messages_check_deps_leg_state: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _quadruped_robot_generate_messages_check_deps_leg_state
+.PHONY : _quadruped_robot_generate_messages_check_deps_leg_state
+
+# fast build rule for target.
+_quadruped_robot_generate_messages_check_deps_leg_state/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_leg_state.dir/build.make quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_leg_state.dir/build
+.PHONY : _quadruped_robot_generate_messages_check_deps_leg_state/fast
+
+#=============================================================================
+# Target rules for targets named quadruped_robot_generate_messages_cpp
+
+# Build rule for target.
+quadruped_robot_generate_messages_cpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_generate_messages_cpp
+.PHONY : quadruped_robot_generate_messages_cpp
+
+# fast build rule for target.
+quadruped_robot_generate_messages_cpp/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp.dir/build
+.PHONY : quadruped_robot_generate_messages_cpp/fast
+
+#=============================================================================
+# Target rules for targets named quadruped_robot_generate_messages_nodejs
+
+# Build rule for target.
+quadruped_robot_generate_messages_nodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_generate_messages_nodejs
+.PHONY : quadruped_robot_generate_messages_nodejs
+
+# fast build rule for target.
+quadruped_robot_generate_messages_nodejs/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs.dir/build
+.PHONY : quadruped_robot_generate_messages_nodejs/fast
+
+#=============================================================================
+# Target rules for targets named quadruped_robot_gennodejs
+
+# Build rule for target.
+quadruped_robot_gennodejs: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_gennodejs
+.PHONY : quadruped_robot_gennodejs
+
+# fast build rule for target.
+quadruped_robot_gennodejs/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_gennodejs.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_gennodejs.dir/build
+.PHONY : quadruped_robot_gennodejs/fast
+
+#=============================================================================
+# Target rules for targets named quadruped_robot_gencpp
+
+# Build rule for target.
+quadruped_robot_gencpp: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_gencpp
+.PHONY : quadruped_robot_gencpp
+
+# fast build rule for target.
+quadruped_robot_gencpp/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_gencpp.dir/build
+.PHONY : quadruped_robot_gencpp/fast
+
+#=============================================================================
+# Target rules for targets named _quadruped_robot_generate_messages_check_deps_period
+
+# Build rule for target.
+_quadruped_robot_generate_messages_check_deps_period: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 _quadruped_robot_generate_messages_check_deps_period
+.PHONY : _quadruped_robot_generate_messages_check_deps_period
+
+# fast build rule for target.
+_quadruped_robot_generate_messages_check_deps_period/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_period.dir/build.make quadruped_robot/CMakeFiles/_quadruped_robot_generate_messages_check_deps_period.dir/build
+.PHONY : _quadruped_robot_generate_messages_check_deps_period/fast
+
+#=============================================================================
+# Target rules for targets named quadruped_robot_generate_messages_eus
+
+# Build rule for target.
+quadruped_robot_generate_messages_eus: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 quadruped_robot_generate_messages_eus
+.PHONY : quadruped_robot_generate_messages_eus
+
+# fast build rule for target.
+quadruped_robot_generate_messages_eus/fast:
+	$(MAKE) -f quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_eus.dir/build.make quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_eus.dir/build
+.PHONY : quadruped_robot_generate_messages_eus/fast
 
 #=============================================================================
 # Target rules for targets named leg4_control
@@ -2434,33 +2473,36 @@ help:
 	@echo "... _dynamixel_sdk_examples_generate_messages_check_deps_BulkSetItem"
 	@echo "... dynamixel_sdk_examples_geneus"
 	@echo "... dynamixel_workbench_toolbox"
-	@echo "... quadruped_robot_generate_messages"
-	@echo "... quadruped_robot_genpy"
-	@echo "... quadruped_robot_geneus"
-	@echo "... quadruped_robot_genlisp"
-	@echo "... _quadruped_robot_generate_messages_check_deps_motor_state"
-	@echo "... _quadruped_robot_generate_messages_check_deps_time_state"
-	@echo "... quadruped_robot_generate_messages_cpp"
-	@echo "... quadruped_robot_generate_messages_nodejs"
-	@echo "... quadruped_robot_gencpp"
-	@echo "... quadruped_robot_gennodejs"
-	@echo "... _quadruped_robot_generate_messages_check_deps_period"
-	@echo "... quadruped_robot_generate_messages_eus"
-	@echo "... quadruped_robot_generate_messages_lisp"
-	@echo "... quadruped_robot_generate_messages_py"
 	@echo "... robot_cuadrupedo_msgs_generate_messages"
 	@echo "... robot_cuadrupedo_msgs_genlisp"
 	@echo "... _robot_cuadrupedo_msgs_generate_messages_check_deps_robot_velocity"
+	@echo "... _robot_cuadrupedo_msgs_generate_messages_check_deps_motor_state"
 	@echo "... robot_cuadrupedo_msgs_geneus"
 	@echo "... robot_cuadrupedo_msgs_generate_messages_cpp"
 	@echo "... robot_cuadrupedo_msgs_generate_messages_py"
 	@echo "... robot_cuadrupedo_msgs_gennodejs"
+	@echo "... robot_cuadrupedo_msgs_genpy"
+	@echo "... robot_cuadrupedo_msgs_gencpp"
 	@echo "... robot_cuadrupedo_msgs_generate_messages_eus"
 	@echo "... robot_cuadrupedo_msgs_generate_messages_lisp"
 	@echo "... _robot_cuadrupedo_msgs_generate_messages_check_deps_legs_control"
 	@echo "... robot_cuadrupedo_msgs_generate_messages_nodejs"
-	@echo "... robot_cuadrupedo_msgs_gencpp"
-	@echo "... robot_cuadrupedo_msgs_genpy"
+	@echo "... quadruped_robot_generate_messages"
+	@echo "... _quadruped_robot_generate_messages_check_deps_multi_leg_control"
+	@echo "... quadruped_robot_genpy"
+	@echo "... quadruped_robot_geneus"
+	@echo "... quadruped_robot_genlisp"
+	@echo "... _quadruped_robot_generate_messages_check_deps_read_dxl"
+	@echo "... quadruped_robot_generate_messages_py"
+	@echo "... quadruped_robot_generate_messages_lisp"
+	@echo "... _quadruped_robot_generate_messages_check_deps_write_dxl"
+	@echo "... _quadruped_robot_generate_messages_check_deps_leg_state"
+	@echo "... quadruped_robot_generate_messages_cpp"
+	@echo "... quadruped_robot_generate_messages_nodejs"
+	@echo "... quadruped_robot_gennodejs"
+	@echo "... quadruped_robot_gencpp"
+	@echo "... _quadruped_robot_generate_messages_check_deps_period"
+	@echo "... quadruped_robot_generate_messages_eus"
 	@echo "... leg4_control"
 	@echo "... leg2_control"
 	@echo "... change_id"

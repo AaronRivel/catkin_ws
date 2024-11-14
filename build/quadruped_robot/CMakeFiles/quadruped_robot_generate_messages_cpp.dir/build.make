@@ -53,33 +53,52 @@ CMAKE_BINARY_DIR = /home/aaron/catkin_ws/build
 # Include the progress variables for this target.
 include quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp.dir/progress.make
 
-quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/quadruped_robot/motor_state.h
-quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/quadruped_robot/time_state.h
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/quadruped_robot/leg_state.h
 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/quadruped_robot/period.h
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/quadruped_robot/multi_leg_control.h
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/quadruped_robot/write_dxl.h
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/quadruped_robot/read_dxl.h
 
 
-/home/aaron/catkin_ws/devel/include/quadruped_robot/motor_state.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
-/home/aaron/catkin_ws/devel/include/quadruped_robot/motor_state.h: /home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg
-/home/aaron/catkin_ws/devel/include/quadruped_robot/motor_state.h: /opt/ros/noetic/share/gencpp/msg.h.template
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from quadruped_robot/motor_state.msg"
-	cd /home/aaron/catkin_ws/src/quadruped_robot && /home/aaron/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/include/quadruped_robot -e /opt/ros/noetic/share/gencpp/cmake/..
-
-/home/aaron/catkin_ws/devel/include/quadruped_robot/time_state.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
-/home/aaron/catkin_ws/devel/include/quadruped_robot/time_state.h: /home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg
-/home/aaron/catkin_ws/devel/include/quadruped_robot/time_state.h: /opt/ros/noetic/share/gencpp/msg.h.template
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from quadruped_robot/time_state.msg"
-	cd /home/aaron/catkin_ws/src/quadruped_robot && /home/aaron/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/include/quadruped_robot -e /opt/ros/noetic/share/gencpp/cmake/..
+/home/aaron/catkin_ws/devel/include/quadruped_robot/leg_state.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
+/home/aaron/catkin_ws/devel/include/quadruped_robot/leg_state.h: /home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg
+/home/aaron/catkin_ws/devel/include/quadruped_robot/leg_state.h: /opt/ros/noetic/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating C++ code from quadruped_robot/leg_state.msg"
+	cd /home/aaron/catkin_ws/src/quadruped_robot && /home/aaron/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/include/quadruped_robot -e /opt/ros/noetic/share/gencpp/cmake/..
 
 /home/aaron/catkin_ws/devel/include/quadruped_robot/period.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
 /home/aaron/catkin_ws/devel/include/quadruped_robot/period.h: /home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg
 /home/aaron/catkin_ws/devel/include/quadruped_robot/period.h: /opt/ros/noetic/share/gencpp/msg.h.template
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating C++ code from quadruped_robot/period.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from quadruped_robot/period.msg"
 	cd /home/aaron/catkin_ws/src/quadruped_robot && /home/aaron/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/include/quadruped_robot -e /opt/ros/noetic/share/gencpp/cmake/..
 
+/home/aaron/catkin_ws/devel/include/quadruped_robot/multi_leg_control.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
+/home/aaron/catkin_ws/devel/include/quadruped_robot/multi_leg_control.h: /home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg
+/home/aaron/catkin_ws/devel/include/quadruped_robot/multi_leg_control.h: /home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg
+/home/aaron/catkin_ws/devel/include/quadruped_robot/multi_leg_control.h: /opt/ros/noetic/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating C++ code from quadruped_robot/multi_leg_control.msg"
+	cd /home/aaron/catkin_ws/src/quadruped_robot && /home/aaron/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/include/quadruped_robot -e /opt/ros/noetic/share/gencpp/cmake/..
+
+/home/aaron/catkin_ws/devel/include/quadruped_robot/write_dxl.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
+/home/aaron/catkin_ws/devel/include/quadruped_robot/write_dxl.h: /home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv
+/home/aaron/catkin_ws/devel/include/quadruped_robot/write_dxl.h: /opt/ros/noetic/share/gencpp/msg.h.template
+/home/aaron/catkin_ws/devel/include/quadruped_robot/write_dxl.h: /opt/ros/noetic/share/gencpp/srv.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating C++ code from quadruped_robot/write_dxl.srv"
+	cd /home/aaron/catkin_ws/src/quadruped_robot && /home/aaron/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/include/quadruped_robot -e /opt/ros/noetic/share/gencpp/cmake/..
+
+/home/aaron/catkin_ws/devel/include/quadruped_robot/read_dxl.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
+/home/aaron/catkin_ws/devel/include/quadruped_robot/read_dxl.h: /home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv
+/home/aaron/catkin_ws/devel/include/quadruped_robot/read_dxl.h: /opt/ros/noetic/share/gencpp/msg.h.template
+/home/aaron/catkin_ws/devel/include/quadruped_robot/read_dxl.h: /opt/ros/noetic/share/gencpp/srv.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating C++ code from quadruped_robot/read_dxl.srv"
+	cd /home/aaron/catkin_ws/src/quadruped_robot && /home/aaron/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/include/quadruped_robot -e /opt/ros/noetic/share/gencpp/cmake/..
+
 quadruped_robot_generate_messages_cpp: quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp
-quadruped_robot_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/quadruped_robot/motor_state.h
-quadruped_robot_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/quadruped_robot/time_state.h
+quadruped_robot_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/quadruped_robot/leg_state.h
 quadruped_robot_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/quadruped_robot/period.h
+quadruped_robot_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/quadruped_robot/multi_leg_control.h
+quadruped_robot_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/quadruped_robot/write_dxl.h
+quadruped_robot_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/quadruped_robot/read_dxl.h
 quadruped_robot_generate_messages_cpp: quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_cpp.dir/build.make
 
 .PHONY : quadruped_robot_generate_messages_cpp

@@ -53,30 +53,45 @@ CMAKE_BINARY_DIR = /home/aaron/catkin_ws/build
 # Include the progress variables for this target.
 include quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs.dir/progress.make
 
-quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/motor_state.js
-quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/time_state.js
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/leg_state.js
 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/period.js
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/multi_leg_control.js
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/srv/write_dxl.js
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/srv/read_dxl.js
 
 
-/home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/motor_state.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
-/home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/motor_state.js: /home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from quadruped_robot/motor_state.msg"
-	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg
-
-/home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/time_state.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
-/home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/time_state.js: /home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from quadruped_robot/time_state.msg"
-	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg
+/home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/leg_state.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
+/home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/leg_state.js: /home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Javascript code from quadruped_robot/leg_state.msg"
+	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg
 
 /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/period.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
 /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/period.js: /home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Javascript code from quadruped_robot/period.msg"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Javascript code from quadruped_robot/period.msg"
 	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg
 
+/home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/multi_leg_control.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
+/home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/multi_leg_control.js: /home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg
+/home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/multi_leg_control.js: /home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Javascript code from quadruped_robot/multi_leg_control.msg"
+	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg
+
+/home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/srv/write_dxl.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
+/home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/srv/write_dxl.js: /home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Javascript code from quadruped_robot/write_dxl.srv"
+	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/srv
+
+/home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/srv/read_dxl.js: /opt/ros/noetic/lib/gennodejs/gen_nodejs.py
+/home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/srv/read_dxl.js: /home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Javascript code from quadruped_robot/read_dxl.srv"
+	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gennodejs/cmake/../../../lib/gennodejs/gen_nodejs.py /home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/srv
+
 quadruped_robot_generate_messages_nodejs: quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs
-quadruped_robot_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/motor_state.js
-quadruped_robot_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/time_state.js
+quadruped_robot_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/leg_state.js
 quadruped_robot_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/period.js
+quadruped_robot_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/msg/multi_leg_control.js
+quadruped_robot_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/srv/write_dxl.js
+quadruped_robot_generate_messages_nodejs: /home/aaron/catkin_ws/devel/share/gennodejs/ros/quadruped_robot/srv/read_dxl.js
 quadruped_robot_generate_messages_nodejs: quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_nodejs.dir/build.make
 
 .PHONY : quadruped_robot_generate_messages_nodejs

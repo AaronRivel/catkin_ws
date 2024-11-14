@@ -53,39 +53,67 @@ CMAKE_BINARY_DIR = /home/aaron/catkin_ws/build
 # Include the progress variables for this target.
 include quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/progress.make
 
-quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_motor_state.py
-quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_time_state.py
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_leg_state.py
 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_period.py
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_multi_leg_control.py
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/_write_dxl.py
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/_read_dxl.py
 quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/__init__.py
+quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/__init__.py
 
 
-/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_motor_state.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
-/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_motor_state.py: /home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG quadruped_robot/motor_state"
-	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg
-
-/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_time_state.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
-/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_time_state.py: /home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python from MSG quadruped_robot/time_state"
-	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_leg_state.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_leg_state.py: /home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Generating Python from MSG quadruped_robot/leg_state"
+	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg
 
 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_period.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_period.py: /home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python from MSG quadruped_robot/period"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating Python from MSG quadruped_robot/period"
 	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg
 
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_multi_leg_control.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_multi_leg_control.py: /home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_multi_leg_control.py: /home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating Python from MSG quadruped_robot/multi_leg_control"
+	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py /home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg
+
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/_write_dxl.py: /opt/ros/noetic/lib/genpy/gensrv_py.py
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/_write_dxl.py: /home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python code from SRV quadruped_robot/write_dxl"
+	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv
+
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/_read_dxl.py: /opt/ros/noetic/lib/genpy/gensrv_py.py
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/_read_dxl.py: /home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Generating Python code from SRV quadruped_robot/read_dxl"
+	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/gensrv_py.py /home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv -Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p quadruped_robot -o /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv
+
 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
-/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_motor_state.py
-/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_time_state.py
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_leg_state.py
 /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_period.py
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Generating Python msg __init__.py for quadruped_robot"
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_multi_leg_control.py
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/_write_dxl.py
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/_read_dxl.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Generating Python msg __init__.py for quadruped_robot"
 	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg --initpy
 
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/__init__.py: /opt/ros/noetic/lib/genpy/genmsg_py.py
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_leg_state.py
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_period.py
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_multi_leg_control.py
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/_write_dxl.py
+/home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/__init__.py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/_read_dxl.py
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Generating Python srv __init__.py for quadruped_robot"
+	cd /home/aaron/catkin_ws/build/quadruped_robot && ../catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/genpy/cmake/../../../lib/genpy/genmsg_py.py -o /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv --initpy
+
 quadruped_robot_generate_messages_py: quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py
-quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_motor_state.py
-quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_time_state.py
+quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_leg_state.py
 quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_period.py
+quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/_multi_leg_control.py
+quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/_write_dxl.py
+quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/_read_dxl.py
 quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/msg/__init__.py
+quadruped_robot_generate_messages_py: /home/aaron/catkin_ws/devel/lib/python3/dist-packages/quadruped_robot/srv/__init__.py
 quadruped_robot_generate_messages_py: quadruped_robot/CMakeFiles/quadruped_robot_generate_messages_py.dir/build.make
 
 .PHONY : quadruped_robot_generate_messages_py

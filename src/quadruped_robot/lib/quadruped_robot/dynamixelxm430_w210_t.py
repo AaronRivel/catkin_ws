@@ -14,6 +14,7 @@ class constants:
     ADD_BAUDRATE = 8
     ADD_OPERATING_MODE = 11
     ADD_GOAL_VEL = 104
+    ADD_DRIVE_MODE = 10
 
     PROTOCOL_VERSION = 2
 
@@ -32,7 +33,7 @@ class constants:
     INIT_POSITION_F = 45
     INIT_POSITION_P = 135
 
-    BAUDRATE = 1000000
+    BAUDRATE = 4000000
     DEVICE_NAME = "/dev/ttyUSB0"
 
     MAX_GOAL_VALUE = 4095
@@ -43,5 +44,10 @@ class constants:
     TORQUE_DISABLE = 0
     TIME_OUT = 30
     DELTA = 30
+    JOINT_LIMIT = 20
+    PROTECCION_LIMIT_F = -5
+    PROTECCION_LIMIT_P = 160
+    CW = 0
+    CCW = 1
 
     ESC_ASCII_VALUE = 27 #0x1b

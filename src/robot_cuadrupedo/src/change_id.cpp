@@ -16,13 +16,13 @@ DynamixelWorkbench dxl_wb;
 #define ADDR_XM430_CHANGE_ID          7               
 
 #define PROTOCOL_VERSION                2.0   
-#define BAUDRATE                        1000000
+#define BAUDRATE                        4500000
 #define DEVICENAME                      "/dev/ttyUSB0" 
 
 const char *l;
-const int dynamixel_nomber = 2;
-uint8_t dxl_id[dynamixel_nomber]= {4,7};
-uint8_t new_dxl_id[dynamixel_nomber] = {4,7};
+const int dynamixel_nomber = 6;
+uint8_t dxl_id[dynamixel_nomber]= {1,2,4,7,6,5};
+uint8_t new_dxl_id[dynamixel_nomber] = {1,2,4,7,6,5};
 
 
 int main(){
@@ -40,7 +40,10 @@ int main(){
 
     dxl_wb.ledOn(dxl_id[i],&l);
     printf("Log : %s\n",l);
+    dxl_wb.changeBaudrate(dxl_id[i], 400000,&l);
+    printf("Log : %s\n",l);
 
+    /*
     dxl_wb.changeProtocolVersion(dxl_id[i], PROTOCOL_VERSION, &l);
     printf("Log : %s\n",l);
     printf("Protocol version : %f\n\n",dxl_wb.getProtocolVersion());

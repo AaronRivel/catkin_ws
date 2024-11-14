@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "quadruped_robot: 3 messages, 0 services")
+message(STATUS "quadruped_robot: 3 messages, 2 services")
 
 set(MSG_I_FLAGS "-Iquadruped_robot:/home/aaron/catkin_ws/src/quadruped_robot/msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg")
 
@@ -17,19 +17,29 @@ add_custom_target(quadruped_robot_generate_messages ALL)
 
 
 
-get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg" NAME_WE)
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg" NAME_WE)
 add_custom_target(_quadruped_robot_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "quadruped_robot" "/home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg" ""
-)
-
-get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg" NAME_WE)
-add_custom_target(_quadruped_robot_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "quadruped_robot" "/home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg" ""
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "quadruped_robot" "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg" ""
 )
 
 get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg" NAME_WE)
 add_custom_target(_quadruped_robot_generate_messages_check_deps_${_filename}
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "quadruped_robot" "/home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg" ""
+)
+
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg" NAME_WE)
+add_custom_target(_quadruped_robot_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "quadruped_robot" "/home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg" "quadruped_robot/leg_state"
+)
+
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv" NAME_WE)
+add_custom_target(_quadruped_robot_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "quadruped_robot" "/home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv" ""
+)
+
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv" NAME_WE)
+add_custom_target(_quadruped_robot_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "quadruped_robot" "/home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv" ""
 )
 
 #
@@ -39,13 +49,7 @@ add_custom_target(_quadruped_robot_generate_messages_check_deps_${_filename}
 ### Section generating for lang: gencpp
 ### Generating Messages
 _generate_msg_cpp(quadruped_robot
-  "/home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/quadruped_robot
-)
-_generate_msg_cpp(quadruped_robot
-  "/home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg"
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/quadruped_robot
@@ -56,8 +60,26 @@ _generate_msg_cpp(quadruped_robot
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/quadruped_robot
 )
+_generate_msg_cpp(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg"
+  "${MSG_I_FLAGS}"
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/quadruped_robot
+)
 
 ### Generating Services
+_generate_srv_cpp(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/quadruped_robot
+)
+_generate_srv_cpp(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/quadruped_robot
+)
 
 ### Generating Module File
 _generate_module_cpp(quadruped_robot
@@ -71,11 +93,15 @@ add_custom_target(quadruped_robot_generate_messages_cpp
 add_dependencies(quadruped_robot_generate_messages quadruped_robot_generate_messages_cpp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg" NAME_WE)
-add_dependencies(quadruped_robot_generate_messages_cpp _quadruped_robot_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg" NAME_WE)
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg" NAME_WE)
 add_dependencies(quadruped_robot_generate_messages_cpp _quadruped_robot_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_cpp _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_cpp _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_cpp _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv" NAME_WE)
 add_dependencies(quadruped_robot_generate_messages_cpp _quadruped_robot_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -88,13 +114,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS quadruped_robot_generate_messages_c
 ### Section generating for lang: geneus
 ### Generating Messages
 _generate_msg_eus(quadruped_robot
-  "/home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/quadruped_robot
-)
-_generate_msg_eus(quadruped_robot
-  "/home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg"
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/quadruped_robot
@@ -105,8 +125,26 @@ _generate_msg_eus(quadruped_robot
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/quadruped_robot
 )
+_generate_msg_eus(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg"
+  "${MSG_I_FLAGS}"
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg"
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/quadruped_robot
+)
 
 ### Generating Services
+_generate_srv_eus(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/quadruped_robot
+)
+_generate_srv_eus(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/quadruped_robot
+)
 
 ### Generating Module File
 _generate_module_eus(quadruped_robot
@@ -120,11 +158,15 @@ add_custom_target(quadruped_robot_generate_messages_eus
 add_dependencies(quadruped_robot_generate_messages quadruped_robot_generate_messages_eus)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg" NAME_WE)
-add_dependencies(quadruped_robot_generate_messages_eus _quadruped_robot_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg" NAME_WE)
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg" NAME_WE)
 add_dependencies(quadruped_robot_generate_messages_eus _quadruped_robot_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_eus _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_eus _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_eus _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv" NAME_WE)
 add_dependencies(quadruped_robot_generate_messages_eus _quadruped_robot_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -137,13 +179,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS quadruped_robot_generate_messages_e
 ### Section generating for lang: genlisp
 ### Generating Messages
 _generate_msg_lisp(quadruped_robot
-  "/home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/quadruped_robot
-)
-_generate_msg_lisp(quadruped_robot
-  "/home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg"
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/quadruped_robot
@@ -154,8 +190,26 @@ _generate_msg_lisp(quadruped_robot
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/quadruped_robot
 )
+_generate_msg_lisp(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg"
+  "${MSG_I_FLAGS}"
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/quadruped_robot
+)
 
 ### Generating Services
+_generate_srv_lisp(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/quadruped_robot
+)
+_generate_srv_lisp(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/quadruped_robot
+)
 
 ### Generating Module File
 _generate_module_lisp(quadruped_robot
@@ -169,11 +223,15 @@ add_custom_target(quadruped_robot_generate_messages_lisp
 add_dependencies(quadruped_robot_generate_messages quadruped_robot_generate_messages_lisp)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg" NAME_WE)
-add_dependencies(quadruped_robot_generate_messages_lisp _quadruped_robot_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg" NAME_WE)
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg" NAME_WE)
 add_dependencies(quadruped_robot_generate_messages_lisp _quadruped_robot_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_lisp _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_lisp _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_lisp _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv" NAME_WE)
 add_dependencies(quadruped_robot_generate_messages_lisp _quadruped_robot_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -186,13 +244,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS quadruped_robot_generate_messages_l
 ### Section generating for lang: gennodejs
 ### Generating Messages
 _generate_msg_nodejs(quadruped_robot
-  "/home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/quadruped_robot
-)
-_generate_msg_nodejs(quadruped_robot
-  "/home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg"
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/quadruped_robot
@@ -203,8 +255,26 @@ _generate_msg_nodejs(quadruped_robot
   ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/quadruped_robot
 )
+_generate_msg_nodejs(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg"
+  "${MSG_I_FLAGS}"
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg"
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/quadruped_robot
+)
 
 ### Generating Services
+_generate_srv_nodejs(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/quadruped_robot
+)
+_generate_srv_nodejs(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/quadruped_robot
+)
 
 ### Generating Module File
 _generate_module_nodejs(quadruped_robot
@@ -218,11 +288,15 @@ add_custom_target(quadruped_robot_generate_messages_nodejs
 add_dependencies(quadruped_robot_generate_messages quadruped_robot_generate_messages_nodejs)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg" NAME_WE)
-add_dependencies(quadruped_robot_generate_messages_nodejs _quadruped_robot_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg" NAME_WE)
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg" NAME_WE)
 add_dependencies(quadruped_robot_generate_messages_nodejs _quadruped_robot_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_nodejs _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_nodejs _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_nodejs _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv" NAME_WE)
 add_dependencies(quadruped_robot_generate_messages_nodejs _quadruped_robot_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
@@ -235,13 +309,7 @@ list(APPEND ${PROJECT_NAME}_EXPORTED_TARGETS quadruped_robot_generate_messages_n
 ### Section generating for lang: genpy
 ### Generating Messages
 _generate_msg_py(quadruped_robot
-  "/home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg"
-  "${MSG_I_FLAGS}"
-  ""
-  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/quadruped_robot
-)
-_generate_msg_py(quadruped_robot
-  "/home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg"
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/quadruped_robot
@@ -252,8 +320,26 @@ _generate_msg_py(quadruped_robot
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/quadruped_robot
 )
+_generate_msg_py(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg"
+  "${MSG_I_FLAGS}"
+  "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg"
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/quadruped_robot
+)
 
 ### Generating Services
+_generate_srv_py(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/quadruped_robot
+)
+_generate_srv_py(quadruped_robot
+  "/home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/quadruped_robot
+)
 
 ### Generating Module File
 _generate_module_py(quadruped_robot
@@ -267,11 +353,15 @@ add_custom_target(quadruped_robot_generate_messages_py
 add_dependencies(quadruped_robot_generate_messages quadruped_robot_generate_messages_py)
 
 # add dependencies to all check dependencies targets
-get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg" NAME_WE)
-add_dependencies(quadruped_robot_generate_messages_py _quadruped_robot_generate_messages_check_deps_${_filename})
-get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg" NAME_WE)
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg" NAME_WE)
 add_dependencies(quadruped_robot_generate_messages_py _quadruped_robot_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_py _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_py _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv" NAME_WE)
+add_dependencies(quadruped_robot_generate_messages_py _quadruped_robot_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv" NAME_WE)
 add_dependencies(quadruped_robot_generate_messages_py _quadruped_robot_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

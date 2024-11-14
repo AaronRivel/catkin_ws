@@ -49,8 +49,10 @@
   <!-- Use doc_depend for packages you need only for building documentation: -->
   <!--   <doc_depend>doxygen</doc_depend> -->
   <build_depend>message_generation</build_depend> 
+  <build_depend>robot_cuadrupedo_msgs</build_depend> 
   
   <exec_depend>message_runtime</exec_depend> 
+  <exec_depend>robot_cuadrupedo_msgs</exec_depend> 
   
   <buildtool_depend>catkin</buildtool_depend>
   <build_depend>dynamixel_sdk</build_depend>
@@ -58,6 +60,7 @@
   <build_depend>rospy</build_depend>
   <build_depend>std_msgs</build_depend>
   <build_export_depend>dynamixel_sdk</build_export_depend>
+  <build_export_depend>robot_cuadrupedo_msgs</build_export_depend>
 
   <build_export_depend>roscpp</build_export_depend>
   <build_export_depend>rospy</build_export_depend>

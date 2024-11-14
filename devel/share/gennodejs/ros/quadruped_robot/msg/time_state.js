@@ -23,6 +23,8 @@ class time_state {
       this.q1 = null;
       this.q0_dot = null;
       this.q1_dot = null;
+      this.leg_pos = null;
+      this.leg_name = null;
     }
     else {
       if (initObj.hasOwnProperty('t')) {
@@ -55,6 +57,18 @@ class time_state {
       else {
         this.q1_dot = 0.0;
       }
+      if (initObj.hasOwnProperty('leg_pos')) {
+        this.leg_pos = initObj.leg_pos
+      }
+      else {
+        this.leg_pos = '';
+      }
+      if (initObj.hasOwnProperty('leg_name')) {
+        this.leg_name = initObj.leg_name
+      }
+      else {
+        this.leg_name = '';
+      }
     }
   }
 
@@ -70,6 +84,10 @@ class time_state {
     bufferOffset = _serializer.float64(obj.q0_dot, buffer, bufferOffset);
     // Serialize message field [q1_dot]
     bufferOffset = _serializer.float64(obj.q1_dot, buffer, bufferOffset);
+    // Serialize message field [leg_pos]
+    bufferOffset = _serializer.string(obj.leg_pos, buffer, bufferOffset);
+    // Serialize message field [leg_name]
+    bufferOffset = _serializer.string(obj.leg_name, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -87,11 +105,18 @@ class time_state {
     data.q0_dot = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [q1_dot]
     data.q1_dot = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [leg_pos]
+    data.leg_pos = _deserializer.string(buffer, bufferOffset);
+    // Deserialize message field [leg_name]
+    data.leg_name = _deserializer.string(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
-    return 40;
+    let length = 0;
+    length += _getByteLength(object.leg_pos);
+    length += _getByteLength(object.leg_name);
+    return length + 48;
   }
 
   static datatype() {
@@ -101,7 +126,7 @@ class time_state {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return 'fdf95eab8e31bbe478f129be831ec16a';
+    return '71fd01f75d21eb38a83b3d74f3d14390';
   }
 
   static messageDefinition() {
@@ -112,6 +137,8 @@ class time_state {
     float64 q1
     float64 q0_dot
     float64 q1_dot
+    string leg_pos
+    string leg_name
     
     `;
   }
@@ -155,6 +182,20 @@ class time_state {
     }
     else {
       resolved.q1_dot = 0.0
+    }
+
+    if (msg.leg_pos !== undefined) {
+      resolved.leg_pos = msg.leg_pos;
+    }
+    else {
+      resolved.leg_pos = ''
+    }
+
+    if (msg.leg_name !== undefined) {
+      resolved.leg_name = msg.leg_name;
+    }
+    else {
+      resolved.leg_name = ''
     }
 
     return resolved;

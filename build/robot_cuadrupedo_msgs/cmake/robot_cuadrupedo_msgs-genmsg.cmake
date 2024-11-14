@@ -1,6 +1,6 @@
 # generated from genmsg/cmake/pkg-genmsg.cmake.em
 
-message(STATUS "robot_cuadrupedo_msgs: 2 messages, 0 services")
+message(STATUS "robot_cuadrupedo_msgs: 3 messages, 0 services")
 
 set(MSG_I_FLAGS "-Irobot_cuadrupedo_msgs:/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg;-Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg")
 
@@ -27,6 +27,11 @@ add_custom_target(_robot_cuadrupedo_msgs_generate_messages_check_deps_${_filenam
   COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "robot_cuadrupedo_msgs" "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg" ""
 )
 
+get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg" NAME_WE)
+add_custom_target(_robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename}
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "robot_cuadrupedo_msgs" "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg" ""
+)
+
 #
 #  langs = gencpp;geneus;genlisp;gennodejs;genpy
 #
@@ -41,6 +46,12 @@ _generate_msg_cpp(robot_cuadrupedo_msgs
 )
 _generate_msg_cpp(robot_cuadrupedo_msgs
   "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/robot_cuadrupedo_msgs
+)
+_generate_msg_cpp(robot_cuadrupedo_msgs
+  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/robot_cuadrupedo_msgs
@@ -64,6 +75,8 @@ get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msg
 add_dependencies(robot_cuadrupedo_msgs_generate_messages_cpp _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg" NAME_WE)
 add_dependencies(robot_cuadrupedo_msgs_generate_messages_cpp _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg" NAME_WE)
+add_dependencies(robot_cuadrupedo_msgs_generate_messages_cpp _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(robot_cuadrupedo_msgs_gencpp)
@@ -82,6 +95,12 @@ _generate_msg_eus(robot_cuadrupedo_msgs
 )
 _generate_msg_eus(robot_cuadrupedo_msgs
   "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/robot_cuadrupedo_msgs
+)
+_generate_msg_eus(robot_cuadrupedo_msgs
+  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/robot_cuadrupedo_msgs
@@ -105,6 +124,8 @@ get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msg
 add_dependencies(robot_cuadrupedo_msgs_generate_messages_eus _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg" NAME_WE)
 add_dependencies(robot_cuadrupedo_msgs_generate_messages_eus _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg" NAME_WE)
+add_dependencies(robot_cuadrupedo_msgs_generate_messages_eus _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(robot_cuadrupedo_msgs_geneus)
@@ -123,6 +144,12 @@ _generate_msg_lisp(robot_cuadrupedo_msgs
 )
 _generate_msg_lisp(robot_cuadrupedo_msgs
   "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/robot_cuadrupedo_msgs
+)
+_generate_msg_lisp(robot_cuadrupedo_msgs
+  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/robot_cuadrupedo_msgs
@@ -146,6 +173,8 @@ get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msg
 add_dependencies(robot_cuadrupedo_msgs_generate_messages_lisp _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg" NAME_WE)
 add_dependencies(robot_cuadrupedo_msgs_generate_messages_lisp _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg" NAME_WE)
+add_dependencies(robot_cuadrupedo_msgs_generate_messages_lisp _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(robot_cuadrupedo_msgs_genlisp)
@@ -164,6 +193,12 @@ _generate_msg_nodejs(robot_cuadrupedo_msgs
 )
 _generate_msg_nodejs(robot_cuadrupedo_msgs
   "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/robot_cuadrupedo_msgs
+)
+_generate_msg_nodejs(robot_cuadrupedo_msgs
+  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg"
   "${MSG_I_FLAGS}"
   ""
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/robot_cuadrupedo_msgs
@@ -187,6 +222,8 @@ get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msg
 add_dependencies(robot_cuadrupedo_msgs_generate_messages_nodejs _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg" NAME_WE)
 add_dependencies(robot_cuadrupedo_msgs_generate_messages_nodejs _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg" NAME_WE)
+add_dependencies(robot_cuadrupedo_msgs_generate_messages_nodejs _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility
 add_custom_target(robot_cuadrupedo_msgs_gennodejs)
@@ -209,6 +246,12 @@ _generate_msg_py(robot_cuadrupedo_msgs
   ""
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/robot_cuadrupedo_msgs
 )
+_generate_msg_py(robot_cuadrupedo_msgs
+  "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg"
+  "${MSG_I_FLAGS}"
+  ""
+  ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/robot_cuadrupedo_msgs
+)
 
 ### Generating Services
 
@@ -227,6 +270,8 @@ add_dependencies(robot_cuadrupedo_msgs_generate_messages robot_cuadrupedo_msgs_g
 get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/legs_control.msg" NAME_WE)
 add_dependencies(robot_cuadrupedo_msgs_generate_messages_py _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
 get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg" NAME_WE)
+add_dependencies(robot_cuadrupedo_msgs_generate_messages_py _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
+get_filename_component(_filename "/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg" NAME_WE)
 add_dependencies(robot_cuadrupedo_msgs_generate_messages_py _robot_cuadrupedo_msgs_generate_messages_check_deps_${_filename})
 
 # target for backward compatibility

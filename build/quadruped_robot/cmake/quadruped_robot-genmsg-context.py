@@ -1,7 +1,7 @@
 # generated from genmsg/cmake/pkg-genmsg.context.in
 
-messages_str = "/home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg;/home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg;/home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg"
-services_str = ""
+messages_str = "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg;/home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg;/home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg"
+services_str = "/home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv;/home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv"
 pkg_name = "quadruped_robot"
 dependencies_str = "std_msgs"
 langs = "gencpp;geneus;genlisp;gennodejs;genpy"

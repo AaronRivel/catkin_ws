@@ -1,8 +1,10 @@
 file(REMOVE_RECURSE
   "/home/aaron/catkin_ws/devel/share/roseus/ros/quadruped_robot/manifest.l"
-  "/home/aaron/catkin_ws/devel/share/roseus/ros/quadruped_robot/msg/motor_state.l"
+  "/home/aaron/catkin_ws/devel/share/roseus/ros/quadruped_robot/msg/leg_state.l"
+  "/home/aaron/catkin_ws/devel/share/roseus/ros/quadruped_robot/msg/multi_leg_control.l"
   "/home/aaron/catkin_ws/devel/share/roseus/ros/quadruped_robot/msg/period.l"
-  "/home/aaron/catkin_ws/devel/share/roseus/ros/quadruped_robot/msg/time_state.l"
+  "/home/aaron/catkin_ws/devel/share/roseus/ros/quadruped_robot/srv/read_dxl.l"
+  "/home/aaron/catkin_ws/devel/share/roseus/ros/quadruped_robot/srv/write_dxl.l"
   "CMakeFiles/quadruped_robot_generate_messages_eus"
 )
 

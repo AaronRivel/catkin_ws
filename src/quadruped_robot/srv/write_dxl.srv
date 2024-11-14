@@ -1,0 +1,7 @@
+string action
+int64 motor_f
+int64 motor_p
+float64 data_f
+float64 data_p
+---
+bool result

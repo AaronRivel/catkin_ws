@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   std_msgs
   message_generation
   dynamixel_sdk
+  robot_cuadrupedo_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -51,10 +52,9 @@ find_package(catkin REQUIRED COMPONENTS
  #Generate messages in the 'msg' folder
  add_message_files(
    FILES
-   motor_state.msg
-   time_state.msg
+   leg_state.msg
    period.msg
-   
+   multi_leg_control.msg
  )
 
 ## Generate services in the 'srv' folder
@@ -63,6 +63,11 @@ find_package(catkin REQUIRED COMPONENTS
 #   Service1.srv
 #   Service2.srv
 # )
+add_service_files(
+  FILES
+  write_dxl.srv
+  read_dxl.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -109,7 +114,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES quadruped_robot
-   CATKIN_DEPENDS roscpp rospy std_msgs message_runtime dynamixel_sdk
+   CATKIN_DEPENDS roscpp rospy std_msgs message_runtime dynamixel_sdk robot_cuadrupedo_msgs
 #  DEPENDS system_lib
 )
 
@@ -211,7 +216,8 @@ include_directories(
 catkin_install_python(PROGRAMS 
   scripts/motor_scan.py
   scripts/animation.py
-  scripts/velocity_control.py
+  scripts/gate_control.py
+  scripts/service_controller.py
 
 
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}

@@ -43,9 +43,16 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/quadruped_robot/msg" TYPE FILE FILES
-    "/home/aaron/catkin_ws/src/quadruped_robot/msg/motor_state.msg"
-    "/home/aaron/catkin_ws/src/quadruped_robot/msg/time_state.msg"
+    "/home/aaron/catkin_ws/src/quadruped_robot/msg/leg_state.msg"
     "/home/aaron/catkin_ws/src/quadruped_robot/msg/period.msg"
+    "/home/aaron/catkin_ws/src/quadruped_robot/msg/multi_leg_control.msg"
+    )
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/share/quadruped_robot/srv" TYPE FILE FILES
+    "/home/aaron/catkin_ws/src/quadruped_robot/srv/write_dxl.srv"
+    "/home/aaron/catkin_ws/src/quadruped_robot/srv/read_dxl.srv"
     )
 endif()
 
@@ -109,6 +116,10 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/quadruped_robot" TYPE PROGRAM FILES "/home/aaron/catkin_ws/build/quadruped_robot/catkin_generated/installspace/velocity_control.py")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/quadruped_robot" TYPE PROGRAM FILES "/home/aaron/catkin_ws/build/quadruped_robot/catkin_generated/installspace/gate_control.py")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/quadruped_robot" TYPE PROGRAM FILES "/home/aaron/catkin_ws/build/quadruped_robot/catkin_generated/installspace/service_controller.py")
 endif()
 

@@ -10,6 +10,7 @@ def main():
 
     pub = rospy.Publisher('current_period', period, queue_size = 10)
     msg = period()
+
     def update(val):
         msg.T = t_slider.val
         pub.publish(msg)
@@ -17,16 +18,18 @@ def main():
     fig = plt.figure()
 
     manager = plt.get_current_fig_manager()
-    manager.window.setGeometry(800, 800, 100, 50)
+    manager.window.setGeometry(800, 800, 500, 100)
 
     slider_ax = fig.add_subplot(111)
 
+    T, _ = get_period()
+    
     t_slider = Slider(
         ax=slider_ax,
         label='T',
         valmin=1,
         valmax=40,
-        valinit=20,)
+        valinit= T,)
     t_slider.on_changed(update)
 
     plt.show()

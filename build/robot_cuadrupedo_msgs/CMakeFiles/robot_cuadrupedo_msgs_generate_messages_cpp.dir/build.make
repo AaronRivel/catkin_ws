@@ -55,6 +55,7 @@ include robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages
 
 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/robot_cuadrupedo_msgs/legs_control.h
 robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/robot_cuadrupedo_msgs/robot_velocity.h
+robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/robot_cuadrupedo_msgs/motor_state.h
 
 
 /home/aaron/catkin_ws/devel/include/robot_cuadrupedo_msgs/legs_control.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
@@ -69,9 +70,16 @@ robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_cpp: /h
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating C++ code from robot_cuadrupedo_msgs/robot_velocity.msg"
 	cd /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs && /home/aaron/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/robot_velocity.msg -Irobot_cuadrupedo_msgs:/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p robot_cuadrupedo_msgs -o /home/aaron/catkin_ws/devel/include/robot_cuadrupedo_msgs -e /opt/ros/noetic/share/gencpp/cmake/..
 
+/home/aaron/catkin_ws/devel/include/robot_cuadrupedo_msgs/motor_state.h: /opt/ros/noetic/lib/gencpp/gen_cpp.py
+/home/aaron/catkin_ws/devel/include/robot_cuadrupedo_msgs/motor_state.h: /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg
+/home/aaron/catkin_ws/devel/include/robot_cuadrupedo_msgs/motor_state.h: /opt/ros/noetic/share/gencpp/msg.h.template
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/aaron/catkin_ws/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating C++ code from robot_cuadrupedo_msgs/motor_state.msg"
+	cd /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs && /home/aaron/catkin_ws/build/catkin_generated/env_cached.sh /usr/bin/python3 /opt/ros/noetic/share/gencpp/cmake/../../../lib/gencpp/gen_cpp.py /home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg/motor_state.msg -Irobot_cuadrupedo_msgs:/home/aaron/catkin_ws/src/robot_cuadrupedo_msgs/msg -Istd_msgs:/opt/ros/noetic/share/std_msgs/cmake/../msg -p robot_cuadrupedo_msgs -o /home/aaron/catkin_ws/devel/include/robot_cuadrupedo_msgs -e /opt/ros/noetic/share/gencpp/cmake/..
+
 robot_cuadrupedo_msgs_generate_messages_cpp: robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_cpp
 robot_cuadrupedo_msgs_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/robot_cuadrupedo_msgs/legs_control.h
 robot_cuadrupedo_msgs_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/robot_cuadrupedo_msgs/robot_velocity.h
+robot_cuadrupedo_msgs_generate_messages_cpp: /home/aaron/catkin_ws/devel/include/robot_cuadrupedo_msgs/motor_state.h
 robot_cuadrupedo_msgs_generate_messages_cpp: robot_cuadrupedo_msgs/CMakeFiles/robot_cuadrupedo_msgs_generate_messages_cpp.dir/build.make
 
 .PHONY : robot_cuadrupedo_msgs_generate_messages_cpp

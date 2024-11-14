@@ -9,4 +9,8 @@
           Q0_DOT
           Q1_DOT-VAL
           Q1_DOT
+          LEG_POS-VAL
+          LEG_POS
+          LEG_NAME-VAL
+          LEG_NAME
 ))

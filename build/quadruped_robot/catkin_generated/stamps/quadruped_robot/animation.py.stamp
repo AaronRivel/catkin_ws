@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from quadruped_robot.common_libs import rospy, plt, leg_state, axes, multi_leg_control
-from quadruped_robot.common_tools import animation, set_period_ref, half_elipse
+from quadruped_robot.common_tools import RobotController
 
 
 class ROSAnimationNode:
@@ -43,12 +43,21 @@ class ROSAnimationNode:
 
         # Modo interactivo para la animación
         plt.ion()
-
-        half_elipse(5,2)
+        self.R1 = RobotController()
+        self.R3 = RobotController()
+        self.R4 = RobotController()
+        
 
 
     def period_callback(self, datain):
-        set_period_ref(datain.T)
+        self.R1.tf = datain.tf
+        self.R3.tf = datain.tf
+        self.R4.tf = datain.tf
+        self.R1.gate(2,5,datain.way, datain.L1.gate)
+        self.R3.gate(2,5,datain.way, datain.L3.gate)
+        self.R4.gate(2,5,datain.way, datain.L4.gate)
+
+        
 
     def leg_4(self, datain):
         # Obtener los datos del mensaje
@@ -76,10 +85,10 @@ class ROSAnimationNode:
     def run(self):
         while not rospy.is_shutdown() and self.running:
             # Actualizar la animación en el hilo principal
-            animation(self.L4.t, [self.L4.q0, self.L4.q1], self.ax4, self.esc)
-            animation(self.L1.t, [self.L1.q0, self.L1.q1], self.ax1, self.esc)
+            self.R4.animation(self.L4.t, [self.L4.q0, self.L4.q1], self.ax4, self.esc)
+            self.R1.animation(self.L1.t, [self.L1.q0, self.L1.q1], self.ax1, self.esc)
             #animation(self.L2.t, [self.L2.q0, self.L2.q1], self.ax2, self.esc)
-            animation(self.L3.t, [self.L3.q0, self.L3.q1], self.ax3, self.esc)
+            self.R3.animation(self.L3.t, [self.L3.q0, self.L3.q1], self.ax3, self.esc)
             
             # Actualizar la figura de matplotlib
             plt.draw()

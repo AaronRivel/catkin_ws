@@ -28,14 +28,18 @@ struct multi_leg_control_
   typedef multi_leg_control_<ContainerAllocator> Type;
 
   multi_leg_control_()
-    : T(0.0)
+    : tf(0.0)
+    , way(0)
+    , walk_flag(false)
     , L1()
     , L2()
     , L3()
     , L4()  {
     }
   multi_leg_control_(const ContainerAllocator& _alloc)
-    : T(0.0)
+    : tf(0.0)
+    , way(0)
+    , walk_flag(false)
     , L1(_alloc)
     , L2(_alloc)
     , L3(_alloc)
@@ -45,8 +49,14 @@ struct multi_leg_control_
 
 
 
-   typedef double _T_type;
-  _T_type T;
+   typedef double _tf_type;
+  _tf_type tf;
+
+   typedef int64_t _way_type;
+  _way_type way;
+
+   typedef uint8_t _walk_flag_type;
+  _walk_flag_type walk_flag;
 
    typedef  ::quadruped_robot::leg_state_<ContainerAllocator>  _L1_type;
   _L1_type L1;
@@ -89,7 +99,9 @@ return s;
 template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::quadruped_robot::multi_leg_control_<ContainerAllocator1> & lhs, const ::quadruped_robot::multi_leg_control_<ContainerAllocator2> & rhs)
 {
-  return lhs.T == rhs.T &&
+  return lhs.tf == rhs.tf &&
+    lhs.way == rhs.way &&
+    lhs.walk_flag == rhs.walk_flag &&
     lhs.L1 == rhs.L1 &&
     lhs.L2 == rhs.L2 &&
     lhs.L3 == rhs.L3 &&
@@ -150,12 +162,12 @@ struct MD5Sum< ::quadruped_robot::multi_leg_control_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "06bad1c9b39c7b841c47d0fd74cc8b34";
+    return "77ad88901f4769ea15e1a5ba430126d8";
   }
 
   static const char* value(const ::quadruped_robot::multi_leg_control_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x06bad1c9b39c7b84ULL;
-  static const uint64_t static_value2 = 0x1c47d0fd74cc8b34ULL;
+  static const uint64_t static_value1 = 0x77ad88901f4769eaULL;
+  static const uint64_t static_value2 = 0x15e1a5ba430126d8ULL;
 };
 
 template<class ContainerAllocator>
@@ -174,7 +186,9 @@ struct Definition< ::quadruped_robot::multi_leg_control_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "float64 T\n"
+    return "float64 tf\n"
+"int64 way\n"
+"bool walk_flag\n"
 "leg_state L1\n"
 "leg_state L2\n"
 "leg_state L3\n"
@@ -184,10 +198,8 @@ struct Definition< ::quadruped_robot::multi_leg_control_<ContainerAllocator> >
 "float64 t\n"
 "float64 q0\n"
 "float64 q1\n"
-"float64 q0_dot\n"
-"float64 q1_dot\n"
-"string leg_pos\n"
-"bool walk_flag\n"
+"string gate\n"
+"bool finish\n"
 ;
   }
 
@@ -206,7 +218,9 @@ namespace serialization
   {
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
-      stream.next(m.T);
+      stream.next(m.tf);
+      stream.next(m.way);
+      stream.next(m.walk_flag);
       stream.next(m.L1);
       stream.next(m.L2);
       stream.next(m.L3);
@@ -229,8 +243,12 @@ struct Printer< ::quadruped_robot::multi_leg_control_<ContainerAllocator> >
 {
   template<typename Stream> static void stream(Stream& s, const std::string& indent, const ::quadruped_robot::multi_leg_control_<ContainerAllocator>& v)
   {
-    s << indent << "T: ";
-    Printer<double>::stream(s, indent + "  ", v.T);
+    s << indent << "tf: ";
+    Printer<double>::stream(s, indent + "  ", v.tf);
+    s << indent << "way: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.way);
+    s << indent << "walk_flag: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.walk_flag);
     s << indent << "L1: ";
     s << std::endl;
     Printer< ::quadruped_robot::leg_state_<ContainerAllocator> >::stream(s, indent + "  ", v.L1);

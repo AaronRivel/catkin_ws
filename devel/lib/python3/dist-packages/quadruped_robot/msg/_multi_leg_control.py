@@ -9,10 +9,12 @@ import struct
 import quadruped_robot.msg
 
 class multi_leg_control(genpy.Message):
-  _md5sum = "06bad1c9b39c7b841c47d0fd74cc8b34"
+  _md5sum = "77ad88901f4769ea15e1a5ba430126d8"
   _type = "quadruped_robot/multi_leg_control"
   _has_header = False  # flag to mark the presence of a Header object
-  _full_text = """float64 T
+  _full_text = """float64 tf
+int64 way
+bool walk_flag
 leg_state L1
 leg_state L2
 leg_state L3
@@ -22,12 +24,10 @@ MSG: quadruped_robot/leg_state
 float64 t
 float64 q0
 float64 q1
-float64 q0_dot
-float64 q1_dot
-string leg_pos
-bool walk_flag"""
-  __slots__ = ['T','L1','L2','L3','L4']
-  _slot_types = ['float64','quadruped_robot/leg_state','quadruped_robot/leg_state','quadruped_robot/leg_state','quadruped_robot/leg_state']
+string gate
+bool finish"""
+  __slots__ = ['tf','way','walk_flag','L1','L2','L3','L4']
+  _slot_types = ['float64','int64','bool','quadruped_robot/leg_state','quadruped_robot/leg_state','quadruped_robot/leg_state','quadruped_robot/leg_state']
 
   def __init__(self, *args, **kwds):
     """
@@ -37,7 +37,7 @@ bool walk_flag"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       T,L1,L2,L3,L4
+       tf,way,walk_flag,L1,L2,L3,L4
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -46,8 +46,12 @@ bool walk_flag"""
     if args or kwds:
       super(multi_leg_control, self).__init__(*args, **kwds)
       # message fields cannot be None, assign default values for those that are
-      if self.T is None:
-        self.T = 0.
+      if self.tf is None:
+        self.tf = 0.
+      if self.way is None:
+        self.way = 0
+      if self.walk_flag is None:
+        self.walk_flag = False
       if self.L1 is None:
         self.L1 = quadruped_robot.msg.leg_state()
       if self.L2 is None:
@@ -57,7 +61,9 @@ bool walk_flag"""
       if self.L4 is None:
         self.L4 = quadruped_robot.msg.leg_state()
     else:
-      self.T = 0.
+      self.tf = 0.
+      self.way = 0
+      self.walk_flag = False
       self.L1 = quadruped_robot.msg.leg_state()
       self.L2 = quadruped_robot.msg.leg_state()
       self.L3 = quadruped_robot.msg.leg_state()
@@ -76,38 +82,38 @@ bool walk_flag"""
     """
     try:
       _x = self
-      buff.write(_get_struct_6d().pack(_x.T, _x.L1.t, _x.L1.q0, _x.L1.q1, _x.L1.q0_dot, _x.L1.q1_dot))
-      _x = self.L1.leg_pos
+      buff.write(_get_struct_dqB3d().pack(_x.tf, _x.way, _x.walk_flag, _x.L1.t, _x.L1.q0, _x.L1.q1))
+      _x = self.L1.gate
       length = len(_x)
       if python3 or type(_x) == unicode:
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_B5d().pack(_x.L1.walk_flag, _x.L2.t, _x.L2.q0, _x.L2.q1, _x.L2.q0_dot, _x.L2.q1_dot))
-      _x = self.L2.leg_pos
+      buff.write(_get_struct_B3d().pack(_x.L1.finish, _x.L2.t, _x.L2.q0, _x.L2.q1))
+      _x = self.L2.gate
       length = len(_x)
       if python3 or type(_x) == unicode:
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_B5d().pack(_x.L2.walk_flag, _x.L3.t, _x.L3.q0, _x.L3.q1, _x.L3.q0_dot, _x.L3.q1_dot))
-      _x = self.L3.leg_pos
+      buff.write(_get_struct_B3d().pack(_x.L2.finish, _x.L3.t, _x.L3.q0, _x.L3.q1))
+      _x = self.L3.gate
       length = len(_x)
       if python3 or type(_x) == unicode:
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_B5d().pack(_x.L3.walk_flag, _x.L4.t, _x.L4.q0, _x.L4.q1, _x.L4.q0_dot, _x.L4.q1_dot))
-      _x = self.L4.leg_pos
+      buff.write(_get_struct_B3d().pack(_x.L3.finish, _x.L4.t, _x.L4.q0, _x.L4.q1))
+      _x = self.L4.gate
       length = len(_x)
       if python3 or type(_x) == unicode:
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
-      _x = self.L4.walk_flag
+      _x = self.L4.finish
       buff.write(_get_struct_B().pack(_x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
@@ -131,63 +137,64 @@ bool walk_flag"""
       end = 0
       _x = self
       start = end
-      end += 48
-      (_x.T, _x.L1.t, _x.L1.q0, _x.L1.q1, _x.L1.q0_dot, _x.L1.q1_dot,) = _get_struct_6d().unpack(str[start:end])
+      end += 41
+      (_x.tf, _x.way, _x.walk_flag, _x.L1.t, _x.L1.q0, _x.L1.q1,) = _get_struct_dqB3d().unpack(str[start:end])
+      self.walk_flag = bool(self.walk_flag)
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
       start = end
       end += length
       if python3:
-        self.L1.leg_pos = str[start:end].decode('utf-8', 'rosmsg')
+        self.L1.gate = str[start:end].decode('utf-8', 'rosmsg')
       else:
-        self.L1.leg_pos = str[start:end]
+        self.L1.gate = str[start:end]
       _x = self
       start = end
-      end += 41
-      (_x.L1.walk_flag, _x.L2.t, _x.L2.q0, _x.L2.q1, _x.L2.q0_dot, _x.L2.q1_dot,) = _get_struct_B5d().unpack(str[start:end])
-      self.L1.walk_flag = bool(self.L1.walk_flag)
+      end += 25
+      (_x.L1.finish, _x.L2.t, _x.L2.q0, _x.L2.q1,) = _get_struct_B3d().unpack(str[start:end])
+      self.L1.finish = bool(self.L1.finish)
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
       start = end
       end += length
       if python3:
-        self.L2.leg_pos = str[start:end].decode('utf-8', 'rosmsg')
+        self.L2.gate = str[start:end].decode('utf-8', 'rosmsg')
       else:
-        self.L2.leg_pos = str[start:end]
+        self.L2.gate = str[start:end]
       _x = self
       start = end
-      end += 41
-      (_x.L2.walk_flag, _x.L3.t, _x.L3.q0, _x.L3.q1, _x.L3.q0_dot, _x.L3.q1_dot,) = _get_struct_B5d().unpack(str[start:end])
-      self.L2.walk_flag = bool(self.L2.walk_flag)
+      end += 25
+      (_x.L2.finish, _x.L3.t, _x.L3.q0, _x.L3.q1,) = _get_struct_B3d().unpack(str[start:end])
+      self.L2.finish = bool(self.L2.finish)
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
       start = end
       end += length
       if python3:
-        self.L3.leg_pos = str[start:end].decode('utf-8', 'rosmsg')
+        self.L3.gate = str[start:end].decode('utf-8', 'rosmsg')
       else:
-        self.L3.leg_pos = str[start:end]
+        self.L3.gate = str[start:end]
       _x = self
       start = end
-      end += 41
-      (_x.L3.walk_flag, _x.L4.t, _x.L4.q0, _x.L4.q1, _x.L4.q0_dot, _x.L4.q1_dot,) = _get_struct_B5d().unpack(str[start:end])
-      self.L3.walk_flag = bool(self.L3.walk_flag)
+      end += 25
+      (_x.L3.finish, _x.L4.t, _x.L4.q0, _x.L4.q1,) = _get_struct_B3d().unpack(str[start:end])
+      self.L3.finish = bool(self.L3.finish)
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
       start = end
       end += length
       if python3:
-        self.L4.leg_pos = str[start:end].decode('utf-8', 'rosmsg')
+        self.L4.gate = str[start:end].decode('utf-8', 'rosmsg')
       else:
-        self.L4.leg_pos = str[start:end]
+        self.L4.gate = str[start:end]
       start = end
       end += 1
-      (self.L4.walk_flag,) = _get_struct_B().unpack(str[start:end])
-      self.L4.walk_flag = bool(self.L4.walk_flag)
+      (self.L4.finish,) = _get_struct_B().unpack(str[start:end])
+      self.L4.finish = bool(self.L4.finish)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -201,38 +208,38 @@ bool walk_flag"""
     """
     try:
       _x = self
-      buff.write(_get_struct_6d().pack(_x.T, _x.L1.t, _x.L1.q0, _x.L1.q1, _x.L1.q0_dot, _x.L1.q1_dot))
-      _x = self.L1.leg_pos
+      buff.write(_get_struct_dqB3d().pack(_x.tf, _x.way, _x.walk_flag, _x.L1.t, _x.L1.q0, _x.L1.q1))
+      _x = self.L1.gate
       length = len(_x)
       if python3 or type(_x) == unicode:
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_B5d().pack(_x.L1.walk_flag, _x.L2.t, _x.L2.q0, _x.L2.q1, _x.L2.q0_dot, _x.L2.q1_dot))
-      _x = self.L2.leg_pos
+      buff.write(_get_struct_B3d().pack(_x.L1.finish, _x.L2.t, _x.L2.q0, _x.L2.q1))
+      _x = self.L2.gate
       length = len(_x)
       if python3 or type(_x) == unicode:
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_B5d().pack(_x.L2.walk_flag, _x.L3.t, _x.L3.q0, _x.L3.q1, _x.L3.q0_dot, _x.L3.q1_dot))
-      _x = self.L3.leg_pos
+      buff.write(_get_struct_B3d().pack(_x.L2.finish, _x.L3.t, _x.L3.q0, _x.L3.q1))
+      _x = self.L3.gate
       length = len(_x)
       if python3 or type(_x) == unicode:
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
       _x = self
-      buff.write(_get_struct_B5d().pack(_x.L3.walk_flag, _x.L4.t, _x.L4.q0, _x.L4.q1, _x.L4.q0_dot, _x.L4.q1_dot))
-      _x = self.L4.leg_pos
+      buff.write(_get_struct_B3d().pack(_x.L3.finish, _x.L4.t, _x.L4.q0, _x.L4.q1))
+      _x = self.L4.gate
       length = len(_x)
       if python3 or type(_x) == unicode:
         _x = _x.encode('utf-8')
         length = len(_x)
       buff.write(struct.Struct('<I%ss'%length).pack(length, _x))
-      _x = self.L4.walk_flag
+      _x = self.L4.finish
       buff.write(_get_struct_B().pack(_x))
     except struct.error as se: self._check_types(struct.error("%s: '%s' when writing '%s'" % (type(se), str(se), str(locals().get('_x', self)))))
     except TypeError as te: self._check_types(ValueError("%s: '%s' when writing '%s'" % (type(te), str(te), str(locals().get('_x', self)))))
@@ -257,63 +264,64 @@ bool walk_flag"""
       end = 0
       _x = self
       start = end
-      end += 48
-      (_x.T, _x.L1.t, _x.L1.q0, _x.L1.q1, _x.L1.q0_dot, _x.L1.q1_dot,) = _get_struct_6d().unpack(str[start:end])
+      end += 41
+      (_x.tf, _x.way, _x.walk_flag, _x.L1.t, _x.L1.q0, _x.L1.q1,) = _get_struct_dqB3d().unpack(str[start:end])
+      self.walk_flag = bool(self.walk_flag)
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
       start = end
       end += length
       if python3:
-        self.L1.leg_pos = str[start:end].decode('utf-8', 'rosmsg')
+        self.L1.gate = str[start:end].decode('utf-8', 'rosmsg')
       else:
-        self.L1.leg_pos = str[start:end]
+        self.L1.gate = str[start:end]
       _x = self
       start = end
-      end += 41
-      (_x.L1.walk_flag, _x.L2.t, _x.L2.q0, _x.L2.q1, _x.L2.q0_dot, _x.L2.q1_dot,) = _get_struct_B5d().unpack(str[start:end])
-      self.L1.walk_flag = bool(self.L1.walk_flag)
+      end += 25
+      (_x.L1.finish, _x.L2.t, _x.L2.q0, _x.L2.q1,) = _get_struct_B3d().unpack(str[start:end])
+      self.L1.finish = bool(self.L1.finish)
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
       start = end
       end += length
       if python3:
-        self.L2.leg_pos = str[start:end].decode('utf-8', 'rosmsg')
+        self.L2.gate = str[start:end].decode('utf-8', 'rosmsg')
       else:
-        self.L2.leg_pos = str[start:end]
+        self.L2.gate = str[start:end]
       _x = self
       start = end
-      end += 41
-      (_x.L2.walk_flag, _x.L3.t, _x.L3.q0, _x.L3.q1, _x.L3.q0_dot, _x.L3.q1_dot,) = _get_struct_B5d().unpack(str[start:end])
-      self.L2.walk_flag = bool(self.L2.walk_flag)
+      end += 25
+      (_x.L2.finish, _x.L3.t, _x.L3.q0, _x.L3.q1,) = _get_struct_B3d().unpack(str[start:end])
+      self.L2.finish = bool(self.L2.finish)
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
       start = end
       end += length
       if python3:
-        self.L3.leg_pos = str[start:end].decode('utf-8', 'rosmsg')
+        self.L3.gate = str[start:end].decode('utf-8', 'rosmsg')
       else:
-        self.L3.leg_pos = str[start:end]
+        self.L3.gate = str[start:end]
       _x = self
       start = end
-      end += 41
-      (_x.L3.walk_flag, _x.L4.t, _x.L4.q0, _x.L4.q1, _x.L4.q0_dot, _x.L4.q1_dot,) = _get_struct_B5d().unpack(str[start:end])
-      self.L3.walk_flag = bool(self.L3.walk_flag)
+      end += 25
+      (_x.L3.finish, _x.L4.t, _x.L4.q0, _x.L4.q1,) = _get_struct_B3d().unpack(str[start:end])
+      self.L3.finish = bool(self.L3.finish)
       start = end
       end += 4
       (length,) = _struct_I.unpack(str[start:end])
       start = end
       end += length
       if python3:
-        self.L4.leg_pos = str[start:end].decode('utf-8', 'rosmsg')
+        self.L4.gate = str[start:end].decode('utf-8', 'rosmsg')
       else:
-        self.L4.leg_pos = str[start:end]
+        self.L4.gate = str[start:end]
       start = end
       end += 1
-      (self.L4.walk_flag,) = _get_struct_B().unpack(str[start:end])
-      self.L4.walk_flag = bool(self.L4.walk_flag)
+      (self.L4.finish,) = _get_struct_B().unpack(str[start:end])
+      self.L4.finish = bool(self.L4.finish)
       return self
     except struct.error as e:
       raise genpy.DeserializationError(e)  # most likely buffer underfill
@@ -322,21 +330,21 @@ _struct_I = genpy.struct_I
 def _get_struct_I():
     global _struct_I
     return _struct_I
-_struct_6d = None
-def _get_struct_6d():
-    global _struct_6d
-    if _struct_6d is None:
-        _struct_6d = struct.Struct("<6d")
-    return _struct_6d
 _struct_B = None
 def _get_struct_B():
     global _struct_B
     if _struct_B is None:
         _struct_B = struct.Struct("<B")
     return _struct_B
-_struct_B5d = None
-def _get_struct_B5d():
-    global _struct_B5d
-    if _struct_B5d is None:
-        _struct_B5d = struct.Struct("<B5d")
-    return _struct_B5d
+_struct_B3d = None
+def _get_struct_B3d():
+    global _struct_B3d
+    if _struct_B3d is None:
+        _struct_B3d = struct.Struct("<B3d")
+    return _struct_B3d
+_struct_dqB3d = None
+def _get_struct_dqB3d():
+    global _struct_dqB3d
+    if _struct_dqB3d is None:
+        _struct_dqB3d = struct.Struct("<dqB3d")
+    return _struct_dqB3d

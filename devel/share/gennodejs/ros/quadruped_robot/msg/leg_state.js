@@ -21,10 +21,8 @@ class leg_state {
       this.t = null;
       this.q0 = null;
       this.q1 = null;
-      this.q0_dot = null;
-      this.q1_dot = null;
-      this.leg_pos = null;
-      this.walk_flag = null;
+      this.gate = null;
+      this.finish = null;
     }
     else {
       if (initObj.hasOwnProperty('t')) {
@@ -45,29 +43,17 @@ class leg_state {
       else {
         this.q1 = 0.0;
       }
-      if (initObj.hasOwnProperty('q0_dot')) {
-        this.q0_dot = initObj.q0_dot
+      if (initObj.hasOwnProperty('gate')) {
+        this.gate = initObj.gate
       }
       else {
-        this.q0_dot = 0.0;
+        this.gate = '';
       }
-      if (initObj.hasOwnProperty('q1_dot')) {
-        this.q1_dot = initObj.q1_dot
-      }
-      else {
-        this.q1_dot = 0.0;
-      }
-      if (initObj.hasOwnProperty('leg_pos')) {
-        this.leg_pos = initObj.leg_pos
+      if (initObj.hasOwnProperty('finish')) {
+        this.finish = initObj.finish
       }
       else {
-        this.leg_pos = '';
-      }
-      if (initObj.hasOwnProperty('walk_flag')) {
-        this.walk_flag = initObj.walk_flag
-      }
-      else {
-        this.walk_flag = false;
+        this.finish = false;
       }
     }
   }
@@ -80,14 +66,10 @@ class leg_state {
     bufferOffset = _serializer.float64(obj.q0, buffer, bufferOffset);
     // Serialize message field [q1]
     bufferOffset = _serializer.float64(obj.q1, buffer, bufferOffset);
-    // Serialize message field [q0_dot]
-    bufferOffset = _serializer.float64(obj.q0_dot, buffer, bufferOffset);
-    // Serialize message field [q1_dot]
-    bufferOffset = _serializer.float64(obj.q1_dot, buffer, bufferOffset);
-    // Serialize message field [leg_pos]
-    bufferOffset = _serializer.string(obj.leg_pos, buffer, bufferOffset);
-    // Serialize message field [walk_flag]
-    bufferOffset = _serializer.bool(obj.walk_flag, buffer, bufferOffset);
+    // Serialize message field [gate]
+    bufferOffset = _serializer.string(obj.gate, buffer, bufferOffset);
+    // Serialize message field [finish]
+    bufferOffset = _serializer.bool(obj.finish, buffer, bufferOffset);
     return bufferOffset;
   }
 
@@ -101,21 +83,17 @@ class leg_state {
     data.q0 = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [q1]
     data.q1 = _deserializer.float64(buffer, bufferOffset);
-    // Deserialize message field [q0_dot]
-    data.q0_dot = _deserializer.float64(buffer, bufferOffset);
-    // Deserialize message field [q1_dot]
-    data.q1_dot = _deserializer.float64(buffer, bufferOffset);
-    // Deserialize message field [leg_pos]
-    data.leg_pos = _deserializer.string(buffer, bufferOffset);
-    // Deserialize message field [walk_flag]
-    data.walk_flag = _deserializer.bool(buffer, bufferOffset);
+    // Deserialize message field [gate]
+    data.gate = _deserializer.string(buffer, bufferOffset);
+    // Deserialize message field [finish]
+    data.finish = _deserializer.bool(buffer, bufferOffset);
     return data;
   }
 
   static getMessageSize(object) {
     let length = 0;
-    length += _getByteLength(object.leg_pos);
-    return length + 45;
+    length += _getByteLength(object.gate);
+    return length + 29;
   }
 
   static datatype() {
@@ -125,7 +103,7 @@ class leg_state {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '6a35ebb7a3cd834a00c2b30f73e65f94';
+    return '0aee4478960f31ac1b388a2ea0e849cd';
   }
 
   static messageDefinition() {
@@ -134,10 +112,8 @@ class leg_state {
     float64 t
     float64 q0
     float64 q1
-    float64 q0_dot
-    float64 q1_dot
-    string leg_pos
-    bool walk_flag
+    string gate
+    bool finish
     `;
   }
 
@@ -168,32 +144,18 @@ class leg_state {
       resolved.q1 = 0.0
     }
 
-    if (msg.q0_dot !== undefined) {
-      resolved.q0_dot = msg.q0_dot;
+    if (msg.gate !== undefined) {
+      resolved.gate = msg.gate;
     }
     else {
-      resolved.q0_dot = 0.0
+      resolved.gate = ''
     }
 
-    if (msg.q1_dot !== undefined) {
-      resolved.q1_dot = msg.q1_dot;
+    if (msg.finish !== undefined) {
+      resolved.finish = msg.finish;
     }
     else {
-      resolved.q1_dot = 0.0
-    }
-
-    if (msg.leg_pos !== undefined) {
-      resolved.leg_pos = msg.leg_pos;
-    }
-    else {
-      resolved.leg_pos = ''
-    }
-
-    if (msg.walk_flag !== undefined) {
-      resolved.walk_flag = msg.walk_flag;
-    }
-    else {
-      resolved.walk_flag = false
+      resolved.finish = false
     }
 
     return resolved;

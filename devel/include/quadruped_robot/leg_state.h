@@ -27,19 +27,15 @@ struct leg_state_
     : t(0.0)
     , q0(0.0)
     , q1(0.0)
-    , q0_dot(0.0)
-    , q1_dot(0.0)
-    , leg_pos()
-    , walk_flag(false)  {
+    , gate()
+    , finish(false)  {
     }
   leg_state_(const ContainerAllocator& _alloc)
     : t(0.0)
     , q0(0.0)
     , q1(0.0)
-    , q0_dot(0.0)
-    , q1_dot(0.0)
-    , leg_pos(_alloc)
-    , walk_flag(false)  {
+    , gate(_alloc)
+    , finish(false)  {
   (void)_alloc;
     }
 
@@ -54,17 +50,11 @@ struct leg_state_
    typedef double _q1_type;
   _q1_type q1;
 
-   typedef double _q0_dot_type;
-  _q0_dot_type q0_dot;
+   typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _gate_type;
+  _gate_type gate;
 
-   typedef double _q1_dot_type;
-  _q1_dot_type q1_dot;
-
-   typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _leg_pos_type;
-  _leg_pos_type leg_pos;
-
-   typedef uint8_t _walk_flag_type;
-  _walk_flag_type walk_flag;
+   typedef uint8_t _finish_type;
+  _finish_type finish;
 
 
 
@@ -98,10 +88,8 @@ bool operator==(const ::quadruped_robot::leg_state_<ContainerAllocator1> & lhs, 
   return lhs.t == rhs.t &&
     lhs.q0 == rhs.q0 &&
     lhs.q1 == rhs.q1 &&
-    lhs.q0_dot == rhs.q0_dot &&
-    lhs.q1_dot == rhs.q1_dot &&
-    lhs.leg_pos == rhs.leg_pos &&
-    lhs.walk_flag == rhs.walk_flag;
+    lhs.gate == rhs.gate &&
+    lhs.finish == rhs.finish;
 }
 
 template<typename ContainerAllocator1, typename ContainerAllocator2>
@@ -158,12 +146,12 @@ struct MD5Sum< ::quadruped_robot::leg_state_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "6a35ebb7a3cd834a00c2b30f73e65f94";
+    return "0aee4478960f31ac1b388a2ea0e849cd";
   }
 
   static const char* value(const ::quadruped_robot::leg_state_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x6a35ebb7a3cd834aULL;
-  static const uint64_t static_value2 = 0x00c2b30f73e65f94ULL;
+  static const uint64_t static_value1 = 0x0aee4478960f31acULL;
+  static const uint64_t static_value2 = 0x1b388a2ea0e849cdULL;
 };
 
 template<class ContainerAllocator>
@@ -185,10 +173,8 @@ struct Definition< ::quadruped_robot::leg_state_<ContainerAllocator> >
     return "float64 t\n"
 "float64 q0\n"
 "float64 q1\n"
-"float64 q0_dot\n"
-"float64 q1_dot\n"
-"string leg_pos\n"
-"bool walk_flag\n"
+"string gate\n"
+"bool finish\n"
 ;
   }
 
@@ -210,10 +196,8 @@ namespace serialization
       stream.next(m.t);
       stream.next(m.q0);
       stream.next(m.q1);
-      stream.next(m.q0_dot);
-      stream.next(m.q1_dot);
-      stream.next(m.leg_pos);
-      stream.next(m.walk_flag);
+      stream.next(m.gate);
+      stream.next(m.finish);
     }
 
     ROS_DECLARE_ALLINONE_SERIALIZER
@@ -238,14 +222,10 @@ struct Printer< ::quadruped_robot::leg_state_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.q0);
     s << indent << "q1: ";
     Printer<double>::stream(s, indent + "  ", v.q1);
-    s << indent << "q0_dot: ";
-    Printer<double>::stream(s, indent + "  ", v.q0_dot);
-    s << indent << "q1_dot: ";
-    Printer<double>::stream(s, indent + "  ", v.q1_dot);
-    s << indent << "leg_pos: ";
-    Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.leg_pos);
-    s << indent << "walk_flag: ";
-    Printer<uint8_t>::stream(s, indent + "  ", v.walk_flag);
+    s << indent << "gate: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.gate);
+    s << indent << "finish: ";
+    Printer<uint8_t>::stream(s, indent + "  ", v.finish);
   }
 };
 

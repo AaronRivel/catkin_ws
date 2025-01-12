@@ -1,10 +1,14 @@
 <launch>
-<!---->
+<!--              
+    <param name="Kp" value="15" />
+    <param name="Kd" value="1.2" />
+    <param name="Ki" value="10" />
+-->
 <group ns = "leg_4">
 
-    <param name="Kp" value="10" />
+    <param name="Kp" value="7" />
     <param name="Kd" value="1" />
-    <param name="Ki" value="10" />
+    <param name="Ki" value="7" />
 
     <param name="LEG_NAME" value="LEG_4" type="string" />  
 
@@ -15,9 +19,9 @@
 
 <group ns = "leg_1">
 
-    <param name="Kp" value="15" />
-    <param name="Kd" value="1.2" />
-    <param name="Ki" value="10" />
+    <param name="Kp" value="7" />
+    <param name="Kd" value="1" />
+    <param name="Ki" value="7" />
 
     <param name="LEG_NAME" value="LEG_1" type="string" />    
     <param name="LEG_F" value="1" type="int" />
@@ -27,9 +31,9 @@
 
 <group ns = "leg_3">
 
-    <param name="Kp" value="15" />
-    <param name="Kd" value="1.2" />
-    <param name="Ki" value="10" />
+    <param name="Kp" value="7" />
+    <param name="Kd" value="1" />
+    <param name="Ki" value="7" />
 
     <param name="LEG_NAME" value="LEG_3" type="string" />    
     <param name="LEG_F" value="5" type="int" />
@@ -37,8 +41,8 @@
     <node name="motor_scan" pkg="quadruped_robot" type="motor_scan.py" output = "screen"/>
 </group>
 
-<node name="animation" pkg="quadruped_robot" type="animation.py"   />
-<node name="gate_control" pkg="quadruped_robot" type="gate_control.py"  />
+<node name="animation" pkg="quadruped_robot" type="animation.py"  output = "screen" />
+<node name="gate_control" pkg="quadruped_robot" type="gate_control.py"  output = "screen"/>
 <node name="service_controller" pkg="quadruped_robot" type="service_controller.py" output = "screen"    />
 
 </launch>

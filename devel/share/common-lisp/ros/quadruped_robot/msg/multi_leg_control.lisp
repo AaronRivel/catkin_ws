@@ -7,9 +7,9 @@
 ;//! \htmlinclude multi_leg_control.msg.html
 
 (cl:defclass <multi_leg_control> (roslisp-msg-protocol:ros-message)
-  ((tf
-    :reader tf
-    :initarg :tf
+  ((cm_s
+    :reader cm_s
+    :initarg :cm_s
     :type cl:float
     :initform 0.0)
    (way
@@ -52,10 +52,10 @@
   (cl:unless (cl:typep m 'multi_leg_control)
     (roslisp-msg-protocol:msg-deprecation-warning "using old message class name quadruped_robot-msg:<multi_leg_control> is deprecated: use quadruped_robot-msg:multi_leg_control instead.")))
 
-(cl:ensure-generic-function 'tf-val :lambda-list '(m))
-(cl:defmethod tf-val ((m <multi_leg_control>))
-  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader quadruped_robot-msg:tf-val is deprecated.  Use quadruped_robot-msg:tf instead.")
-  (tf m))
+(cl:ensure-generic-function 'cm_s-val :lambda-list '(m))
+(cl:defmethod cm_s-val ((m <multi_leg_control>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader quadruped_robot-msg:cm_s-val is deprecated.  Use quadruped_robot-msg:cm_s instead.")
+  (cm_s m))
 
 (cl:ensure-generic-function 'way-val :lambda-list '(m))
 (cl:defmethod way-val ((m <multi_leg_control>))
@@ -88,7 +88,7 @@
   (L4 m))
 (cl:defmethod roslisp-msg-protocol:serialize ((msg <multi_leg_control>) ostream)
   "Serializes a message object of type '<multi_leg_control>"
-  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'tf))))
+  (cl:let ((bits (roslisp-utils:encode-double-float-bits (cl:slot-value msg 'cm_s))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 16) bits) ostream)
@@ -124,7 +124,7 @@
       (cl:setf (cl:ldb (cl:byte 8 40) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 48) bits) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 56) bits) (cl:read-byte istream))
-    (cl:setf (cl:slot-value msg 'tf) (roslisp-utils:decode-double-float-bits bits)))
+    (cl:setf (cl:slot-value msg 'cm_s) (roslisp-utils:decode-double-float-bits bits)))
     (cl:let ((unsigned 0))
       (cl:setf (cl:ldb (cl:byte 8 0) unsigned) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 8) unsigned) (cl:read-byte istream))
@@ -150,16 +150,16 @@
   "quadruped_robot/multi_leg_control")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<multi_leg_control>)))
   "Returns md5sum for a message object of type '<multi_leg_control>"
-  "77ad88901f4769ea15e1a5ba430126d8")
+  "2042bad48628ce2ee3747e89f60d7c02")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'multi_leg_control)))
   "Returns md5sum for a message object of type 'multi_leg_control"
-  "77ad88901f4769ea15e1a5ba430126d8")
+  "2042bad48628ce2ee3747e89f60d7c02")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<multi_leg_control>)))
   "Returns full string definition for message of type '<multi_leg_control>"
-  (cl:format cl:nil "float64 tf~%int64 way~%bool walk_flag~%leg_state L1~%leg_state L2~%leg_state L3~%leg_state L4~%================================================================================~%MSG: quadruped_robot/leg_state~%float64 t~%float64 q0~%float64 q1~%string gate~%bool finish~%~%"))
+  (cl:format cl:nil "float64 cm_s~%int64 way~%bool walk_flag~%leg_state L1~%leg_state L2~%leg_state L3~%leg_state L4~%================================================================================~%MSG: quadruped_robot/leg_state~%float64 t~%float64 q0~%float64 q1~%string path~%bool finish~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'multi_leg_control)))
   "Returns full string definition for message of type 'multi_leg_control"
-  (cl:format cl:nil "float64 tf~%int64 way~%bool walk_flag~%leg_state L1~%leg_state L2~%leg_state L3~%leg_state L4~%================================================================================~%MSG: quadruped_robot/leg_state~%float64 t~%float64 q0~%float64 q1~%string gate~%bool finish~%~%"))
+  (cl:format cl:nil "float64 cm_s~%int64 way~%bool walk_flag~%leg_state L1~%leg_state L2~%leg_state L3~%leg_state L4~%================================================================================~%MSG: quadruped_robot/leg_state~%float64 t~%float64 q0~%float64 q1~%string path~%bool finish~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <multi_leg_control>))
   (cl:+ 0
      8
@@ -173,7 +173,7 @@
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <multi_leg_control>))
   "Converts a ROS message object to a list"
   (cl:list 'multi_leg_control
-    (cl:cons ':tf (tf msg))
+    (cl:cons ':cm_s (cm_s msg))
     (cl:cons ':way (way msg))
     (cl:cons ':walk_flag (walk_flag msg))
     (cl:cons ':L1 (L1 msg))

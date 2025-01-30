@@ -21,7 +21,7 @@ class leg_state {
       this.t = null;
       this.q0 = null;
       this.q1 = null;
-      this.gate = null;
+      this.path = null;
       this.finish = null;
     }
     else {
@@ -43,11 +43,11 @@ class leg_state {
       else {
         this.q1 = 0.0;
       }
-      if (initObj.hasOwnProperty('gate')) {
-        this.gate = initObj.gate
+      if (initObj.hasOwnProperty('path')) {
+        this.path = initObj.path
       }
       else {
-        this.gate = '';
+        this.path = '';
       }
       if (initObj.hasOwnProperty('finish')) {
         this.finish = initObj.finish
@@ -66,8 +66,8 @@ class leg_state {
     bufferOffset = _serializer.float64(obj.q0, buffer, bufferOffset);
     // Serialize message field [q1]
     bufferOffset = _serializer.float64(obj.q1, buffer, bufferOffset);
-    // Serialize message field [gate]
-    bufferOffset = _serializer.string(obj.gate, buffer, bufferOffset);
+    // Serialize message field [path]
+    bufferOffset = _serializer.string(obj.path, buffer, bufferOffset);
     // Serialize message field [finish]
     bufferOffset = _serializer.bool(obj.finish, buffer, bufferOffset);
     return bufferOffset;
@@ -83,8 +83,8 @@ class leg_state {
     data.q0 = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [q1]
     data.q1 = _deserializer.float64(buffer, bufferOffset);
-    // Deserialize message field [gate]
-    data.gate = _deserializer.string(buffer, bufferOffset);
+    // Deserialize message field [path]
+    data.path = _deserializer.string(buffer, bufferOffset);
     // Deserialize message field [finish]
     data.finish = _deserializer.bool(buffer, bufferOffset);
     return data;
@@ -92,7 +92,7 @@ class leg_state {
 
   static getMessageSize(object) {
     let length = 0;
-    length += _getByteLength(object.gate);
+    length += _getByteLength(object.path);
     return length + 29;
   }
 
@@ -103,7 +103,7 @@ class leg_state {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '0aee4478960f31ac1b388a2ea0e849cd';
+    return '65639cae4a56ecaed05a54ec9094a72f';
   }
 
   static messageDefinition() {
@@ -112,7 +112,7 @@ class leg_state {
     float64 t
     float64 q0
     float64 q1
-    string gate
+    string path
     bool finish
     `;
   }
@@ -144,11 +144,11 @@ class leg_state {
       resolved.q1 = 0.0
     }
 
-    if (msg.gate !== undefined) {
-      resolved.gate = msg.gate;
+    if (msg.path !== undefined) {
+      resolved.path = msg.path;
     }
     else {
-      resolved.gate = ''
+      resolved.path = ''
     }
 
     if (msg.finish !== undefined) {

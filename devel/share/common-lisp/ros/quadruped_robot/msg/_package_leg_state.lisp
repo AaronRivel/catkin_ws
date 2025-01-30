@@ -5,8 +5,8 @@
           Q0
           Q1-VAL
           Q1
-          GATE-VAL
-          GATE
+          PATH-VAL
+          PATH
           FINISH-VAL
           FINISH
 ))

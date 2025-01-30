@@ -218,7 +218,7 @@ catkin_install_python(PROGRAMS
   scripts/animation.py
   scripts/gate_control.py
   scripts/service_controller.py
-
+  scripts/motor_scan_ax12.py
 
   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )

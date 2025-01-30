@@ -40,7 +40,7 @@ template<>
 struct MD5Sum< ::quadruped_robot::read_dxl > {
   static const char* value()
   {
-    return "044408118166cb6346b6bae601023969";
+    return "7620a6746ee96b998e0b60d728607979";
   }
 
   static const char* value(const ::quadruped_robot::read_dxl&) { return value(); }

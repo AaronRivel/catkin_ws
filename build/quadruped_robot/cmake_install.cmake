@@ -123,3 +123,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/quadruped_robot" TYPE PROGRAM FILES "/home/aaron/catkin_ws/build/quadruped_robot/catkin_generated/installspace/service_controller.py")
 endif()
 
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib/quadruped_robot" TYPE PROGRAM FILES "/home/aaron/catkin_ws/build/quadruped_robot/catkin_generated/installspace/motor_scan_ax12.py")
+endif()
+

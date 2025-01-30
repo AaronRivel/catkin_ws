@@ -22,6 +22,7 @@ class write_dxlRequest {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
       this.action = null;
+      this.protocol_version = null;
       this.motor_f = null;
       this.motor_p = null;
       this.data_f = null;
@@ -33,6 +34,12 @@ class write_dxlRequest {
       }
       else {
         this.action = '';
+      }
+      if (initObj.hasOwnProperty('protocol_version')) {
+        this.protocol_version = initObj.protocol_version
+      }
+      else {
+        this.protocol_version = 0;
       }
       if (initObj.hasOwnProperty('motor_f')) {
         this.motor_f = initObj.motor_f
@@ -65,6 +72,8 @@ class write_dxlRequest {
     // Serializes a message object of type write_dxlRequest
     // Serialize message field [action]
     bufferOffset = _serializer.string(obj.action, buffer, bufferOffset);
+    // Serialize message field [protocol_version]
+    bufferOffset = _serializer.int64(obj.protocol_version, buffer, bufferOffset);
     // Serialize message field [motor_f]
     bufferOffset = _serializer.int64(obj.motor_f, buffer, bufferOffset);
     // Serialize message field [motor_p]
@@ -82,6 +91,8 @@ class write_dxlRequest {
     let data = new write_dxlRequest(null);
     // Deserialize message field [action]
     data.action = _deserializer.string(buffer, bufferOffset);
+    // Deserialize message field [protocol_version]
+    data.protocol_version = _deserializer.int64(buffer, bufferOffset);
     // Deserialize message field [motor_f]
     data.motor_f = _deserializer.int64(buffer, bufferOffset);
     // Deserialize message field [motor_p]
@@ -96,7 +107,7 @@ class write_dxlRequest {
   static getMessageSize(object) {
     let length = 0;
     length += _getByteLength(object.action);
-    return length + 36;
+    return length + 44;
   }
 
   static datatype() {
@@ -106,13 +117,14 @@ class write_dxlRequest {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '293427b285a218bd6787b43f62e792d3';
+    return '4c6311a9699b2c19362d1faa0a70fcd4';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
     string action
+    int64 protocol_version
     int64 motor_f
     int64 motor_p
     float64 data_f
@@ -132,6 +144,13 @@ class write_dxlRequest {
     }
     else {
       resolved.action = ''
+    }
+
+    if (msg.protocol_version !== undefined) {
+      resolved.protocol_version = msg.protocol_version;
+    }
+    else {
+      resolved.protocol_version = 0
     }
 
     if (msg.motor_f !== undefined) {
@@ -240,6 +259,6 @@ class write_dxlResponse {
 module.exports = {
   Request: write_dxlRequest,
   Response: write_dxlResponse,
-  md5sum() { return '428ef13fdd260581844722fd7a6d6e35'; },
+  md5sum() { return '81773e62f8a6ec0db8598e75c6beabae'; },
   datatype() { return 'quadruped_robot/write_dxl'; }
 };

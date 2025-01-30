@@ -114,6 +114,7 @@ set(CMAKE_MAKEFILE_DEPENDS
   "/home/aaron/catkin_ws/src/quadruped_robot/scripts/animation.py"
   "/home/aaron/catkin_ws/src/quadruped_robot/scripts/gate_control.py"
   "/home/aaron/catkin_ws/src/quadruped_robot/scripts/motor_scan.py"
+  "/home/aaron/catkin_ws/src/quadruped_robot/scripts/motor_scan_ax12.py"
   "/home/aaron/catkin_ws/src/quadruped_robot/scripts/service_controller.py"
   "/home/aaron/catkin_ws/src/quadruped_robot/setup.py"
   "/home/aaron/catkin_ws/src/robot_cuadrupedo/CMakeLists.txt"

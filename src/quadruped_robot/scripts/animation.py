@@ -11,12 +11,14 @@ class ROSAnimationNode:
 
         # Suscribirse al tópico
         rospy.Subscriber('/leg_4/currently_motors_state', leg_state, self.leg_4)
+        rospy.Subscriber('/leg_2/currently_motors_state', leg_state, self.leg_2)
         rospy.Subscriber('/leg_1/currently_motors_state', leg_state, self.leg_1)
         rospy.Subscriber('/leg_3/currently_motors_state', leg_state, self.leg_3)
         rospy.Subscriber('legs_control', multi_leg_control, self.period_callback)
 
         self.L4 = leg_state()
         self.L1 = leg_state()
+        self.L2 = leg_state()
         self.L3 = leg_state()
 
         # Variables de control
@@ -28,11 +30,12 @@ class ROSAnimationNode:
         self.fig.canvas.mpl_connect('close_event', self.on_close)
 
         self.ax1 = self.fig.add_subplot(221,projection = '3d')
-        #self.ax2 = self.fig.add_subplot(222,projection = '3d')
+        self.ax2 = self.fig.add_subplot(222,projection = '3d')
         self.ax3 = self.fig.add_subplot(223,projection = '3d')
         self.ax4 = self.fig.add_subplot(224,projection = '3d')
 
         self.ax1.view_init(elev=90, azim=-90, roll = 0)  # Ajustar elevación y azimut
+        self.ax2.view_init(elev=90, azim=-90, roll = 0)  # Ajustar elevación y azimut
         self.ax3.view_init(elev=90, azim=-90, roll = 0)  # Ajustar elevación y azimut
         self.ax4.view_init(elev=90, azim=-90, roll = 0)  # Ajustar elevación y azimut
 
@@ -44,37 +47,38 @@ class ROSAnimationNode:
         # Modo interactivo para la animación
         plt.ion()
         self.R1 = RobotController()
+        self.R2 = RobotController()
         self.R3 = RobotController()
         self.R4 = RobotController()
         
 
 
     def period_callback(self, datain):
-        self.R1.tf = datain.tf
-        self.R3.tf = datain.tf
-        self.R4.tf = datain.tf
-        self.R1.gate(2,5,datain.way, datain.L1.gate)
-        self.R3.gate(2,5,datain.way, datain.L3.gate)
-        self.R4.gate(2,5,datain.way, datain.L4.gate)
+        self.R1.gate([5,2],datain.way, datain.L1.path,datain.cm_s)
+        self.R2.gate([5,2],datain.way, datain.L2.path,datain.cm_s)
+        self.R3.gate([5,2],datain.way, datain.L3.path,datain.cm_s)
+        self.R4.gate([5,2],datain.way, datain.L4.path,datain.cm_s)
 
         
 
     def leg_4(self, datain):
         # Obtener los datos del mensaje
         if self.running:
-
             self.L4 = datain
+
+    def leg_2(self, datain):
+        # Obtener los datos del mensaje
+        if self.running:
+            self.L2 = datain
 
     def leg_3(self, datain):
         # Obtener los datos del mensaje
         if self.running:
-
             self.L3 = datain
 
     def leg_1(self, datain):
         # Obtener los datos del mensaje
         if self.running:
-
             self.L1 = datain
 
     def on_close(self, event):
@@ -87,7 +91,7 @@ class ROSAnimationNode:
             # Actualizar la animación en el hilo principal
             self.R4.animation(self.L4.t, [self.L4.q0, self.L4.q1], self.ax4, self.esc) 
             self.R1.animation(self.L1.t, [self.L1.q0, self.L1.q1], self.ax1, self.esc)
-            #animation(self.L2.t, [self.L2.q0, self.L2.q1], self.ax2, self.esc)
+            self.R2.animation(self.L2.t, [self.L2.q0, self.L2.q1], self.ax2, self.esc)
             self.R3.animation(self.L3.t, [self.L3.q0, self.L3.q1], self.ax3, self.esc)
             
             # Actualizar la figura de matplotlib

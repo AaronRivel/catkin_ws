@@ -25,6 +25,7 @@ struct write_dxlRequest_
 
   write_dxlRequest_()
     : action()
+    , protocol_version(0)
     , motor_f(0)
     , motor_p(0)
     , data_f(0.0)
@@ -32,6 +33,7 @@ struct write_dxlRequest_
     }
   write_dxlRequest_(const ContainerAllocator& _alloc)
     : action(_alloc)
+    , protocol_version(0)
     , motor_f(0)
     , motor_p(0)
     , data_f(0.0)
@@ -43,6 +45,9 @@ struct write_dxlRequest_
 
    typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _action_type;
   _action_type action;
+
+   typedef int64_t _protocol_version_type;
+  _protocol_version_type protocol_version;
 
    typedef int64_t _motor_f_type;
   _motor_f_type motor_f;
@@ -86,6 +91,7 @@ template<typename ContainerAllocator1, typename ContainerAllocator2>
 bool operator==(const ::quadruped_robot::write_dxlRequest_<ContainerAllocator1> & lhs, const ::quadruped_robot::write_dxlRequest_<ContainerAllocator2> & rhs)
 {
   return lhs.action == rhs.action &&
+    lhs.protocol_version == rhs.protocol_version &&
     lhs.motor_f == rhs.motor_f &&
     lhs.motor_p == rhs.motor_p &&
     lhs.data_f == rhs.data_f &&
@@ -146,12 +152,12 @@ struct MD5Sum< ::quadruped_robot::write_dxlRequest_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "293427b285a218bd6787b43f62e792d3";
+    return "4c6311a9699b2c19362d1faa0a70fcd4";
   }
 
   static const char* value(const ::quadruped_robot::write_dxlRequest_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x293427b285a218bdULL;
-  static const uint64_t static_value2 = 0x6787b43f62e792d3ULL;
+  static const uint64_t static_value1 = 0x4c6311a9699b2c19ULL;
+  static const uint64_t static_value2 = 0x362d1faa0a70fcd4ULL;
 };
 
 template<class ContainerAllocator>
@@ -171,6 +177,7 @@ struct Definition< ::quadruped_robot::write_dxlRequest_<ContainerAllocator> >
   static const char* value()
   {
     return "string action\n"
+"int64 protocol_version\n"
 "int64 motor_f\n"
 "int64 motor_p\n"
 "float64 data_f\n"
@@ -194,6 +201,7 @@ namespace serialization
     template<typename Stream, typename T> inline static void allInOne(Stream& stream, T m)
     {
       stream.next(m.action);
+      stream.next(m.protocol_version);
       stream.next(m.motor_f);
       stream.next(m.motor_p);
       stream.next(m.data_f);
@@ -218,6 +226,8 @@ struct Printer< ::quadruped_robot::write_dxlRequest_<ContainerAllocator> >
   {
     s << indent << "action: ";
     Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.action);
+    s << indent << "protocol_version: ";
+    Printer<int64_t>::stream(s, indent + "  ", v.protocol_version);
     s << indent << "motor_f: ";
     Printer<int64_t>::stream(s, indent + "  ", v.motor_f);
     s << indent << "motor_p: ";

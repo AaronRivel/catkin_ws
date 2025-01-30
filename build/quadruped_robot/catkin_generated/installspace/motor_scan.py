@@ -2,60 +2,52 @@
 # -*- coding: utf-8 -*-
 from quadruped_robot.kbhit import KBHit
 from quadruped_robot.timer import Timer 
-from quadruped_robot.common_libs import rospy, np, constants, leg_state, write_dxl, read_dxl, multi_leg_control
+from quadruped_robot.common_libs import rospy, np, constantsXM, leg_state, write_dxl, read_dxl, multi_leg_control
 from quadruped_robot.common_tools import RobotController
 
-R = RobotController('motor_scan')
-
-kb = KBHit()
 tm = Timer()
+R = RobotController('motor_scan',tm)
+kb = KBHit()
 
-LEG_GATES = {
-    'LEG_1': lambda datain: datain.L1.gate,
-    'LEG_2': lambda datain: datain.L2.gate,
-    'LEG_3': lambda datain: datain.L3.gate,
-    'LEG_4': lambda datain: datain.L4.gate,
+LEG_PATHS = {
+    'LEG_1': lambda datain: datain.L1.path,
+    'LEG_2': lambda datain: datain.L2.path,
+    'LEG_3': lambda datain: datain.L3.path,
+    'LEG_4': lambda datain: datain.L4.path,
 }
-
 def callback(datain):
-    R.toggle_flag = True if R.way != datain.way else False
-
     R.walk_flag = datain.walk_flag
+
     if R.walk_flag:
-        R.tf = datain.tf
-        gate_func = LEG_GATES.get(R.LEG_NAME)
-        if gate_func:
-            R.gate(2, 5, datain.way, gate_func(datain))
-        tm.config(R.tmapp)
+        path_func = LEG_PATHS.get(R.LEG_NAME)
+        if path_func:
+            R.gate([5,2], datain.way, path_func(datain),datain.cm_s)
 
 def read_positions(read, leg_f, leg_p):
-    read_result = read('read_position', leg_f, leg_p)
+    read_result = read('read_position',constantsXM.PROTOCOL_VERSION, leg_f, leg_p)
 
-    actual_theta_f = read_result.result_1
-    actual_theta_p = read_result.result_2
+    dxl_theta_f = read_result.result_1
+    dxl_theta_p = read_result.result_2
 
-    while round(actual_theta_f) == 0 or round(actual_theta_p) == 0:
-        read_result = read('read_position', leg_f, leg_p)
-        actual_theta_f = read_result.result_1
-        actual_theta_p = read_result.result_2
-
-    actual_theta_f = actual_theta_f - constants.OFFSET*(4095/360) #motor f have a fisical offset to avoid encoder cross zero and give missvalues
+    dxl_theta_f = dxl_theta_f - constantsXM.OFFSET*(constantsXM.MAX_POSITION/constantsXM.MAX_ANGLE) #motor f has a fisical offset to avoid encoder cross zero and give missvalues
                 
-    actual_theta_f = actual_theta_f*(2*np.pi/4095)
-    actual_theta_p = actual_theta_p*(2*np.pi/4095)
+    dxl_theta_f = dxl_theta_f*(2*np.pi/constantsXM.MAX_POSITION)
+    dxl_theta_p = dxl_theta_p*(2*np.pi/constantsXM.MAX_POSITION)
 
-    return actual_theta_f, actual_theta_p
+    return dxl_theta_f, dxl_theta_p
 
 def check_joint_limits(theta_f, theta_p):
     """Verifica si las posiciones de las articulaciones están dentro de los límites seguros."""
     theta_p_deg, theta_f_deg = theta_p * 57.3, theta_f * 57.3
+    
     return (
-        theta_p_deg > theta_f_deg + 180 - constants.JOINT_LIMIT or 
-        theta_p_deg < theta_f_deg + constants.JOINT_LIMIT or 
-        theta_p_deg > constants.PROTECCION_LIMIT_P or 
-        theta_f_deg < constants.PROTECCION_LIMIT_F
+        theta_p_deg > theta_f_deg + 180 - constantsXM.JOINT_LIMIT or 
+        theta_p_deg < theta_f_deg + constantsXM.JOINT_LIMIT or 
+        theta_p_deg > constantsXM.PROTECCION_LIMIT_P or 
+        theta_f_deg < constantsXM.PROTECCION_LIMIT_F
     )
 
+    
 def main():
 
     pub = rospy.Publisher('currently_motors_state', leg_state, queue_size = 10)
@@ -69,93 +61,99 @@ def main():
     write = rospy.ServiceProxy('/write_dxl', write_dxl)
     read = rospy.ServiceProxy('/read_dxl', read_dxl)
 
-    write_result = write('init_dynamixel', R.LEG_F, R.LEG_P,0,0)
+    write_result = write('init_dynamixel',constantsXM.PROTOCOL_VERSION, R.LEG_F, R.LEG_P,0,0)
 
     if(write_result.result == False):
         rospy.loginfo("FAIL initializing %s", R.LEG_NAME)
-        write('shutdown_all', 0, 0,0,0)
+        write('shutdown_all',constantsXM.PROTOCOL_VERSION, 0, 0,0,0)
         return
-    
-    
-    T = 0.05
-    avoid_flag = False
 
-    tm.start()
-    init_time = 0
     while True:
-            
-        if((not R.walk_flag or R.path == 'wait') and not avoid_flag):
-            avoid_flag = True
-            write('goal_velocity', R.LEG_F, R.LEG_P,0, 0)
-            tm.pause()
-
-        if(R.walk_flag and R.path != 'wait'): 
-            avoid_flag = False
-            read_result = read('shutdown_flag',0,0)
+        
+        while R.walk_flag:
+            read_result = read('shutdown_flag',constantsXM.PROTOCOL_VERSION,0,0)
 
             if(read_result.result_1):
                 break
-            tm.resume()
 
-        R.t = tm.get_time()
+            current, final = R.get_current_time()
 
-        if(((R.t - init_time) > T) and R.walk_flag):
+            if not current >= final:
+                tm.resume()
+            else:
+                tm.pause()
 
-            init_time = R.t
-            
-            actual_theta_f, actual_theta_p = read_positions(read, R.LEG_F, R.LEG_P)
-            
-            if check_joint_limits(actual_theta_f, actual_theta_p):
-                rospy.loginfo("JOINT LIMIT of %s", R.LEG_NAME)
-                write('shutdown', R.LEG_F, R.LEG_P, 0, 0)
-                break
+            if not R.path == 'wait':
+                dxl_theta_f, dxl_theta_p = read_positions(read, R.LEG_F, R.LEG_P)
+                '''
+                if check_joint_limits(dxl_theta_f, dxl_theta_p):
+                    write('shutdown',constantsXM.PROTOCOL_VERSION, R.LEG_F, R.LEG_P, 0, 0)
+                    rospy.loginfo("JOINT LIMIT of %s", R.LEG_NAME)
+                    rospy.loginfo("F = %d   P = %d", dxl_theta_f * 57.3, dxl_theta_p * 57.3)
+                    R.walk_flag = False
+                    write('shutdown_all',constantsXM.PROTOCOL_VERSION, 0, 0, 0, 0)
                 
-            msg.q0 = actual_theta_f
-            msg.q1 = actual_theta_p - actual_theta_f + np.pi  
-            msg.t = R.t
-            
-            
-            q0 = np.array([0          ,
-                0            ,
-                actual_theta_f      ,
-                actual_theta_p - actual_theta_f + np.pi  ,  
-                0            ])
-            
-            h = T 
+                    msg.q0 = dxl_theta_f
+                    msg.q1 = dxl_theta_p - dxl_theta_f + np.pi  
+                    msg.t = R.t
+                    pub.publish(msg)
+                    
+                    break
+                '''
+                q0 = np.array([0          ,
+                    0            ,
+                    dxl_theta_f      ,
+                    dxl_theta_p - dxl_theta_f + np.pi  ,  
+                    0            ])
+                
+                dt = 0.1
+                q_dot = R.f(tm.get_time(),q0,dt)
+                
+                vel_p = q_dot[3] + q_dot[2]
 
-            q , q_dot = R.rk4(q0 , R.t , h )
-            
+                dxl_vel_f = ((q_dot[2]*60)/(2*np.pi))*(constantsXM.MAX_VEL/234)
+                dxl_vel_p = ((vel_p*60)/(2*np.pi))*(constantsXM.MAX_VEL/234)
 
-            R.q_dot = q_dot
-            
-            
-            vel_p = q_dot[3] + q_dot[2]
+                write('goal_velocity',constantsXM.PROTOCOL_VERSION, R.LEG_F, R.LEG_P,dxl_vel_f, dxl_vel_p)
+                
+                msg.finish = False
+                msg.q0 = dxl_theta_f
+                msg.q1 = dxl_theta_p - dxl_theta_f + np.pi  
+                msg.t = current
 
-            
-            dxl_vel_f = ((q_dot[2]*60)/(2*np.pi))*(1023/234)
-            dxl_vel_p = ((vel_p*60)/(2*np.pi))*(1023/234)
-
-            write('goal_velocity', R.LEG_F, R.LEG_P,dxl_vel_f, dxl_vel_p)
-
-            if R.t >= R.tf :
+                if R.margin_error(0.3):
+                    write('goal_velocity',constantsXM.PROTOCOL_VERSION, R.LEG_F, R.LEG_P,0, 0)
+                    tm.reset()
+                    msg.finish = True
+                    R.walk_flag = False
+            else:
                 msg.finish = True
                 R.walk_flag = False
-                tm.pause()
-                tm.reset()
 
             pub.publish(msg)
             
+            c_ord = ''
+            if (kb.kbhit()):
+                c = kb.getch()
+                c_ord = ord(c)
+
+                if (c_ord == constantsXM.ESC_ASCII_VALUE ):
+                    rospy.loginfo("SHUTDOWN")
+                    write('shutdown',constantsXM.PROTOCOL_VERSION, R.LEG_F, R.LEG_P,0,0)
+                    break
+
+            if not R.walk_flag :
+                write('goal_velocity',constantsXM.PROTOCOL_VERSION, R.LEG_F, R.LEG_P,0, 0)
+                tm.pause()
+
         c_ord = ''
         if (kb.kbhit()):
             c = kb.getch()
             c_ord = ord(c)
-        if (c_ord == constants.ESC_ASCII_VALUE ):
-            rospy.loginfo("EXIT PROGRAM!!")
-            write('shutdown_all', 0, 0,0,0)
-            break
-        
-
-
+            if (c_ord == constantsXM.ESC_ASCII_VALUE ):
+                rospy.loginfo("EXIT PROGRAM!!, %s", R.LEG_NAME)
+                write('shutdown',constantsXM.PROTOCOL_VERSION, R.LEG_F, R.LEG_P,0,0)
+                break
             
 if __name__ == '__main__' :
     main()

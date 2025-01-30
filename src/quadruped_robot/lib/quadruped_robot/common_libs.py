@@ -6,7 +6,8 @@ import os
 
 from quadruped_robot.srv import write_dxl, write_dxlResponse, read_dxl, read_dxlResponse
 
-from quadruped_robot.dynamixelxm430_w210_t import constants
+from quadruped_robot.DXL_CONSTANTS import constantsAX, constantsXM
+
 from quadruped_robot.robotis_def import definitions
 
 from quadruped_robot.msg import leg_state

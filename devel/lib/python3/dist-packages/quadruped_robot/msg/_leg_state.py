@@ -8,15 +8,15 @@ import struct
 
 
 class leg_state(genpy.Message):
-  _md5sum = "0aee4478960f31ac1b388a2ea0e849cd"
+  _md5sum = "65639cae4a56ecaed05a54ec9094a72f"
   _type = "quadruped_robot/leg_state"
   _has_header = False  # flag to mark the presence of a Header object
   _full_text = """float64 t
 float64 q0
 float64 q1
-string gate
+string path
 bool finish"""
-  __slots__ = ['t','q0','q1','gate','finish']
+  __slots__ = ['t','q0','q1','path','finish']
   _slot_types = ['float64','float64','float64','string','bool']
 
   def __init__(self, *args, **kwds):
@@ -27,7 +27,7 @@ bool finish"""
     changes.  You cannot mix in-order arguments and keyword arguments.
 
     The available fields are:
-       t,q0,q1,gate,finish
+       t,q0,q1,path,finish
 
     :param args: complete set of field values, in .msg order
     :param kwds: use keyword arguments corresponding to message field names
@@ -42,15 +42,15 @@ bool finish"""
         self.q0 = 0.
       if self.q1 is None:
         self.q1 = 0.
-      if self.gate is None:
-        self.gate = ''
+      if self.path is None:
+        self.path = ''
       if self.finish is None:
         self.finish = False
     else:
       self.t = 0.
       self.q0 = 0.
       self.q1 = 0.
-      self.gate = ''
+      self.path = ''
       self.finish = False
 
   def _get_types(self):
@@ -67,7 +67,7 @@ bool finish"""
     try:
       _x = self
       buff.write(_get_struct_3d().pack(_x.t, _x.q0, _x.q1))
-      _x = self.gate
+      _x = self.path
       length = len(_x)
       if python3 or type(_x) == unicode:
         _x = _x.encode('utf-8')
@@ -97,9 +97,9 @@ bool finish"""
       start = end
       end += length
       if python3:
-        self.gate = str[start:end].decode('utf-8', 'rosmsg')
+        self.path = str[start:end].decode('utf-8', 'rosmsg')
       else:
-        self.gate = str[start:end]
+        self.path = str[start:end]
       start = end
       end += 1
       (self.finish,) = _get_struct_B().unpack(str[start:end])
@@ -118,7 +118,7 @@ bool finish"""
     try:
       _x = self
       buff.write(_get_struct_3d().pack(_x.t, _x.q0, _x.q1))
-      _x = self.gate
+      _x = self.path
       length = len(_x)
       if python3 or type(_x) == unicode:
         _x = _x.encode('utf-8')
@@ -149,9 +149,9 @@ bool finish"""
       start = end
       end += length
       if python3:
-        self.gate = str[start:end].decode('utf-8', 'rosmsg')
+        self.path = str[start:end].decode('utf-8', 'rosmsg')
       else:
-        self.gate = str[start:end]
+        self.path = str[start:end]
       start = end
       end += 1
       (self.finish,) = _get_struct_B().unpack(str[start:end])

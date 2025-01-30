@@ -22,9 +22,9 @@
     :initarg :q1
     :type cl:float
     :initform 0.0)
-   (gate
-    :reader gate
-    :initarg :gate
+   (path
+    :reader path
+    :initarg :path
     :type cl:string
     :initform "")
    (finish
@@ -57,10 +57,10 @@
   (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader quadruped_robot-msg:q1-val is deprecated.  Use quadruped_robot-msg:q1 instead.")
   (q1 m))
 
-(cl:ensure-generic-function 'gate-val :lambda-list '(m))
-(cl:defmethod gate-val ((m <leg_state>))
-  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader quadruped_robot-msg:gate-val is deprecated.  Use quadruped_robot-msg:gate instead.")
-  (gate m))
+(cl:ensure-generic-function 'path-val :lambda-list '(m))
+(cl:defmethod path-val ((m <leg_state>))
+  (roslisp-msg-protocol:msg-deprecation-warning "Using old-style slot reader quadruped_robot-msg:path-val is deprecated.  Use quadruped_robot-msg:path instead.")
+  (path m))
 
 (cl:ensure-generic-function 'finish-val :lambda-list '(m))
 (cl:defmethod finish-val ((m <leg_state>))
@@ -95,12 +95,12 @@
     (cl:write-byte (cl:ldb (cl:byte 8 40) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 48) bits) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 56) bits) ostream))
-  (cl:let ((__ros_str_len (cl:length (cl:slot-value msg 'gate))))
+  (cl:let ((__ros_str_len (cl:length (cl:slot-value msg 'path))))
     (cl:write-byte (cl:ldb (cl:byte 8 0) __ros_str_len) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 8) __ros_str_len) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 16) __ros_str_len) ostream)
     (cl:write-byte (cl:ldb (cl:byte 8 24) __ros_str_len) ostream))
-  (cl:map cl:nil #'(cl:lambda (c) (cl:write-byte (cl:char-code c) ostream)) (cl:slot-value msg 'gate))
+  (cl:map cl:nil #'(cl:lambda (c) (cl:write-byte (cl:char-code c) ostream)) (cl:slot-value msg 'path))
   (cl:write-byte (cl:ldb (cl:byte 8 0) (cl:if (cl:slot-value msg 'finish) 1 0)) ostream)
 )
 (cl:defmethod roslisp-msg-protocol:deserialize ((msg <leg_state>) istream)
@@ -140,9 +140,9 @@
       (cl:setf (cl:ldb (cl:byte 8 8) __ros_str_len) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 16) __ros_str_len) (cl:read-byte istream))
       (cl:setf (cl:ldb (cl:byte 8 24) __ros_str_len) (cl:read-byte istream))
-      (cl:setf (cl:slot-value msg 'gate) (cl:make-string __ros_str_len))
+      (cl:setf (cl:slot-value msg 'path) (cl:make-string __ros_str_len))
       (cl:dotimes (__ros_str_idx __ros_str_len msg)
-        (cl:setf (cl:char (cl:slot-value msg 'gate) __ros_str_idx) (cl:code-char (cl:read-byte istream)))))
+        (cl:setf (cl:char (cl:slot-value msg 'path) __ros_str_idx) (cl:code-char (cl:read-byte istream)))))
     (cl:setf (cl:slot-value msg 'finish) (cl:not (cl:zerop (cl:read-byte istream))))
   msg
 )
@@ -154,22 +154,22 @@
   "quadruped_robot/leg_state")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql '<leg_state>)))
   "Returns md5sum for a message object of type '<leg_state>"
-  "0aee4478960f31ac1b388a2ea0e849cd")
+  "65639cae4a56ecaed05a54ec9094a72f")
 (cl:defmethod roslisp-msg-protocol:md5sum ((type (cl:eql 'leg_state)))
   "Returns md5sum for a message object of type 'leg_state"
-  "0aee4478960f31ac1b388a2ea0e849cd")
+  "65639cae4a56ecaed05a54ec9094a72f")
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql '<leg_state>)))
   "Returns full string definition for message of type '<leg_state>"
-  (cl:format cl:nil "float64 t~%float64 q0~%float64 q1~%string gate~%bool finish~%~%"))
+  (cl:format cl:nil "float64 t~%float64 q0~%float64 q1~%string path~%bool finish~%~%"))
 (cl:defmethod roslisp-msg-protocol:message-definition ((type (cl:eql 'leg_state)))
   "Returns full string definition for message of type 'leg_state"
-  (cl:format cl:nil "float64 t~%float64 q0~%float64 q1~%string gate~%bool finish~%~%"))
+  (cl:format cl:nil "float64 t~%float64 q0~%float64 q1~%string path~%bool finish~%~%"))
 (cl:defmethod roslisp-msg-protocol:serialization-length ((msg <leg_state>))
   (cl:+ 0
      8
      8
      8
-     4 (cl:length (cl:slot-value msg 'gate))
+     4 (cl:length (cl:slot-value msg 'path))
      1
 ))
 (cl:defmethod roslisp-msg-protocol:ros-message-to-list ((msg <leg_state>))
@@ -178,6 +178,6 @@
     (cl:cons ':t (t msg))
     (cl:cons ':q0 (q0 msg))
     (cl:cons ':q1 (q1 msg))
-    (cl:cons ':gate (gate msg))
+    (cl:cons ':path (path msg))
     (cl:cons ':finish (finish msg))
 ))

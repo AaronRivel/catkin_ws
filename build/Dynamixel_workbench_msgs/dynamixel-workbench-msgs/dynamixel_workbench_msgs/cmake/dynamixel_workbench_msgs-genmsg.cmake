@@ -109,7 +109,7 @@ add_custom_target(_dynamixel_workbench_msgs_generate_messages_check_deps_${_file
 
 get_filename_component(_filename "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/srv/GetDynamixelInfo.srv" NAME_WE)
 add_custom_target(_dynamixel_workbench_msgs_generate_messages_check_deps_${_filename}
-  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "dynamixel_workbench_msgs" "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/srv/GetDynamixelInfo.srv" "dynamixel_workbench_msgs/DynamixelLoadInfo:dynamixel_workbench_msgs/DynamixelInfo"
+  COMMAND ${CATKIN_ENV} ${PYTHON_EXECUTABLE} ${GENMSG_CHECK_DEPS_SCRIPT} "dynamixel_workbench_msgs" "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/srv/GetDynamixelInfo.srv" "dynamixel_workbench_msgs/DynamixelInfo:dynamixel_workbench_msgs/DynamixelLoadInfo"
 )
 
 get_filename_component(_filename "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/srv/DynamixelCommand.srv" NAME_WE)
@@ -236,7 +236,7 @@ _generate_msg_cpp(dynamixel_workbench_msgs
 _generate_srv_cpp(dynamixel_workbench_msgs
   "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/srv/GetDynamixelInfo.srv"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelLoadInfo.msg;/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelInfo.msg"
+  "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelInfo.msg;/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelLoadInfo.msg"
   ${CATKIN_DEVEL_PREFIX}/${gencpp_INSTALL_DIR}/dynamixel_workbench_msgs
 )
 _generate_srv_cpp(dynamixel_workbench_msgs
@@ -421,7 +421,7 @@ _generate_msg_eus(dynamixel_workbench_msgs
 _generate_srv_eus(dynamixel_workbench_msgs
   "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/srv/GetDynamixelInfo.srv"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelLoadInfo.msg;/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelInfo.msg"
+  "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelInfo.msg;/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelLoadInfo.msg"
   ${CATKIN_DEVEL_PREFIX}/${geneus_INSTALL_DIR}/dynamixel_workbench_msgs
 )
 _generate_srv_eus(dynamixel_workbench_msgs
@@ -606,7 +606,7 @@ _generate_msg_lisp(dynamixel_workbench_msgs
 _generate_srv_lisp(dynamixel_workbench_msgs
   "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/srv/GetDynamixelInfo.srv"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelLoadInfo.msg;/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelInfo.msg"
+  "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelInfo.msg;/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelLoadInfo.msg"
   ${CATKIN_DEVEL_PREFIX}/${genlisp_INSTALL_DIR}/dynamixel_workbench_msgs
 )
 _generate_srv_lisp(dynamixel_workbench_msgs
@@ -791,7 +791,7 @@ _generate_msg_nodejs(dynamixel_workbench_msgs
 _generate_srv_nodejs(dynamixel_workbench_msgs
   "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/srv/GetDynamixelInfo.srv"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelLoadInfo.msg;/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelInfo.msg"
+  "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelInfo.msg;/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelLoadInfo.msg"
   ${CATKIN_DEVEL_PREFIX}/${gennodejs_INSTALL_DIR}/dynamixel_workbench_msgs
 )
 _generate_srv_nodejs(dynamixel_workbench_msgs
@@ -976,7 +976,7 @@ _generate_msg_py(dynamixel_workbench_msgs
 _generate_srv_py(dynamixel_workbench_msgs
   "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/srv/GetDynamixelInfo.srv"
   "${MSG_I_FLAGS}"
-  "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelLoadInfo.msg;/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelInfo.msg"
+  "/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelInfo.msg;/home/aaron/catkin_ws/src/Dynamixel_workbench_msgs/dynamixel-workbench-msgs/dynamixel_workbench_msgs/msg/DynamixelLoadInfo.msg"
   ${CATKIN_DEVEL_PREFIX}/${genpy_INSTALL_DIR}/dynamixel_workbench_msgs
 )
 _generate_srv_py(dynamixel_workbench_msgs

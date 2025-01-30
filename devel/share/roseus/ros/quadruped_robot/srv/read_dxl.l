@@ -20,23 +20,28 @@
 
 (defclass quadruped_robot::read_dxlRequest
   :super ros::object
-  :slots (_action _motor_f _motor_p ))
+  :slots (_action _protocol_version _motor_f _motor_p ))
 
 (defmethod quadruped_robot::read_dxlRequest
   (:init
    (&key
     ((:action __action) "")
+    ((:protocol_version __protocol_version) 0)
     ((:motor_f __motor_f) 0)
     ((:motor_p __motor_p) 0)
     )
    (send-super :init)
    (setq _action (string __action))
+   (setq _protocol_version (round __protocol_version))
    (setq _motor_f (round __motor_f))
    (setq _motor_p (round __motor_p))
    self)
   (:action
    (&optional __action)
    (if __action (setq _action __action)) _action)
+  (:protocol_version
+   (&optional __protocol_version)
+   (if __protocol_version (setq _protocol_version __protocol_version)) _protocol_version)
   (:motor_f
    (&optional __motor_f)
    (if __motor_f (setq _motor_f __motor_f)) _motor_f)
@@ -48,6 +53,8 @@
    (+
     ;; string _action
     4 (length _action)
+    ;; int64 _protocol_version
+    8
     ;; int64 _motor_f
     8
     ;; int64 _motor_p
@@ -59,6 +66,18 @@
               (make-string-output-stream (send self :serialization-length)))))
      ;; string _action
        (write-long (length _action) s) (princ _action s)
+     ;; int64 _protocol_version
+#+(or :alpha :irix6 :x86_64)
+       (progn (sys::poke _protocol_version (send s :buffer) (send s :count) :long) (incf (stream-count s) 8))
+#-(or :alpha :irix6 :x86_64)
+       (cond ((and (class _protocol_version) (= (length (_protocol_version . bv)) 2)) ;; bignum
+              (write-long (ash (elt (_protocol_version . bv) 0) 0) s)
+              (write-long (ash (elt (_protocol_version . bv) 1) -1) s))
+             ((and (class _protocol_version) (= (length (_protocol_version . bv)) 1)) ;; big1
+              (write-long (elt (_protocol_version . bv) 0) s)
+              (write-long (if (>= _protocol_version 0) 0 #xffffffff) s))
+             (t                                         ;; integer
+              (write-long _protocol_version s)(write-long (if (>= _protocol_version 0) 0 #xffffffff) s)))
      ;; int64 _motor_f
 #+(or :alpha :irix6 :x86_64)
        (progn (sys::poke _motor_f (send s :buffer) (send s :count) :long) (incf (stream-count s) 8))
@@ -89,6 +108,18 @@
    (buf &optional (ptr- 0))
    ;; string _action
      (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _action (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
+   ;; int64 _protocol_version
+#+(or :alpha :irix6 :x86_64)
+      (setf _protocol_version (prog1 (sys::peek buf ptr- :long) (incf ptr- 8)))
+#-(or :alpha :irix6 :x86_64)
+      (setf _protocol_version (let ((b0 (prog1 (sys::peek buf ptr- :integer) (incf ptr- 4)))
+                  (b1 (prog1 (sys::peek buf ptr- :integer) (incf ptr- 4))))
+              (cond ((= b1 -1) b0)
+                     ((and (= b1  0)
+                           (<= lisp::most-negative-fixnum b0 lisp::most-positive-fixnum))
+                      b0)
+                    ((= b1  0) (make-instance bignum :size 1 :bv (integer-vector b0)))
+                    (t (make-instance bignum :size 2 :bv (integer-vector b0 (ash b1 1)))))))
    ;; int64 _motor_f
 #+(or :alpha :irix6 :x86_64)
       (setf _motor_f (prog1 (sys::peek buf ptr- :long) (incf ptr- 8)))
@@ -209,7 +240,7 @@
   :super ros::object
   :slots ())
 
-(setf (get quadruped_robot::read_dxl :md5sum-) "044408118166cb6346b6bae601023969")
+(setf (get quadruped_robot::read_dxl :md5sum-) "7620a6746ee96b998e0b60d728607979")
 (setf (get quadruped_robot::read_dxl :datatype-) "quadruped_robot/read_dxl")
 (setf (get quadruped_robot::read_dxl :request) quadruped_robot::read_dxlRequest)
 (setf (get quadruped_robot::read_dxl :response) quadruped_robot::read_dxlResponse)
@@ -217,10 +248,11 @@
 (defmethod quadruped_robot::read_dxlRequest
   (:response () (instance quadruped_robot::read_dxlResponse :init)))
 
-(setf (get quadruped_robot::read_dxlRequest :md5sum-) "044408118166cb6346b6bae601023969")
+(setf (get quadruped_robot::read_dxlRequest :md5sum-) "7620a6746ee96b998e0b60d728607979")
 (setf (get quadruped_robot::read_dxlRequest :datatype-) "quadruped_robot/read_dxlRequest")
 (setf (get quadruped_robot::read_dxlRequest :definition-)
       "string action
+int64 protocol_version
 int64 motor_f
 int64 motor_p
 ---
@@ -228,10 +260,11 @@ int64 result_1
 int64 result_2
 ")
 
-(setf (get quadruped_robot::read_dxlResponse :md5sum-) "044408118166cb6346b6bae601023969")
+(setf (get quadruped_robot::read_dxlResponse :md5sum-) "7620a6746ee96b998e0b60d728607979")
 (setf (get quadruped_robot::read_dxlResponse :datatype-) "quadruped_robot/read_dxlResponse")
 (setf (get quadruped_robot::read_dxlResponse :definition-)
       "string action
+int64 protocol_version
 int64 motor_f
 int64 motor_p
 ---
@@ -241,6 +274,6 @@ int64 result_2
 
 
 
-(provide :quadruped_robot/read_dxl "044408118166cb6346b6bae601023969")
+(provide :quadruped_robot/read_dxl "7620a6746ee96b998e0b60d728607979")
 
 

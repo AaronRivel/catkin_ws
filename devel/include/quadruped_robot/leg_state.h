@@ -27,14 +27,14 @@ struct leg_state_
     : t(0.0)
     , q0(0.0)
     , q1(0.0)
-    , gate()
+    , path()
     , finish(false)  {
     }
   leg_state_(const ContainerAllocator& _alloc)
     : t(0.0)
     , q0(0.0)
     , q1(0.0)
-    , gate(_alloc)
+    , path(_alloc)
     , finish(false)  {
   (void)_alloc;
     }
@@ -50,8 +50,8 @@ struct leg_state_
    typedef double _q1_type;
   _q1_type q1;
 
-   typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _gate_type;
-  _gate_type gate;
+   typedef std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>> _path_type;
+  _path_type path;
 
    typedef uint8_t _finish_type;
   _finish_type finish;
@@ -88,7 +88,7 @@ bool operator==(const ::quadruped_robot::leg_state_<ContainerAllocator1> & lhs, 
   return lhs.t == rhs.t &&
     lhs.q0 == rhs.q0 &&
     lhs.q1 == rhs.q1 &&
-    lhs.gate == rhs.gate &&
+    lhs.path == rhs.path &&
     lhs.finish == rhs.finish;
 }
 
@@ -146,12 +146,12 @@ struct MD5Sum< ::quadruped_robot::leg_state_<ContainerAllocator> >
 {
   static const char* value()
   {
-    return "0aee4478960f31ac1b388a2ea0e849cd";
+    return "65639cae4a56ecaed05a54ec9094a72f";
   }
 
   static const char* value(const ::quadruped_robot::leg_state_<ContainerAllocator>&) { return value(); }
-  static const uint64_t static_value1 = 0x0aee4478960f31acULL;
-  static const uint64_t static_value2 = 0x1b388a2ea0e849cdULL;
+  static const uint64_t static_value1 = 0x65639cae4a56ecaeULL;
+  static const uint64_t static_value2 = 0xd05a54ec9094a72fULL;
 };
 
 template<class ContainerAllocator>
@@ -173,7 +173,7 @@ struct Definition< ::quadruped_robot::leg_state_<ContainerAllocator> >
     return "float64 t\n"
 "float64 q0\n"
 "float64 q1\n"
-"string gate\n"
+"string path\n"
 "bool finish\n"
 ;
   }
@@ -196,7 +196,7 @@ namespace serialization
       stream.next(m.t);
       stream.next(m.q0);
       stream.next(m.q1);
-      stream.next(m.gate);
+      stream.next(m.path);
       stream.next(m.finish);
     }
 
@@ -222,8 +222,8 @@ struct Printer< ::quadruped_robot::leg_state_<ContainerAllocator> >
     Printer<double>::stream(s, indent + "  ", v.q0);
     s << indent << "q1: ";
     Printer<double>::stream(s, indent + "  ", v.q1);
-    s << indent << "gate: ";
-    Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.gate);
+    s << indent << "path: ";
+    Printer<std::basic_string<char, std::char_traits<char>, typename std::allocator_traits<ContainerAllocator>::template rebind_alloc<char>>>::stream(s, indent + "  ", v.path);
     s << indent << "finish: ";
     Printer<uint8_t>::stream(s, indent + "  ", v.finish);
   }

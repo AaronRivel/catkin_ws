@@ -14,7 +14,7 @@
 
 (defclass quadruped_robot::leg_state
   :super ros::object
-  :slots (_t _q0 _q1 _gate _finish ))
+  :slots (_t _q0 _q1 _path _finish ))
 
 (defmethod quadruped_robot::leg_state
   (:init
@@ -22,14 +22,14 @@
     ((:t __t) 0.0)
     ((:q0 __q0) 0.0)
     ((:q1 __q1) 0.0)
-    ((:gate __gate) "")
+    ((:path __path) "")
     ((:finish __finish) nil)
     )
    (send-super :init)
    (setq _t (float __t))
    (setq _q0 (float __q0))
    (setq _q1 (float __q1))
-   (setq _gate (string __gate))
+   (setq _path (string __path))
    (setq _finish __finish)
    self)
   (:t
@@ -41,9 +41,9 @@
   (:q1
    (&optional __q1)
    (if __q1 (setq _q1 __q1)) _q1)
-  (:gate
-   (&optional __gate)
-   (if __gate (setq _gate __gate)) _gate)
+  (:path
+   (&optional __path)
+   (if __path (setq _path __path)) _path)
   (:finish
    (&optional (__finish :null))
    (if (not (eq __finish :null)) (setq _finish __finish)) _finish)
@@ -56,8 +56,8 @@
     8
     ;; float64 _q1
     8
-    ;; string _gate
-    4 (length _gate)
+    ;; string _path
+    4 (length _path)
     ;; bool _finish
     1
     ))
@@ -71,8 +71,8 @@
        (sys::poke _q0 (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;; float64 _q1
        (sys::poke _q1 (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
-     ;; string _gate
-       (write-long (length _gate) s) (princ _gate s)
+     ;; string _path
+       (write-long (length _path) s) (princ _path s)
      ;; bool _finish
        (if _finish (write-byte -1 s) (write-byte 0 s))
      ;;
@@ -85,26 +85,26 @@
      (setq _q0 (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;; float64 _q1
      (setq _q1 (sys::peek buf ptr- :double)) (incf ptr- 8)
-   ;; string _gate
-     (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _gate (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
+   ;; string _path
+     (let (n) (setq n (sys::peek buf ptr- :integer)) (incf ptr- 4) (setq _path (subseq buf ptr- (+ ptr- n))) (incf ptr- n))
    ;; bool _finish
      (setq _finish (not (= 0 (sys::peek buf ptr- :char)))) (incf ptr- 1)
    ;;
    self)
   )
 
-(setf (get quadruped_robot::leg_state :md5sum-) "0aee4478960f31ac1b388a2ea0e849cd")
+(setf (get quadruped_robot::leg_state :md5sum-) "65639cae4a56ecaed05a54ec9094a72f")
 (setf (get quadruped_robot::leg_state :datatype-) "quadruped_robot/leg_state")
 (setf (get quadruped_robot::leg_state :definition-)
       "float64 t
 float64 q0
 float64 q1
-string gate
+string path
 bool finish
 ")
 
 
 
-(provide :quadruped_robot/leg_state "0aee4478960f31ac1b388a2ea0e849cd")
+(provide :quadruped_robot/leg_state "65639cae4a56ecaed05a54ec9094a72f")
 
 

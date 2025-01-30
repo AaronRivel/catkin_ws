@@ -10,7 +10,7 @@ class Timer:
     def reset(self):
         """Resetea el temporizador."""
         self.elapsed_time = 0
-        self.start_time = None
+        self.start_time = time.time() 
         self.running = False
 
     def start(self):

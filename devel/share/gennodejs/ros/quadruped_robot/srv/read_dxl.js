@@ -22,6 +22,7 @@ class read_dxlRequest {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
       this.action = null;
+      this.protocol_version = null;
       this.motor_f = null;
       this.motor_p = null;
     }
@@ -31,6 +32,12 @@ class read_dxlRequest {
       }
       else {
         this.action = '';
+      }
+      if (initObj.hasOwnProperty('protocol_version')) {
+        this.protocol_version = initObj.protocol_version
+      }
+      else {
+        this.protocol_version = 0;
       }
       if (initObj.hasOwnProperty('motor_f')) {
         this.motor_f = initObj.motor_f
@@ -51,6 +58,8 @@ class read_dxlRequest {
     // Serializes a message object of type read_dxlRequest
     // Serialize message field [action]
     bufferOffset = _serializer.string(obj.action, buffer, bufferOffset);
+    // Serialize message field [protocol_version]
+    bufferOffset = _serializer.int64(obj.protocol_version, buffer, bufferOffset);
     // Serialize message field [motor_f]
     bufferOffset = _serializer.int64(obj.motor_f, buffer, bufferOffset);
     // Serialize message field [motor_p]
@@ -64,6 +73,8 @@ class read_dxlRequest {
     let data = new read_dxlRequest(null);
     // Deserialize message field [action]
     data.action = _deserializer.string(buffer, bufferOffset);
+    // Deserialize message field [protocol_version]
+    data.protocol_version = _deserializer.int64(buffer, bufferOffset);
     // Deserialize message field [motor_f]
     data.motor_f = _deserializer.int64(buffer, bufferOffset);
     // Deserialize message field [motor_p]
@@ -74,7 +85,7 @@ class read_dxlRequest {
   static getMessageSize(object) {
     let length = 0;
     length += _getByteLength(object.action);
-    return length + 20;
+    return length + 28;
   }
 
   static datatype() {
@@ -84,13 +95,14 @@ class read_dxlRequest {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '85b694b587b06c4e67ace6f2b05239bb';
+    return '3e65dbf60554709c4068494151354d56';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
     string action
+    int64 protocol_version
     int64 motor_f
     int64 motor_p
     
@@ -108,6 +120,13 @@ class read_dxlRequest {
     }
     else {
       resolved.action = ''
+    }
+
+    if (msg.protocol_version !== undefined) {
+      resolved.protocol_version = msg.protocol_version;
+    }
+    else {
+      resolved.protocol_version = 0
     }
 
     if (msg.motor_f !== undefined) {
@@ -221,6 +240,6 @@ class read_dxlResponse {
 module.exports = {
   Request: read_dxlRequest,
   Response: read_dxlResponse,
-  md5sum() { return '044408118166cb6346b6bae601023969'; },
+  md5sum() { return '7620a6746ee96b998e0b60d728607979'; },
   datatype() { return 'quadruped_robot/read_dxl'; }
 };

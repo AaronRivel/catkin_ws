@@ -1,4 +1,4 @@
-float64 tf
+float64 cm_s
 int64 way
 bool walk_flag
 leg_state L1

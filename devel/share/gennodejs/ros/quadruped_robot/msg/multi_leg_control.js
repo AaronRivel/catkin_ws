@@ -19,7 +19,7 @@ class multi_leg_control {
   constructor(initObj={}) {
     if (initObj === null) {
       // initObj === null is a special case for deserialization where we don't initialize fields
-      this.tf = null;
+      this.cm_s = null;
       this.way = null;
       this.walk_flag = null;
       this.L1 = null;
@@ -28,11 +28,11 @@ class multi_leg_control {
       this.L4 = null;
     }
     else {
-      if (initObj.hasOwnProperty('tf')) {
-        this.tf = initObj.tf
+      if (initObj.hasOwnProperty('cm_s')) {
+        this.cm_s = initObj.cm_s
       }
       else {
-        this.tf = 0.0;
+        this.cm_s = 0.0;
       }
       if (initObj.hasOwnProperty('way')) {
         this.way = initObj.way
@@ -75,8 +75,8 @@ class multi_leg_control {
 
   static serialize(obj, buffer, bufferOffset) {
     // Serializes a message object of type multi_leg_control
-    // Serialize message field [tf]
-    bufferOffset = _serializer.float64(obj.tf, buffer, bufferOffset);
+    // Serialize message field [cm_s]
+    bufferOffset = _serializer.float64(obj.cm_s, buffer, bufferOffset);
     // Serialize message field [way]
     bufferOffset = _serializer.int64(obj.way, buffer, bufferOffset);
     // Serialize message field [walk_flag]
@@ -96,8 +96,8 @@ class multi_leg_control {
     //deserializes a message object of type multi_leg_control
     let len;
     let data = new multi_leg_control(null);
-    // Deserialize message field [tf]
-    data.tf = _deserializer.float64(buffer, bufferOffset);
+    // Deserialize message field [cm_s]
+    data.cm_s = _deserializer.float64(buffer, bufferOffset);
     // Deserialize message field [way]
     data.way = _deserializer.int64(buffer, bufferOffset);
     // Deserialize message field [walk_flag]
@@ -129,13 +129,13 @@ class multi_leg_control {
 
   static md5sum() {
     //Returns md5sum for a message object
-    return '77ad88901f4769ea15e1a5ba430126d8';
+    return '2042bad48628ce2ee3747e89f60d7c02';
   }
 
   static messageDefinition() {
     // Returns full string definition for message
     return `
-    float64 tf
+    float64 cm_s
     int64 way
     bool walk_flag
     leg_state L1
@@ -147,7 +147,7 @@ class multi_leg_control {
     float64 t
     float64 q0
     float64 q1
-    string gate
+    string path
     bool finish
     `;
   }
@@ -158,11 +158,11 @@ class multi_leg_control {
       msg = {};
     }
     const resolved = new multi_leg_control(null);
-    if (msg.tf !== undefined) {
-      resolved.tf = msg.tf;
+    if (msg.cm_s !== undefined) {
+      resolved.cm_s = msg.cm_s;
     }
     else {
-      resolved.tf = 0.0
+      resolved.cm_s = 0.0
     }
 
     if (msg.way !== undefined) {

@@ -1,6 +1,6 @@
 (cl:in-package quadruped_robot-msg)
-(cl:export '(TF-VAL
-          TF
+(cl:export '(CM_S-VAL
+          CM_S
           WAY-VAL
           WAY
           WALK_FLAG-VAL

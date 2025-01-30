@@ -14,12 +14,12 @@
 
 (defclass quadruped_robot::multi_leg_control
   :super ros::object
-  :slots (_tf _way _walk_flag _L1 _L2 _L3 _L4 ))
+  :slots (_cm_s _way _walk_flag _L1 _L2 _L3 _L4 ))
 
 (defmethod quadruped_robot::multi_leg_control
   (:init
    (&key
-    ((:tf __tf) 0.0)
+    ((:cm_s __cm_s) 0.0)
     ((:way __way) 0)
     ((:walk_flag __walk_flag) nil)
     ((:L1 __L1) (instance quadruped_robot::leg_state :init))
@@ -28,7 +28,7 @@
     ((:L4 __L4) (instance quadruped_robot::leg_state :init))
     )
    (send-super :init)
-   (setq _tf (float __tf))
+   (setq _cm_s (float __cm_s))
    (setq _way (round __way))
    (setq _walk_flag __walk_flag)
    (setq _L1 __L1)
@@ -36,9 +36,9 @@
    (setq _L3 __L3)
    (setq _L4 __L4)
    self)
-  (:tf
-   (&optional __tf)
-   (if __tf (setq _tf __tf)) _tf)
+  (:cm_s
+   (&optional __cm_s)
+   (if __cm_s (setq _cm_s __cm_s)) _cm_s)
   (:way
    (&optional __way)
    (if __way (setq _way __way)) _way)
@@ -76,7 +76,7 @@
   (:serialization-length
    ()
    (+
-    ;; float64 _tf
+    ;; float64 _cm_s
     8
     ;; int64 _way
     8
@@ -95,8 +95,8 @@
    (&optional strm)
    (let ((s (if strm strm
               (make-string-output-stream (send self :serialization-length)))))
-     ;; float64 _tf
-       (sys::poke _tf (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
+     ;; float64 _cm_s
+       (sys::poke _cm_s (send s :buffer) (send s :count) :double) (incf (stream-count s) 8)
      ;; int64 _way
 #+(or :alpha :irix6 :x86_64)
        (progn (sys::poke _way (send s :buffer) (send s :count) :long) (incf (stream-count s) 8))
@@ -123,8 +123,8 @@
      (if (null strm) (get-output-stream-string s))))
   (:deserialize
    (buf &optional (ptr- 0))
-   ;; float64 _tf
-     (setq _tf (sys::peek buf ptr- :double)) (incf ptr- 8)
+   ;; float64 _cm_s
+     (setq _cm_s (sys::peek buf ptr- :double)) (incf ptr- 8)
    ;; int64 _way
 #+(or :alpha :irix6 :x86_64)
       (setf _way (prog1 (sys::peek buf ptr- :long) (incf ptr- 8)))
@@ -151,10 +151,10 @@
    self)
   )
 
-(setf (get quadruped_robot::multi_leg_control :md5sum-) "77ad88901f4769ea15e1a5ba430126d8")
+(setf (get quadruped_robot::multi_leg_control :md5sum-) "2042bad48628ce2ee3747e89f60d7c02")
 (setf (get quadruped_robot::multi_leg_control :datatype-) "quadruped_robot/multi_leg_control")
 (setf (get quadruped_robot::multi_leg_control :definition-)
-      "float64 tf
+      "float64 cm_s
 int64 way
 bool walk_flag
 leg_state L1
@@ -166,12 +166,12 @@ MSG: quadruped_robot/leg_state
 float64 t
 float64 q0
 float64 q1
-string gate
+string path
 bool finish
 ")
 
 
 
-(provide :quadruped_robot/multi_leg_control "77ad88901f4769ea15e1a5ba430126d8")
+(provide :quadruped_robot/multi_leg_control "2042bad48628ce2ee3747e89f60d7c02")
 
 
